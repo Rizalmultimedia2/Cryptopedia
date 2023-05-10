@@ -64,6 +64,14 @@
   font-size: 12px;
 }
 
-.test {
-  @apply flex items-center justify-center min-h-screen;
+.form-input {
+  @apply flex items-center h-[45px] font-medium w-[420px] border border-gray-400 rounded-lg text-p3 px-3;
+}
+
+.button-input-1 {
+  @apply flex items-center justify-center h-[45px] w-[420px] text-light-color bg-primary-1 rounded-lg text-h6;
+}
+
+.item-header {
+  @apply block py-2 pr-4 pl-3 text-black border-b border-gray-100 hover:text-primary-1 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0;
 }
