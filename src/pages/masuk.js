@@ -8,10 +8,10 @@ function test() {
     <>
       <Header />
       <div className="grid md:grid-cols-2 grid-cols-1 container">
-        <div></div>
+        <div className="bg-primary-4"></div>
         <div className="flex items-center justify-center min-h-screen">
           <div className="flex md:flex-col gap-[20px] py-[35px] px-[15px] w-[486px] bg-light-color rounded-md shadow-shadows-1 items-center justify-center space-y-5">
-            <Image src="/image/logo.png" height={120} width={133} />
+            <Image src="/image/Logo.svg" height={120} width={133} />
             <h1 className="text-primary-1 text-h5">Masuk</h1>
             <div className="form-input">Username</div>
             <div className="form-input">Password</div>
