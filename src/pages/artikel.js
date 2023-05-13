@@ -1,5 +1,6 @@
 import Artikel from "@/components/Artikel";
 import Header from "@/components/Header";
+import Searchbar from "@/components/Searchbar";
 import React from "react";
 
 function artikel() {
@@ -7,10 +8,12 @@ function artikel() {
     <>
       <Header />
       <div className="flex flex-col container gap-[30px] mt-[30px]">
-        <div>
+        <div className="space-y-[10px]">
           <p className="font-bold text-h3">Artikel Terbaru</p>
           <div className="flex justify-between items-center">
-            <div>Cari Artikel</div>
+            <div>
+              <Searchbar />
+            </div>
             <div className="flex flex-row items-center gap-[20px]">
               <p>level</p>
               <button className="level-filter border-primary-1">Semua</button>
@@ -20,13 +23,14 @@ function artikel() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] border">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[100px] gap-y-[30px]">
           <Artikel />
           <Artikel />
           <Artikel />
           <Artikel />
           <Artikel />
           <Artikel />
+          {/* cara banyak gimana? */}
         </div>
       </div>
     </>
