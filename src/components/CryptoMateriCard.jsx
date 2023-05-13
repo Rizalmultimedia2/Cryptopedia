@@ -12,9 +12,7 @@ function CryptoMateri() {
               <FiBookmark className="text-primary-1" />
             </div>
           </div>
-          <div className="flex justify-center items-center rounded-md text-p2 text-light-color py-[3px] py-[3px] h-[30px] w-[77px] bg-primary-1">
-            Pemula
-          </div>
+          <div className="level">Pemula</div>
         </div>
         <div>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis

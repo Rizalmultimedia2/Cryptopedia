@@ -75,3 +75,11 @@
 .item-header {
   @apply block py-2 pr-4 pl-3 text-black border-b border-gray-100 hover:text-primary-1 lg:border-0 lg:p-0;
 }
+
+.level {
+  @apply flex justify-center items-center rounded-[100px] text-p3 text-light-color h-[30px] w-[77px] bg-primary-1 font-semibold px-[3px] py-[10px];
+}
+
+.level-filter {
+  @apply px-[15px] py-[10px] border flex justify-center items-center rounded-[10px];
+}
