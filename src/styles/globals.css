@@ -80,14 +80,26 @@
   @apply flex justify-center items-center rounded-[100px] text-p3 text-light-color h-[30px] w-fit bg-primary-1 font-semibold px-[10px] py-[10px];
 }
 
-.level-filter {
-  @apply px-[15px] py-[10px] border flex justify-center items-center rounded-[10px];
+.searchbar {
+  @apply pl-3 h-full text-sm text-black border border-gray-4 rounded-[5px] rounded-tr-none rounded-br-none w-full focus:ring-[2px] focus:ring-primary-1 focus:outline-none focus:border-primary-1;
 }
 
-.searchbar {
-  @apply pl-3 h-full text-sm text-black border border-gray-4 rounded-[5px] rounded-tr-none rounded-br-none focus:ring-[2px] focus:ring-primary-1 focus:border-primary-1 w-full;
+.ring-hover {
+  @apply hover:ring-[2px] hover:ring-primary-1 hover:border-primary-1 hover:bg-primary-1 rounded-lg;
 }
 
 .button-normal {
   @apply flex justify-center items-center rounded-[5px] bg-primary-1 text-p2 text-white px-[24px] py-[8px];
+}
+
+.container-x {
+  @apply px-[50px];
+}
+
+.select-category {
+  @apply flex py-3 px-5 font-semibold bg-primary-4 cursor-pointer peer-checked:bg-primary-2 peer-checked:text-white h-full items-center text-center;
+}
+
+.select-level {
+  @apply border flex rounded-[10px] font-semibold py-3 px-5 gap-5 cursor-pointer peer-checked:border-primary-1 h-full items-center text-center peer-checked:ring-primary-1 peer-checked:ring-1;
 }

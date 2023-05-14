@@ -7,7 +7,7 @@ function ubahkatasandi() {
   return (
     <>
       <Header />
-      <div className="grid grid-cols-2 container">
+      <div className="grid grid-cols-2 container container-x">
         <div className="bg-primary-4"></div>
         <div className="flex items-center justify-center min-h-screen">
           <div className="flex flex-col h-[537px] w-[486px] bg-light-color rounded-md shadow-shadows-1 items-center justify-center space-y-5">

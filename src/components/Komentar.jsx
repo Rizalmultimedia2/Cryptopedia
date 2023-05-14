@@ -4,7 +4,7 @@ import React from "react";
 function Komentar() {
   return (
     <>
-      <div className="flex flex-col w-[714px] border rounded-[10px] border-gray-4 p-[10px] gap-[10px]">
+      <div className="flex flex-col border rounded-[10px] border-gray-4 p-[10px] gap-[10px]">
         <div className="felx flex row w-full gap-[10px]">
           <Image
             src="/image/Artikel.png"

@@ -4,7 +4,7 @@ import { FiBookmark } from "react-icons/fi";
 function CryptoMateri() {
   return (
     <>
-      <div className="flex flex-col w-[714px] border border-primary-1 p-[16px] gap-[13px] rounded-lg bg-white">
+      <div className="flex flex-col border border-primary-1 p-[16px] gap-[13px] rounded-lg bg-white">
         <div className="flex flex-col gap-[5px]">
           <div className="flex text-h5 items-center justify-between">
             <span>Apa itu Arbitrase?</span>

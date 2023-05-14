@@ -6,7 +6,7 @@ function Searchbar() {
     <>
       <form
         action=""
-        className="flex flex-row items-center rounded-[5px] w-[384px] h-[45px]"
+        className="flex flex-row items-center rounded-[5px] h-[45px]"
       >
         <label
           for="searchbar"

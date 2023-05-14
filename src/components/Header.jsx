@@ -16,13 +16,13 @@ function Header() {
           </a>
           <div class="flex items-center lg:order-2">
             <a
-              href="#"
+              href="/daftar"
               class="text-primary-1 focus:ring-2 focus:ring-primary-4 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 border border-primary-1 focus:outline-none"
             >
               Daftar
             </a>
             <a
-              href="#"
+              href="/masuk"
               class="text-white bg-primary-1 hover:bg-primary-800 focus:ring-2 focus:ring-primary-4 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2  focus:outline-none"
             >
               Masuk
@@ -68,7 +68,7 @@ function Header() {
             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
                 <a
-                  href="#"
+                  href="/beranda"
                   class="block py-2 pr-4 pl-3 text-black rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 hover:text-primary-1"
                   aria-current="page"
                 >
@@ -77,7 +77,7 @@ function Header() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/artikel"
                   class="item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
                   Artikel
@@ -85,7 +85,7 @@ function Header() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/cryptosharing"
                   class="item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
                   Crypto Sharing
@@ -93,7 +93,7 @@ function Header() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/crypto101"
                   class="item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
                   Crypto 101
@@ -101,7 +101,7 @@ function Header() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/"
                   class="item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0"
                 >
                   Tentang
