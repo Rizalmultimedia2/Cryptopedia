@@ -11,10 +11,10 @@ function test() {
     <div>
       <Komentar />
       <Searchbar />
-      {/* <Artikel />
+      <Artikel />
       <CryptoMateri />
       <CryptoSharing />
-      <MyBookmark /> */}
+      <MyBookmark />
     </div>
   );
 }

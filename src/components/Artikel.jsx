@@ -1,23 +1,30 @@
 import Image from "next/image";
 import React from "react";
 
-function Artikel() {
+function Artikel({ title, date, body, level }) {
+  const getColor = (level) => {
+    if (level == "Pemula") {
+      return "#29BF9F";
+    } else if (level == "Menengah") {
+      return "#FACA21";
+    } else if (level == "Ahli") {
+      return "#E96E70";
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col w-full bg-white border border-gray-4 rounded-lg gap-[10px] overflow-hidden">
-        <Image src="/image/artikel.png" width={378} height={230} />
+        <div className="relative h-[230px]">
+          <Image src="/image/artikel.png" fill className="object-cover" />
+        </div>
         <div className="flex flex-col gap-[5px] px-[7px] mb-[10px]">
-          <div className="level">Pemula</div>
-          <p className="text-p1 text-black font-bold">
-            Bitcoin Akan Bullish di tahun 2024
-          </p>
-          <p className="text-p3 text-black font-medium">20 April 2023</p>
-          <p className="line-clamp-2">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor ex,
-            inventore mollitia non harum similique, fugit veniam veritatis error
-            excepturi voluptatum a labore, dolorum ut ipsam atque quas quae
-            possimus.
-          </p>
+          <div className="level" style={{ background: getColor(level) }}>
+            <span>{level}</span>
+          </div>
+          <p className="text-p1 text-black font-bold">{title}</p>
+          <p className="text-p3 text-black font-medium">{date}</p>
+          <p className="line-clamp-2">{body}</p>
         </div>
       </div>
     </>

@@ -14,22 +14,19 @@ function Searchbar() {
         >
           Search
         </label>
-        <div className="flex items-center p-[10px] ml-[5px] h-full border border-gray-4 rounded-bl-[5px] rounded-tl-[5px]">
-          <FiSearch className="" />
-        </div>
         <input
           type="search"
           id="searchbar"
-          className="searchbar"
+          className="searchbar outline-0"
           placeholder="Search"
           required
         />
-        <button
-          type="submit"
-          className="ml-[10px] p-[10px] bg-primary-1 text-white rounded-lg"
+        <a
+          href=""
+          className="flex items-center p-[10px] h-full border border-gray-4 rounded-br-[5px] rounded-tr-[5px]"
         >
-          Search
-        </button>
+          <FiSearch className="" />
+        </a>
       </form>
     </>
   );
