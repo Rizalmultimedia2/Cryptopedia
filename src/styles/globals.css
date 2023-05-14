@@ -87,3 +87,7 @@
 .searchbar {
   @apply pl-3 h-full text-sm text-black border border-gray-4 rounded-[5px] rounded-tl-none rounded-bl-none focus:ring-[2px] focus:ring-primary-1 focus:border-primary-1 w-full;
 }
+
+.button-normal {
+  @apply flex justify-center items-center rounded-[5px] bg-primary-1 text-p2 text-white px-[24px] py-[8px];
+}

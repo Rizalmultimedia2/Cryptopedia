@@ -3,7 +3,7 @@ import { Menu } from "@headlessui/react";
 import Image from "next/image";
 import Header from "@/components/Header";
 
-function masuk() {
+function lengkapidata() {
   return (
     <>
       <Header />
@@ -12,8 +12,16 @@ function masuk() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="flex md:flex-col gap-[20px] py-[35px] px-[15px] w-[486px] bg-light-color rounded-md shadow-shadows-1 items-center justify-center space-y-5">
             <Image src="/image/Logo.svg" height={120} width={133} />
-            <h1 className="text-primary-1 text-h5">Masuk</h1>
+            <h1 className="text-primary-1 text-h5">Lengkapi data</h1>
             <form action="" className="flex flex-col gap-[20px]">
+              <label for="email" className="sr-only"></label>
+              <input
+                readOnly
+                type="text"
+                id="email"
+                className="form-input bg-gray-4 placeholder-black"
+                placeholder="example@gmail.com"
+              />
               <label for="username" className="sr-only"></label>
               <input
                 type="text"
@@ -21,23 +29,26 @@ function masuk() {
                 className="form-input"
                 placeholder="Username"
               />
-              <label for="password" className="sr-only"></label>
-              <input
-                type="password"
-                id="password"
-                className="form-input"
-                placeholder="password"
-              />
+              <label for="trader" className="sr-only"></label>
+              <select name="" id="trader" className="form-input">
+                <option value="" disabled selected hidden>
+                  Trader
+                </option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              <label>
+                Pilih avatar
+                <select>
+                  <option value="fruit">Fruit</option>
+                  <option value="vegetable">Vegetable</option>
+                  <option value="meat">Meat</option>
+                </select>
+              </label>
               <button type="submit" className="button-input-1">
                 Masuk
               </button>
             </form>
-            <p className="text-p4 font-medium">
-              Belum punya akun?
-              <a href="#" className="text-primary-1 font-bold">
-                &nbsp; Daftar
-              </a>
-            </p>
           </div>
         </div>
       </div>
@@ -45,4 +56,4 @@ function masuk() {
   );
 }
 
-export default masuk;
+export default lengkapidata;
