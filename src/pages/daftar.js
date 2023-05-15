@@ -1,7 +1,7 @@
 import React from "react";
 import Router, { useRouter } from "next/router";
 import Image from "next/image";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import InputForm from "@/components/InputForm";
 
 function daftar() {

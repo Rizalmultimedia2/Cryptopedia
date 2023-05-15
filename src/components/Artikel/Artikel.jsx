@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-function Artikel({ title, date, body, level }) {
+function Artikel({ title, date, body, level, id }) {
   const getColor = (level) => {
     if (level == "Pemula") {
       return "#29BF9F";
@@ -9,6 +9,14 @@ function Artikel({ title, date, body, level }) {
       return "#FACA21";
     } else if (level == "Ahli") {
       return "#E96E70";
+    }
+  };
+
+  const isAdmin = (id) => {
+    if (id == 1) {
+      return "visible";
+    } else {
+      return "none";
     }
   };
 
@@ -26,6 +34,16 @@ function Artikel({ title, date, body, level }) {
             <p className="text-p1 text-black font-bold">{title}</p>
             <p className="text-p3 text-black font-medium">{date}</p>
             <p className="line-clamp-2">{body}</p>
+            <div className="flex-center gap-3" style={{ display: isAdmin(id) }}>
+              <button
+                className="button-normal"
+                style={{ background: "#E96E70" }}
+              >
+                {" "}
+                Hapus
+              </button>
+              <button className="button-normal"> Edit</button>
+            </div>
           </div>
         </div>
       </a>

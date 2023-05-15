@@ -1,7 +1,7 @@
 import React from "react";
 import { FiBookmark } from "react-icons/fi";
 
-function CryptoMateri({ title, level, body }) {
+function CryptoMateri({ title, level, body, id }) {
   const getLevel = (level) => {
     switch (level) {
       case 1:
@@ -23,6 +23,14 @@ function CryptoMateri({ title, level, body }) {
     }
   };
 
+  const isAdmin = (id) => {
+    if (id == 1) {
+      return "visible";
+    } else {
+      return "none";
+    }
+  };
+
   return (
     <>
       <a className="sharing-card" href="#">
@@ -38,6 +46,13 @@ function CryptoMateri({ title, level, body }) {
           </div>
         </div>
         <div>{body}</div>
+        <div className="flex-center gap-3" style={{ display: isAdmin(id) }}>
+          <button className="button-normal" style={{ background: "#E96E70" }}>
+            {" "}
+            Hapus
+          </button>
+          <button className="button-normal"> Edit</button>
+        </div>
       </a>
     </>
   );

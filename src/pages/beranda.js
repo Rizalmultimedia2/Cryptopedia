@@ -2,7 +2,7 @@ import { DataArtikel } from "@/Utils/Artikel";
 import Artikel from "@/components/Artikel/Artikel";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import Image from "next/image";
 import { GoKebabHorizontal } from "react-icons/go";
 import React from "react";

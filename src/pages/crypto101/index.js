@@ -1,5 +1,5 @@
 import { FiPlus } from "react-icons/fi";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
 import Footer from "@/components/Footer";

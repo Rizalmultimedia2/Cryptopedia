@@ -1,6 +1,6 @@
 import Artikel from "@/components/Artikel/Artikel";
 import { FiChevronLeft, FiThumbsDown, FiThumbsUp } from "react-icons/fi";
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import React from "react";
 import { DataArtikel } from "@/Utils/Artikel";
 import Image from "next/image";

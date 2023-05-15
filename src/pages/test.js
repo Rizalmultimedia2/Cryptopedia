@@ -4,7 +4,7 @@ import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Komentar from "@/components/Komentar";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Searchbar from "@/components/Searchbar";
-import TrendingForum from "@/components/TrendingForum";
+import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import React from "react";
 
 function test() {

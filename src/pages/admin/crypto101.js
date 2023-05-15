@@ -3,23 +3,22 @@ import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
 import Footer from "@/components/Footer";
-import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
+import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
-import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import SelectCategory from "@/components/SelectCategory";
 import Banner from "@/components/Banner";
-import { DataForum } from "@/Utils/CryptoSharing";
+import { DataMateri } from "@/Utils/Crypto101";
 
-function artikel() {
+function index() {
   return (
     <>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-3">
-          <h3 className="text-h3">Crypto Sharing</h3>
+          <h3 className="text-h3">Crypto 101</h3>
           <div className="flex justify-between">
             <span className="text-p1">
-              Belajar Cryptocurrency lebih mudah dengan berdiskusi
+              Tempat belajar cryptocurrency untuk pemula
             </span>
             <button className="button-normal flex gap-3">
               <FiPlus /> Buat Diskusi
@@ -28,45 +27,26 @@ function artikel() {
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-5">
-            <div>
-              <TrendingForum />
-            </div>
-
             <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden">
               <SelectCategory value="semua" label="Semua" style="category" />
-              <SelectCategory value="tren" label="Tren" style="category" />
+              <SelectCategory value="pemula" label="Pemula" style="category" />
               <SelectCategory
-                value="teknikal"
-                label="Teknikal & Fundamental"
+                value="menengah"
+                label="Menengah"
                 style="category"
               />
-              <SelectCategory
-                value="general"
-                label="General"
-                style="category"
-              />
-              <SelectCategory
-                value="mypost"
-                label="Postingan saya"
-                style="category"
-              />
+              <SelectCategory value="ahli" label="Ahli" style="category" />
             </ul>
             <div>
               <Searchbar />
             </div>
             <div className="flex flex-col gap-5">
-              {DataForum.map((item) => (
-                <CryptoSharing
+              {DataMateri.map((item) => (
+                <CryptoMateri
                   title={item.title}
-                  username={item.username}
-                  waktu={item.waktu}
-                  tanggal={item.tanggal}
+                  level={item.level}
                   body={item.body}
-                  kategori={item.kategori}
-                  tag={item.tag}
-                  like={item.jumlah_like}
-                  dislike={item.jumlah_dislike}
-                  comment={item.jumlah_comment}
+                  id={1}
                 />
               ))}
             </div>
@@ -77,9 +57,9 @@ function artikel() {
             </div>
             <div>
               <Banner
-                title="Baru Belajar Crypto?"
-                body="Pelajari crypto 101 agar kamu lebih siap dalam berdiskusi"
-                link="/crypto101"
+                title="Sudah siap belajar crypto lebih lanjut?"
+                body="Bergabung dalam diskusi untuk tingkatkan pemahamanmu didalam cryptocurrency"
+                link="/cryptosharing"
               />
             </div>
           </div>
@@ -90,4 +70,4 @@ function artikel() {
   );
 }
 
-export default artikel;
+export default index;

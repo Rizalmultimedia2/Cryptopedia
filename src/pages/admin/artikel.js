@@ -39,7 +39,7 @@ function artikel() {
               title={item.title}
               level={item.level}
               date={item.date}
-              id={2}
+              id={1}
             />
           ))}
         </div>

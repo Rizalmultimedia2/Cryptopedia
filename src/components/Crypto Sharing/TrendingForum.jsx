@@ -1,5 +1,5 @@
 import React from "react";
-import CryptoSharing from "./Crypto Sharing/CryptoSharingCard";
+import CryptoSharing from "./CryptoSharingCard";
 
 function TrendingForum() {
   return (
