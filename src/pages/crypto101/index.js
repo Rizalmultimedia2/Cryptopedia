@@ -1,15 +1,13 @@
-import Artikel from "@/components/Artikel";
 import { FiPlus } from "react-icons/fi";
 import Header from "@/components/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
-import { DataArtikel } from "@/Utils/Artikel";
 import Footer from "@/components/Footer";
-import CryptoMateri from "@/components/CryptoMateriCard";
-import MyBookmark from "@/components/MyBookmark";
-import TrendingForum from "@/components/TrendingForum";
+import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
+import MyBookmark from "@/components/Bookmark/MyBookmark";
 import SelectCategory from "@/components/SelectCategory";
 import Banner from "@/components/Banner";
+import { DataMateri } from "@/Utils/Crypto101";
 
 function index() {
   return (
@@ -43,10 +41,13 @@ function index() {
               <Searchbar />
             </div>
             <div className="flex flex-col gap-5">
-              <CryptoMateri />
-              <CryptoMateri />
-              <CryptoMateri />
-              <CryptoMateri />
+              {DataMateri.map((item) => (
+                <CryptoMateri
+                  title={item.title}
+                  level={item.level}
+                  body={item.body}
+                />
+              ))}
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">

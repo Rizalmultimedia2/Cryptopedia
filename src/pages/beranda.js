@@ -1,12 +1,12 @@
 import { DataArtikel } from "@/Utils/Artikel";
-
-import Artikel from "@/components/Artikel";
-import CryptoSharing from "@/components/CryptoSharingCard";
+import Artikel from "@/components/Artikel/Artikel";
+import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Image from "next/image";
 import { GoKebabHorizontal } from "react-icons/go";
 import React from "react";
+import { DataForum } from "@/Utils/CryptoSharing";
 
 function beranda() {
   return (
@@ -19,7 +19,7 @@ function beranda() {
               Belajar dan berdiskusi Cryptocurrency dengan mudah
             </p>
             Pemula di Crypto?{" "}
-            <a href="" className="text-primary-1 font-semibold">
+            <a href="/crypto101" className="text-primary-1 font-semibold">
               Klik disini
             </a>
           </div>
@@ -31,7 +31,7 @@ function beranda() {
               className="rounded-full object-cover"
             />
             <a
-              href="#"
+              href="/cryptosharing"
               className="button-normal flex items-center gap-3 justify-between w-[300px]"
             >
               <span>Klik untuk membuat diskusi</span>
@@ -43,12 +43,20 @@ function beranda() {
           <div className="col-span-2 flex flex-col gap-[20px]">
             <span className="text-h5">Forum Terbaru</span>
             <div className="flex flex-col gap-[20px]">
-              <CryptoSharing />
-              <CryptoSharing />
-              <CryptoSharing />
-              <CryptoSharing />
-              <CryptoSharing />
-              <CryptoSharing />
+              {DataForum.map((item) => (
+                <CryptoSharing
+                  title={item.title}
+                  username={item.username}
+                  waktu={item.waktu}
+                  tanggal={item.tanggal}
+                  body={item.body}
+                  kategori={item.kategori}
+                  tag={item.tag}
+                  like={item.jumlah_like}
+                  dislike={item.jumlah_dislike}
+                  comment={item.jumlah_comment}
+                />
+              ))}
             </div>
           </div>
           <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-[20px]">

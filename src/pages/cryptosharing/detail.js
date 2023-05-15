@@ -7,12 +7,12 @@ import {
 import Header from "@/components/Header";
 import React from "react";
 import Footer from "@/components/Footer";
-import CryptoSharing from "@/components/CryptoSharingCard";
-import MyBookmark from "@/components/MyBookmark";
+import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
+import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Banner from "@/components/Banner";
 import Komentar from "@/components/Komentar";
 
-function detailcryptosharing() {
+function detail() {
   return (
     <>
       <Header />
@@ -78,4 +78,4 @@ function detailcryptosharing() {
   );
 }
 
-export default detailcryptosharing;
+export default detail;

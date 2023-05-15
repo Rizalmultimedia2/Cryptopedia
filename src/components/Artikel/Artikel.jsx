@@ -14,7 +14,7 @@ function Artikel({ title, date, body, level }) {
 
   return (
     <>
-      <a href="artikel/detailartikel" className="ring-hover">
+      <a href="/artikel/detail" className="ring-hover">
         <div className="flex flex-col w-full bg-white border border-gray-4 rounded-lg gap-[10px] overflow-hidden">
           <div className="relative h-[230px]">
             <Image src="/image/artikel.png" fill className="object-cover" />

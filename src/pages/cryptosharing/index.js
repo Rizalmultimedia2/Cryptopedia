@@ -3,11 +3,12 @@ import Header from "@/components/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
 import Footer from "@/components/Footer";
-import CryptoSharing from "@/components/CryptoSharingCard";
-import MyBookmark from "@/components/MyBookmark";
+import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
+import MyBookmark from "@/components/Bookmark/MyBookmark";
 import TrendingForum from "@/components/TrendingForum";
 import SelectCategory from "@/components/SelectCategory";
 import Banner from "@/components/Banner";
+import { DataForum } from "@/Utils/CryptoSharing";
 
 function artikel() {
   return (
@@ -54,8 +55,20 @@ function artikel() {
               <Searchbar />
             </div>
             <div className="flex flex-col gap-5">
-              <CryptoSharing />
-              <CryptoSharing />
+              {DataForum.map((item) => (
+                <CryptoSharing
+                  title={item.title}
+                  username={item.username}
+                  waktu={item.waktu}
+                  tanggal={item.tanggal}
+                  body={item.body}
+                  kategori={item.kategori}
+                  tag={item.tag}
+                  like={item.jumlah_like}
+                  dislike={item.jumlah_dislike}
+                  comment={item.jumlah_comment}
+                />
+              ))}
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">

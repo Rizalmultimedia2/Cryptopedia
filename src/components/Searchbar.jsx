@@ -1,7 +1,7 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
 
-function Searchbar() {
+function Searchbar({ placeholder }) {
   return (
     <>
       <form
@@ -18,7 +18,7 @@ function Searchbar() {
           type="search"
           id="searchbar"
           className="searchbar outline-0"
-          placeholder="Search"
+          placeholder={placeholder}
           required
         />
         <a

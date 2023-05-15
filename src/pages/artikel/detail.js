@@ -1,13 +1,12 @@
-import Artikel from "@/components/Artikel";
+import Artikel from "@/components/Artikel/Artikel";
 import { FiChevronLeft, FiThumbsDown, FiThumbsUp } from "react-icons/fi";
 import Header from "@/components/Header";
-import Searchbar from "@/components/Searchbar";
 import React from "react";
 import { DataArtikel } from "@/Utils/Artikel";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 
-function detailartikel() {
+function detail() {
   return (
     <>
       <Header />
@@ -104,4 +103,4 @@ function detailartikel() {
   );
 }
 
-export default detailartikel;
+export default detail;

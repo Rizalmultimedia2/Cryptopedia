@@ -1,4 +1,4 @@
-import Artikel from "@/components/Artikel";
+import Artikel from "@/components/Artikel/Artikel";
 import Header from "@/components/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
