@@ -23,7 +23,18 @@ function detail() {
         </a>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-4">
-            <CryptoSharing />
+            <CryptoSharing
+              title="Altcoin apa yang akan terbang"
+              username="Rizal Herliansyah Hidayat"
+              waktu="1 jam yang lalu"
+              tanggal="12-12-2023"
+              body=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident libero hic in mollitia placeat totam vero nam! Velit fuga laudantium sed iusto ea sint ab ducimus ad voluptates perferendis?"
+              kategori={1}
+              tag="#USDT #BUSD"
+              jumlah_like={10}
+              jumlah_dislike={5}
+              jumlah_comment={2}
+            />
             <h5 className="text-h5">Komentar</h5>
             <div>
               <form class="flex flex-row gap-5 items-center">
@@ -68,8 +79,20 @@ function detail() {
         <div className="flex flex-col gap-6">
           <h4 className="text-h4">Forum Lainnya</h4>
           <div className="flex flex-row gap-6">
-            <CryptoSharing />
-            <CryptoSharing />
+            {[1, 2].map((x) => (
+              <CryptoSharing
+                title="Altcoin apa yang akan terbang"
+                username="Rizal Herliansyah Hidayat"
+                waktu="1 jam yang lalu"
+                tanggal="12-12-2023"
+                body=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident libero hic in mollitia placeat totam vero nam! Velit fuga laudantium sed iusto ea sint ab ducimus ad voluptates perferendis?"
+                kategori={1}
+                tag="#USDT #BUSD"
+                jumlah_like={10}
+                jumlah_dislike={5}
+                jumlah_comment={2}
+              />
+            ))}
           </div>
         </div>
       </div>

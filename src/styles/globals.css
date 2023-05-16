@@ -10,7 +10,6 @@
 .text-h1 {
   font-size: 64px;
   font-weight: bold;
-  @apply text-teal-700;
 }
 
 .text-h2 {

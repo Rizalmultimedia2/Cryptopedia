@@ -38,7 +38,7 @@ function index() {
               <SelectCategory value="ahli" label="Ahli" style="category" />
             </ul>
             <div>
-              <Searchbar />
+              <Searchbar placeholder="Cari Materi" />
             </div>
             <div className="flex flex-col gap-5">
               {DataMateri.map((item) => (

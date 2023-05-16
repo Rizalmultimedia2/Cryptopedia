@@ -24,22 +24,22 @@ function Footer() {
               <div>
                 <ul class="font-medium">
                   <li class="mb-4">
-                    <a href="https://flowbite.com/" class="hover:underline">
+                    <a href="#" class="hover:underline">
                       Tentang
                     </a>
                   </li>
                   <li class="mb-4">
-                    <a href="https://flowbite.com/" class="hover:underline">
+                    <a href="/artikel" class="hover:underline">
                       Atikel
                     </a>
                   </li>
                   <li class="mb-4">
-                    <a href="https://flowbite.com/" class="hover:underline">
+                    <a href="/crypto101" class="hover:underline">
                       Crypto 101
                     </a>
                   </li>
                   <li>
-                    <a href="https://tailwindcss.com/" class="hover:underline">
+                    <a href="/cryptosharing" class="hover:underline">
                       Crypto Sharing
                     </a>
                   </li>

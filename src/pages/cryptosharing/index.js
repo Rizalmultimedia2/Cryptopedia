@@ -52,7 +52,7 @@ function artikel() {
               />
             </ul>
             <div>
-              <Searchbar />
+              <Searchbar placeholder="Cari Diskusi" />
             </div>
             <div className="flex flex-col gap-5">
               {DataForum.map((item) => (

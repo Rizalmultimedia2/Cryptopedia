@@ -6,7 +6,7 @@ function Header() {
     <header className="sticky top-0 z-50">
       <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 shadow-shadows-1">
         <div class="flex flex-wrap justify-between items-center mx-auto container">
-          <a href="#" class="flex items-center">
+          <a href="/" class="flex items-center">
             <Image
               src="/image/Logo.svg"
               height={50}
@@ -73,6 +73,7 @@ function Header() {
                   aria-current="page"
                 >
                   Home
+                  {/* nanti jadi beranda kalau sudah login */}
                 </a>
               </li>
               <li>
