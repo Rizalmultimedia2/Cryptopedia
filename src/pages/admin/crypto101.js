@@ -15,13 +15,10 @@ function index() {
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-3">
-          <h3 className="text-h3">Crypto 101</h3>
           <div className="flex justify-between">
-            <span className="text-p1">
-              Tempat belajar cryptocurrency untuk pemula
-            </span>
+            <h3 className="text-h3">Crypto 101</h3>
             <button className="button-normal flex gap-3">
-              <FiPlus /> Buat Diskusi
+              <FiPlus /> Buat Materi
             </button>
           </div>
         </div>

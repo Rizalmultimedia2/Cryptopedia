@@ -18,7 +18,11 @@ function MyBookmark() {
                 name: "Crypto 101",
               },
             ].map((x) => (
-              <li className="first-of-type:text-primary-1">
+              <li
+              //   className="
+              // //first-of-type:text-primary-1
+              // "
+              >
                 <input
                   type="radio"
                   name="bookmark"

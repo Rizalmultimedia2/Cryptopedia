@@ -6,17 +6,21 @@ import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Searchbar from "@/components/Searchbar";
 import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import React from "react";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { modalSw } from "@/components/Modal_sw";
 
 function test() {
   return (
     <div>
-      <TrendingForum />
-      <Komentar />
-      <Searchbar />
-      <Artikel />
-      <CryptoMateri />
-      <CryptoSharing />
-      <MyBookmark />
+      {/* <TrendingForum />
+    <Komentar />
+    <Searchbar />
+    <Artikel />
+    <CryptoMateri />
+    <CryptoSharing />
+  <MyBookmark /> */}
+      <button onClick={modalSw}> testing</button>
     </div>
   );
 }

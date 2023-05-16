@@ -20,9 +20,9 @@ function index() {
             <span className="text-p1">
               Tempat belajar cryptocurrency untuk pemula
             </span>
-            <button className="button-normal flex gap-3">
+            {/* <button className="button-normal flex gap-3">
               <FiPlus /> Buat Diskusi
-            </button>
+            </button> */}
           </div>
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">

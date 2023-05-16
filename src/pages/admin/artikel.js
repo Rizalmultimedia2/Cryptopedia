@@ -3,6 +3,7 @@ import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
 import { DataArtikel } from "@/Utils/Artikel";
+import { FiPlus } from "react-icons/fi";
 import Footer from "@/components/Footer";
 import SelectCategory from "@/components/SelectCategory";
 
@@ -12,10 +13,13 @@ function artikel() {
       <Header />
       <div className="flex flex-col container container-x md:gap-[30px] gap-[5px] mt-[30px]">
         <div className="space-y-[10px]">
-          <p className="font-bold text-h3">Artikel Terbaru</p>
+          <button className="button-normal font-bold text-h3 flex gap-3">
+            <FiPlus />
+            Tambah artikel
+          </button>
           <div className="flex md:justify-between flex-wrap items-center gap-5">
             <div className="w-[400px]">
-              <Searchbar />
+              <Searchbar placeholder="Cari artikel" />
             </div>
             <div className="flex flex-row items-center gap-5">
               <p>level</p>

@@ -15,7 +15,7 @@ function artikel() {
           <p className="font-bold text-h3">Artikel Terbaru</p>
           <div className="flex md:justify-between flex-wrap items-center gap-5">
             <div className="w-[400px]">
-              <Searchbar />
+              <Searchbar placeholder="Cari artikel" />
             </div>
             <div className="flex flex-row items-center gap-5">
               <p>level</p>
