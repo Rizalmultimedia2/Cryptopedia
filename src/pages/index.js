@@ -4,12 +4,16 @@ import Footer from "@/components/Footer";
 import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Artikel from "@/components/Artikel/Artikel";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <div className="container container-x flex-center flex-col gap-[100px]">
+      <div className="container container-x flex-center flex-col gap-[100px] overflow-visible">
+        <div className="absolute top-0 overflow-visible h-[2750px] w-full lg:visible invisible pointer-events-none z-0">
+          <Image src="/image/bg.svg" className="" fill />
+        </div>
         <div className="flex-center flex-col gap-6 max-w-[620px] text-center h-screen max-h-[900px]">
           <h1 className="text-h1 text-black ">
             Rumah Diskusi dan Edukasi Cryptocurrency di Indonesia
@@ -88,9 +92,6 @@ export default function Home() {
           <h3 className="text-h3">#SemuaPahamCrypto</h3>
         </div>
       </div>
-      {/* CryptoSharing
-      CryptoMateri
-      Artikel */}
       <Footer />
     </>
   );

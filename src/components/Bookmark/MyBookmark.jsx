@@ -4,10 +4,10 @@ import ItemBookmark from "./ItemBookmark";
 function MyBookmark() {
   return (
     <>
-      <div className="flex flex-col justify-center items-center bg-white border border-gray-4 rounded-lg px-[20px] py-[24px] gap-[20px]">
+      <div className="flex flex-col justify-center items-center bg-white border border-gray-4 rounded-lg px-5 py-6 gap-5 z-10">
         <p className="text-h4 text-primary-1 font-bold">MyBookmark</p>
-        <div className="flex flex-col w-full gap-[12px]">
-          <ul className="flex items-center justify-star gap-[12px] ">
+        <div className="flex flex-col w-full gap-3">
+          <ul className="flex items-center justify-star gap-3 ">
             {[
               {
                 id: "cryptosharing",

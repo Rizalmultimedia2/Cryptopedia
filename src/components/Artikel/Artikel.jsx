@@ -22,7 +22,7 @@ function Artikel({ title, date, body, level, id }) {
 
   return (
     <>
-      <a href="/artikel/detail" className="ring-hover">
+      <a href="/artikel/detail" className="ring-hover z-10">
         <div className="flex flex-col w-full bg-white border border-gray-4 rounded-lg gap-[10px] overflow-hidden">
           <div className="relative h-[230px]">
             <Image src="/image/artikel.png" fill className="object-cover" />
