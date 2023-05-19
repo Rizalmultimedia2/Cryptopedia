@@ -1,4 +1,3 @@
-import { FiPlus } from "react-icons/fi";
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
@@ -14,7 +13,7 @@ function index() {
     <>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
-        <div className="flex flex-row gap-8 items-center justify-center flex-wrap">
+        <div className="flex-center flex-row gap-8 flex-wrap">
           <div className="relative h-[200px] w-[200px] rounded-full">
             <Image
               src="/image/artikel.png"

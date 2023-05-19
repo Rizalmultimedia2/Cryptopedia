@@ -11,6 +11,7 @@ import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Banner from "@/components/Banner";
 import Komentar from "@/components/Komentar";
+import { DataForum } from "@/Utils/CryptoSharing";
 
 function detail() {
   return (
