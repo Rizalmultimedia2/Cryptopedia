@@ -9,10 +9,12 @@ import React from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { modalSw } from "@/components/Modal_sw";
+import Modal from "@/components/Modal/Modal";
 
 function test() {
   return (
     <div>
+      <Modal></Modal>
       {/* <TrendingForum />
     <Komentar />
     <Searchbar />

@@ -1,4 +1,3 @@
-import { FiPlus } from "react-icons/fi";
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
@@ -9,8 +8,15 @@ import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import SelectCategory from "@/components/SelectCategory";
 import Banner from "@/components/Banner";
 import { DataForum } from "@/Utils/CryptoSharing";
+import Modal from "@/components/Modal/Modal";
+import ItemModal from "@/components/Modal/ItemModal";
 
 function artikel() {
+  // function handleClick(value) {
+  //   // console.log(value);
+  //   Modal(value);
+  // }
+
   return (
     <>
       <Header />
@@ -21,9 +27,55 @@ function artikel() {
             <span className="text-p1">
               Belajar Cryptocurrency lebih mudah dengan berdiskusi
             </span>
-            <button className="button-normal flex gap-3">
-              <FiPlus /> Buat Diskusi
-            </button>
+            <Modal
+              title="Buat Diskusi Baru"
+              Children={[
+                <ItemModal
+                  label="Judul"
+                  id="title"
+                  type="text"
+                  placeholder="Masukkan judul"
+                />,
+                <ItemModal
+                  label="Tag"
+                  id="tag"
+                  type="text"
+                  placeholder="Tag"
+                />,
+                <div>
+                  <label for="comment" class="text-p2">
+                    Masukkan isi diskusi
+                  </label>
+                  <textarea
+                    id="comment"
+                    rows="4"
+                    class="text-sm py-2 px-4 w-full bg-white rounded-lg border border-gray-400 text-black focus:outline-none focus:ring-[2px] focus:ring-primary-1 focus:border-primary-1"
+                    placeholder="Masukkan isi diskusi"
+                    required
+                  ></textarea>
+                </div>,
+                <div className="flex flex-col w-full gap-1">
+                  <span class="text-p2">Category</span>
+                  <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
+                    <SelectCategory
+                      value="tren"
+                      label="Tren"
+                      style="category"
+                    />
+                    <SelectCategory
+                      value="teknikal"
+                      label="Teknikal & Fundamental"
+                      style="category"
+                    />
+                    <SelectCategory
+                      value="general"
+                      label="General"
+                      style="category"
+                    />
+                  </ul>
+                </div>,
+              ]}
+            ></Modal>
           </div>
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">
