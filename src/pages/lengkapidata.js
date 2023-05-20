@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
-import SelectAvatar from "@/components/SelectAvatar";
+import SelectAvatar from "@/components/Select/SelectAvatar";
 import Router, { useRouter } from "next/router";
 import InputForm from "@/components/InputForm";
 

@@ -4,7 +4,7 @@ import Searchbar from "@/components/Searchbar";
 import React from "react";
 import { DataArtikel } from "@/Utils/Artikel";
 import Footer from "@/components/Footer";
-import SelectCategory from "@/components/SelectCategory";
+import SelectLevel from "@/components/Select/SelectLevel";
 
 function artikel() {
   return (
@@ -19,15 +19,8 @@ function artikel() {
             </div>
             <div className="flex flex-row items-center gap-5">
               <p>level</p>
-              <ul className="flex flex-row text-p2 rounded-lg gap-5">
-                <SelectCategory value="semua" label="Semua" style="level" />
-                <SelectCategory value="pemula" label="Pemula" style="level" />
-                <SelectCategory
-                  value="menengah"
-                  label="Menengah"
-                  style="level"
-                />
-                <SelectCategory value="ahli" label="Ahli" style="level" />
+              <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-visible">
+                <SelectLevel style="level" />
               </ul>
             </div>
           </div>

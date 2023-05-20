@@ -1,13 +1,12 @@
-import { FiPlus } from "react-icons/fi";
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React from "react";
 import Footer from "@/components/Footer";
 import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
-import SelectCategory from "@/components/SelectCategory";
 import Banner from "@/components/Banner";
 import { DataMateri } from "@/Utils/Crypto101";
+import SelectLevel from "@/components/Select/SelectLevel";
 
 function index() {
   return (
@@ -20,22 +19,12 @@ function index() {
             <span className="text-p1">
               Tempat belajar cryptocurrency untuk pemula
             </span>
-            {/* <button className="button-normal flex gap-3">
-              <FiPlus /> Buat Diskusi
-            </button> */}
           </div>
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-5">
             <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden">
-              <SelectCategory value="semua" label="Semua" style="category" />
-              <SelectCategory value="pemula" label="Pemula" style="category" />
-              <SelectCategory
-                value="menengah"
-                label="Menengah"
-                style="category"
-              />
-              <SelectCategory value="ahli" label="Ahli" style="category" />
+              <SelectLevel style="category" />
             </ul>
             <div>
               <Searchbar placeholder="Cari Materi" />

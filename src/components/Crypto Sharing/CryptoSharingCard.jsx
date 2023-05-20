@@ -2,6 +2,8 @@ import React from "react";
 import { GoKebabVertical } from "react-icons/go";
 import { FiBookmark, FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { FaRegCommentDots } from "react-icons/fa";
+import IconBookmark from "../Button/IconBookmark";
+import IconKebab from "../Button/IconKebab";
 
 function CryptoSharing({
   title,
@@ -30,13 +32,13 @@ function CryptoSharing({
 
   return (
     <>
-      <a className="sharing-card z-10" href="/cryptosharing/detail">
+      <div className="sharing-card z-10">
         <div className="flex flex-col gap-[5px]">
           <div className="text-h5 flex-center-between">
-            <span>{title}</span>
+            <a href="/cryptosharing/detail">{title}</a>
             <div className="flex flex-row">
-              <FiBookmark className="text-primary-1" />
-              <GoKebabVertical />
+              <IconBookmark />
+              <IconKebab />
             </div>
           </div>
           <div className="flex-center-between">
@@ -44,7 +46,9 @@ function CryptoSharing({
             <span className="text-p3">{waktu}</span>
           </div>
         </div>
-        <div className="line-clamp-2">{body}</div>
+        <a className="line-clamp-2" href="/cryptosharing/detail">
+          {body}
+        </a>
         <div className="flex flex-col gap-[5px]">
           <div className="flex-center rounded-md text-p3 text-black py-1 px-4 w-fit bg-primary-4 font-bold">
             {getKategori(kategori)}
@@ -67,7 +71,7 @@ function CryptoSharing({
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </>
   );
 }

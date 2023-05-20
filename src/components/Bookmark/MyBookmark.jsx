@@ -1,5 +1,6 @@
 import React from "react";
 import ItemBookmark from "./ItemBookmark";
+import SelectBookmark from "../Select/SelectBookmark";
 
 function MyBookmark() {
   return (
@@ -8,40 +9,13 @@ function MyBookmark() {
         <p className="text-h4 text-primary-1 font-bold">MyBookmark</p>
         <div className="flex flex-col w-full gap-3">
           <ul className="flex items-center justify-star gap-3 ">
-            {[
-              {
-                id: "cryptosharing",
-                name: "Crypto Sharing",
-              },
-              {
-                id: "crypto101",
-                name: "Crypto 101",
-              },
-            ].map((x) => (
-              <li
-              //   className="
-              // //first-of-type:text-primary-1
-              // "
-              >
-                <input
-                  type="radio"
-                  name="bookmark"
-                  id={x.id}
-                  value={x.id}
-                  className="peer sr-only"
-                />
-                <label
-                  className="cursor-pointer peer-checked:text-primary-1 font-semibold"
-                  for={x.id}
-                >
-                  {x.name}
-                </label>
-              </li>
-            ))}
+            <SelectBookmark />
           </ul>
-          {[1, 2, 3, 4, 5].map((x) => (
-            <ItemBookmark />
-          ))}
+          <div className="flex flex-col gap-4 my-2">
+            {[1, 2, 3, 4, 5].map((x) => (
+              <ItemBookmark />
+            ))}
+          </div>
         </div>
       </div>
     </>
