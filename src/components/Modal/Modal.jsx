@@ -1,5 +1,6 @@
 import React, { Children } from "react";
 import { FiPlus } from "react-icons/fi";
+import EditButton from "../Button/EditButton";
 
 function Modal({ Children, title, button, size, name, icon }) {
   const [showModal, setShowModal] = React.useState(false);
@@ -11,12 +12,15 @@ function Modal({ Children, title, button, size, name, icon }) {
           type="button"
           onClick={() => setShowModal(true)}
         >
-          {icon == 1 ? <FiPlus /> : null} {title}
+          {icon == 1 ? <FiPlus /> : null} {name}
         </button>
-      ) : null}
+      ) : (
+        <EditButton setShow={setShowModal} />
+      )}
+
       {showModal ? (
         <>
-          <form className="flex-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <form className="flex-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none text-black">
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col max-w-[${size}px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
             >

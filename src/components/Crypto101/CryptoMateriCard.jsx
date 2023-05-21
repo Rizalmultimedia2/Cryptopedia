@@ -1,10 +1,7 @@
 import React from "react";
-import { FiBookmark } from "react-icons/fi";
-import Modal from "@/components/Modal/Modal";
-import ItemModal from "@/components/Modal/ItemModal";
-import SelectCategory from "../Select/SelectCategory";
 import DeleteModal from "../Modal/DeleteModal";
 import IconBookmark from "../Button/IconBookmark";
+import MateriModal from "../Modal/MateriModal";
 
 function CryptoMateri({ title, level, body, id }) {
   const getLevel = (level) => {
@@ -53,51 +50,12 @@ function CryptoMateri({ title, level, body, id }) {
         <div>{body}</div>
         <div className="flex-center gap-3" style={{ display: isAdmin(id) }}>
           <DeleteModal title="Hapus Materi" />
-
-          <Modal
+          <MateriModal
+            name="Edit Materi"
             icon={0}
-            name="Buat Diskusi"
             button={1}
-            size={550}
-            title="Edit"
-            Children={[
-              <ItemModal
-                label="Judul"
-                id="title"
-                type="text"
-                placeholder="Masukkan judul"
-              />,
-              <ItemModal label="Tag" id="tag" type="text" placeholder="Tag" />,
-              <div>
-                <label for="comment" class="text-p2">
-                  Masukkan isi diskusi
-                </label>
-                <textarea
-                  id="comment"
-                  rows="4"
-                  class="textarea-modal"
-                  placeholder="Masukkan isi diskusi"
-                  required
-                ></textarea>
-              </div>,
-              <div className="flex flex-col w-full gap-1">
-                <span class="text-p2">Category</span>
-                <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
-                  <SelectCategory value="tren" label="Tren" style="category" />
-                  <SelectCategory
-                    value="teknikal"
-                    label="Teknikal & Fundamental"
-                    style="category"
-                  />
-                  <SelectCategory
-                    value="general"
-                    label="General"
-                    style="category"
-                  />
-                </ul>
-              </div>,
-            ]}
-          ></Modal>
+            title="Edit Materi Baru"
+          />
         </div>
       </a>
     </>

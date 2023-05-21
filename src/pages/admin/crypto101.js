@@ -7,9 +7,8 @@ import MyBookmark from "@/components/Bookmark/MyBookmark";
 import SelectCategory from "@/components/Select/SelectCategory";
 import Banner from "@/components/Banner";
 import { DataMateri } from "@/Utils/Crypto101";
-import Modal from "@/components/Modal/Modal";
-import ItemModal from "@/components/Modal/ItemModal";
 import SelectLevel from "@/components/Select/SelectLevel";
+import MateriModal from "@/components/Modal/MateriModal";
 
 function index() {
   return (
@@ -19,45 +18,12 @@ function index() {
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
             <h3 className="text-h3">Crypto 101</h3>
-            <Modal
+            <MateriModal
+              name="Buat Materi"
               icon={1}
-              name="Buat Diskusi"
               button={1}
-              size={550}
               title="Buat Materi Baru"
-              Children={[
-                <ItemModal
-                  label="Judul"
-                  id="title"
-                  type="text"
-                  placeholder="Masukkan judul"
-                />,
-                <div>
-                  <label for="comment" class="text-p2">
-                    Masukkan isi materi
-                  </label>
-                  <textarea
-                    id="comment"
-                    rows="4"
-                    class="textarea-modal"
-                    placeholder="Masukkan isi diskusi"
-                    required
-                  ></textarea>
-                </div>,
-                <div className="flex flex-col w-full gap-1">
-                  <span class="text-p2">Category</span>
-                  <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
-                    <SelectCategory value="1" label="Pemula" style="category" />
-                    <SelectCategory
-                      value="2"
-                      label="Menengah"
-                      style="category"
-                    />
-                    <SelectCategory value="3" label="Ahli" style="category" />
-                  </ul>
-                </div>,
-              ]}
-            ></Modal>
+            />
           </div>
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">

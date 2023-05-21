@@ -32,7 +32,7 @@ function CryptoSharing({
 
   return (
     <>
-      <div className="sharing-card z-10">
+      <div className="sharing-card">
         <div className="flex flex-col gap-[5px]">
           <div className="text-h5 flex-center-between">
             <a href="/cryptosharing/detail">{title}</a>

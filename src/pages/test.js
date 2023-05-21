@@ -10,50 +10,53 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { modalSw } from "@/components/Modal_sw";
 import Modal from "@/components/Modal/Modal";
+import { GoKebabVertical } from "react-icons/go";
 
 function test() {
-  const [selected, setSelected] = useState("yes");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleChange = (event) => {
-    console.log(event.target.value);
-    setSelected(event.target.value);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
-    // <div>
-    <div>
-      <div>
-        <input
-          type="radio"
-          id="yes"
-          name="choose"
-          value="yes"
-          checked={selected === "yes"}
-          onChange={handleChange}
-        />
-        <label htmlFor="yes">Yes</label>
-
-        <input
-          type="radio"
-          id="no"
-          name="choose"
-          value="no"
-          onChange={handleChange}
-          checked={selected === "no"}
-        />
-        <label htmlFor="no">No</label>
-
-        <input
-          type="radio"
-          id="maybe"
-          name="choose"
-          value="maybe"
-          onChange={handleChange}
-          checked={selected === "maybe"}
-        />
-        <label htmlFor="maybe">Maybe</label>
+    <>
+      <div className="relative">
+        <button
+          className="bg-blue-500 text-white px-4 py-2"
+          onClick={toggleDropdown}
+        >
+          Toggle Dropdown
+        </button>
+        {isDropdownOpen && (
+          <div className="absolute top-10 left-0 bg-white border border-gray-300 p-4">
+            <ul>
+              <li onClick={openModal}>Open Modal</li>
+              <li>Item 2</li>
+              <li>Item 3</li>
+            </ul>
+          </div>
+        )}
+        {isModalOpen && (
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-4">
+              <h2>Modal Title</h2>
+              <p>This is the modal content.</p>
+              <button onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }
 

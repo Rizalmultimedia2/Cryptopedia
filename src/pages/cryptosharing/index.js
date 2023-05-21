@@ -8,8 +8,7 @@ import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import SelectCategory from "@/components/Select/SelectCategory";
 import Banner from "@/components/Banner";
 import { DataForum } from "@/Utils/CryptoSharing";
-import Modal from "@/components/Modal/Modal";
-import ItemModal from "@/components/Modal/ItemModal";
+import SharingModal from "@/components/Modal/SharingModal";
 
 function artikel() {
   return (
@@ -22,46 +21,12 @@ function artikel() {
             <span className="text-p1">
               Belajar Cryptocurrency lebih mudah dengan berdiskusi
             </span>
-
-            <Modal
-              icon={1}
+            <SharingModal
               name="Buat Diskusi"
-              button={1}
-              size={550}
               title="Buat Diskusi Baru"
-              Children={[
-                <ItemModal
-                  label="Judul"
-                  id="title"
-                  type="text"
-                  placeholder="Masukkan judul"
-                />,
-                <ItemModal
-                  label="Tag"
-                  id="tag"
-                  type="text"
-                  placeholder="Tag"
-                />,
-                <div className="flex gap-2 flex-col">
-                  <label for="comment" class="text-p2">
-                    Masukkan isi diskusi
-                  </label>
-                  <textarea
-                    id="comment"
-                    rows="4"
-                    class="textarea-modal"
-                    placeholder="Masukkan isi diskusi"
-                    required
-                  ></textarea>
-                </div>,
-                <div className="flex flex-col w-full gap-1">
-                  <span class="text-p2">Category</span>
-                  <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
-                    <SelectCategory style="category" post={1} />
-                  </ul>
-                </div>,
-              ]}
-            ></Modal>
+              button={1}
+              icon={1}
+            />
           </div>
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">

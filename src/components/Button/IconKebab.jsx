@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { GoKebabVertical } from "react-icons/go";
-import { FiAlertTriangle, FiEdit, FiTrash } from "react-icons/fi";
+import SharingModal from "../Modal/SharingModal";
+import DeleteModal from "../Modal/DeleteModal";
+import LaporkanDiskusi from "../Crypto101/LaporkanDiskusi";
 
 function IconKebab() {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,22 +15,28 @@ function IconKebab() {
     <>
       <GoKebabVertical className="cursor-pointer" onClick={handleClick} />
       {isVisible ? (
-        <div className="absolute">
-          <div className="flex flex-col bg-primary-1 text-light-color text-p2 font-medium px-4 py-3 gap-1 rounded-lg translate-y-[20%] translate-x-[-70%] z-50">
-            <div className="flex flex-row items-center gap-2 cursor-pointer">
-              <FiAlertTriangle />
-              Laporkan
-            </div>
-            <div className="flex flex-row items-center gap-2 cursor-pointer">
-              <FiEdit />
-              Edit
-            </div>
-            <div className="flex flex-row items-center gap-2 cursor-pointer">
-              <FiTrash />
-              Hapus
+        <>
+          <div className="relative bg-black">
+            <div className="absolute top-[120%] right-[100%] z-40">
+              <div className="flex flex-col bg-primary-1 text-light-color text-p2 font-medium px-4 py-3 gap-1 rounded-l ">
+                <div className="flex flex-row items-center gap-2 cursor-pointer">
+                  <LaporkanDiskusi title="Laporkan Diskusi" />
+                </div>
+                <div className="flex flex-row items-center gap-2 cursor-pointer">
+                  <SharingModal
+                    name="Edit diskusi"
+                    title="Edit Diskusi"
+                    button={0}
+                    Icon={0}
+                  ></SharingModal>
+                </div>
+                <div className="flex flex-row items-center gap-2 cursor-pointer">
+                  <DeleteModal button={0} title="Hapus Diskusi" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       ) : null}
     </>
   );
