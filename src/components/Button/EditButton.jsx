@@ -8,7 +8,7 @@ function EditButton({ setShow }) {
   return (
     <>
       <button
-        className="flex flex-row items-center gap-2 cursor-pointer"
+        className="flex flex-row items-center gap-2"
         onClick={clickHandler}
       >
         <FiEdit /> Edit

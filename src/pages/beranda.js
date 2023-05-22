@@ -12,14 +12,14 @@ function beranda() {
   return (
     <>
       <Header />
-      <div className="container container-x flex flex-col gap-[20px] my-[25px]">
-        <div className="flex flex-col gap-[25px]">
+      <div className="container container-x flex flex-col gap-5 my-6">
+        <div className="flex flex-col gap-6">
           <div className="text-p2">
             <p className="text-h3 text-black max-w-[600px]">
               Belajar dan berdiskusi Cryptocurrency dengan mudah
             </p>
             Pemula di Crypto?{" "}
-            <a href="/crypto101" className="text-primary-1 font-semibold">
+            <a href="/crypto101" className="text-primary-1 font-semibold ">
               Klik disini
             </a>
           </div>
@@ -32,7 +32,7 @@ function beranda() {
             />
             <a
               href="/cryptosharing"
-              className="button-normal flex items-center gap-3 justify-between w-[300px]"
+              className="button-normal flex-center-between gap-3 w-[300px]"
             >
               <span>Klik untuk membuat diskusi</span>
               <GoKebabHorizontal />
@@ -40,9 +40,9 @@ function beranda() {
           </div>
         </div>
         <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-[60px] gap-[30px]">
-          <div className="col-span-2 flex flex-col gap-[20px]">
+          <div className="col-span-2 flex flex-col gap-5">
             <span className="text-h5">Forum Terbaru</span>
-            <div className="flex flex-col gap-[20px]">
+            <div className="flex flex-col gap-5">
               {DataForum.map((item) => (
                 <CryptoSharing
                   title={item.title}
@@ -59,9 +59,9 @@ function beranda() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-[20px]">
+          <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-5">
             <span className="text-h5">Artikel Terbaru</span>
-            <div className="flex flex-col gap-[20px]">
+            <div className="flex flex-col gap-5">
               {DataArtikel.map((item) => (
                 <Artikel
                   body={item.body}

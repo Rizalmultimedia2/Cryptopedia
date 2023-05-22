@@ -1,9 +1,4 @@
-import {
-  FiPlus,
-  FiChevronLeft,
-  FiThumbsDown,
-  FiThumbsUp,
-} from "react-icons/fi";
+import { FiChevronLeft } from "react-icons/fi";
 import Header from "@/components/Header/Header";
 import React from "react";
 import Footer from "@/components/Footer";
@@ -11,7 +6,6 @@ import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Banner from "@/components/Banner";
 import Komentar from "@/components/Komentar";
-import { DataForum } from "@/Utils/CryptoSharing";
 
 function detail() {
   return (
@@ -45,7 +39,7 @@ function detail() {
                 <textarea
                   id="comment"
                   rows="2"
-                  class="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black focus:outline-none focus:ring-[2px] focus:ring-primary-1 focus:border-primary-1"
+                  class="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black ring-focus"
                   placeholder="Berikan komentar"
                   required
                 ></textarea>

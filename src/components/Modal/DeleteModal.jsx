@@ -19,7 +19,7 @@ function DeleteModal({ title, button }) {
         </button>
       ) : (
         <button
-          className="flex flex-row items-center gap-2 cursor-pointer"
+          className="flex flex-row items-center gap-2 z-50"
           onClick={clickHandler}
         >
           <FiTrash /> Hapus

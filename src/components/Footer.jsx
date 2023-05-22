@@ -15,7 +15,7 @@ function Footer() {
                   width={86}
                   height={78}
                 />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <span class=" text-2xl font-semibold dark:text-white">
                   Cryptopedia
                 </span>
               </a>

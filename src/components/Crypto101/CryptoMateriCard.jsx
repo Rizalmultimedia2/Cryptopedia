@@ -37,7 +37,7 @@ function CryptoMateri({ title, level, body, id }) {
     <>
       <a className="sharing-card" href="#">
         <div className="flex flex-col gap-[5px]">
-          <div className="flex text-h5 items-center justify-between">
+          <div className="flex-center-between text-h5">
             <span>{title}</span>
             <div>
               <IconBookmark />

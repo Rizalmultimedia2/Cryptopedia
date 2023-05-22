@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
-import SelectCategory from "@/components/Select/SelectCategory";
 import Banner from "@/components/Banner";
 import { DataMateri } from "@/Utils/Crypto101";
 import SelectLevel from "@/components/Select/SelectLevel";
