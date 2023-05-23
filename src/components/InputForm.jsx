@@ -3,7 +3,7 @@ import React from "react";
 function InputForm({ id, type, placeholder }) {
   return (
     <>
-      <label for={id} className="sr-only"></label>
+      <label htmlFor={id} className="sr-only"></label>
       <input
         type={type}
         id={id}
