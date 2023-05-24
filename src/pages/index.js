@@ -10,11 +10,11 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="container container-x flex-center flex-col gap-[100px] overflow-visible">
+      <div className="container container-x flex-center flex-col gap-[100px] overflow-visible ">
         <div className="absolute top-0 overflow-visible h-[2750px] w-full lg:visible invisible pointer-events-none z-0">
           <Image src="/image/bg.svg" className="" fill />
         </div>
-        <div className="flex-center flex-col gap-6 max-w-[620px] text-center h-screen max-h-[900px]">
+        <div className="flex-center flex-col gap-6 max-w-[620px] text-center lg:mt-0 mt-[150px] h-screen max-h-[900px]">
           <h1 className="text-h1 text-black ">
             Rumah Diskusi dan Edukasi Cryptocurrency di Indonesia
           </h1>
@@ -27,9 +27,9 @@ export default function Home() {
             <FiChevronRight />
           </button>
         </div>
-        <div className="flex flex-row gap-[100px]">
-          <div className="flex flex-col max-w-[550px]">
-            <h2 className="text-h2">
+        <div className="flex lg:flex-row flex-col lg:gap-[100px] gap-10 lg:items-start items-center z-30 ">
+          <div className="flex flex-col max-w-[550px] lg:text-left text-center">
+            <h2 className="text-h2 ">
               Dengan berbagai fitur yang memudahkan belajar crypto
             </h2>
             <h3 className="text-h3">Artikel - Crypto 101 Crypto Sharing</h3>
@@ -43,11 +43,11 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex-center flex-col gap-5 w-[1150px]">
+        <div className="flex-center flex-col gap-5 w-full lg:max-w-[1150px] z-30 ">
           <h2 className="text-h2 max-w-[700px] text-center">
             Diskusi di mana saja dan kapan saja
           </h2>
-          <div className="max-w-[720px] self-start">
+          <div className="max-w-[720px] xl:self-start">
             <CryptoSharing
               title="Altcoin apa yang akan terbang"
               username="Rizal Herliansyah Hidayat"
@@ -61,7 +61,7 @@ export default function Home() {
               jumlah_comment={2}
             />
           </div>
-          <div className="max-w-[720px] self-end">
+          <div className="max-w-[720px] xl:self-end">
             <CryptoSharing
               title="Altcoin apa yang akan terbang"
               username="Rizal Herliansyah Hidayat"
@@ -76,11 +76,11 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="flex flex-col w-[1050px] gap-5">
+        <div className="flex flex-col lg:max-w-[1150px] w-full gap-5 xl:items-start items-center lg:text-left text-center z-30">
           <h2 className="text-h2 max-w-[770px]">
             Masih pemula? tenang! Crypto 101 dan forum diskusi siap membantu
           </h2>
-          <div className="max-w-[770px] self-end">
+          <div className="max-w-[720px] xl:self-end">
             <CryptoMateri
               title="Apa itu arbitrase"
               level={1}

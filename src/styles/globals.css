@@ -64,7 +64,11 @@
 }
 
 .form-input {
-  @apply flex items-center h-[45px] font-medium min-w-[420px] border border-gray-400 rounded-lg text-p3 px-3 ring-focus;
+  @apply flex items-center h-[45px] font-medium min-w-[350px] border border-gray-400 rounded-lg text-p3 px-3 ring-focus;
+}
+
+.form-input-lessborder {
+  @apply flex items-center rounded-lg h-[45px] font-medium min-w-[380px] text-p3 px-3 ring-focus;
 }
 
 .button-input-1 {

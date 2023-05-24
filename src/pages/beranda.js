@@ -29,6 +29,7 @@ function beranda() {
               height={50}
               width={50}
               className="rounded-full object-cover"
+              alt="avatars"
             />
             <a
               href="/cryptosharing"

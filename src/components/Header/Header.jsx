@@ -3,7 +3,7 @@ import React from "react";
 
 function Header() {
   return (
-    <header classNameName="sticky top-0 z-40">
+    <header className="sticky top-0 z-40">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 shadow-shadows-1">
         <div className="flex-center-between flex-wrap mx-auto container">
           <a href="/" className="flex items-center">
