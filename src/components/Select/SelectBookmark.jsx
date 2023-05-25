@@ -34,7 +34,7 @@ function SelectBookmark() {
           />
           <label
             className="cursor-pointer peer-checked:text-primary-1 font-semibold"
-            for={item.value}
+            htmlFor={item.value}
           >
             {item.label}
           </label>

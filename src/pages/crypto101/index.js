@@ -1,14 +1,26 @@
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Banner from "@/components/Banner";
-import { DataMateri } from "@/Utils/Crypto101";
 import SelectLevel from "@/components/Select/SelectLevel";
+import { getAllDataFromFirestore } from "../api/getData";
+import withProtected from "@/hoc/withProtected";
 
 function index() {
+  const [data, setData] = useState([]);
+  const getData = "Starting";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataList = await getAllDataFromFirestore(getData);
+      setData(dataList);
+    };
+    fetchData();
+  }, []);
+  // console.log("apakah masuk datanya", data);
   return (
     <>
       <Header />
@@ -29,12 +41,14 @@ function index() {
             <div>
               <Searchbar placeholder="Cari Materi" />
             </div>
-            <div className="flex flex-col gap-5">
-              {DataMateri.map((item) => (
+            <div className="flex flex-col gap-5 max-h-screen overflow-y-scroll overflow-x-visible w-full p-2">
+              {data.map((item, index) => (
                 <CryptoMateri
-                  title={item.title}
+                  key={index}
+                  title={item.starting_title}
                   level={item.level}
-                  body={item.body}
+                  body={item.starting_body}
+                  id={item.id}
                 />
               ))}
             </div>
@@ -58,4 +72,4 @@ function index() {
   );
 }
 
-export default index;
+export default withProtected(index);

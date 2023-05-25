@@ -16,6 +16,7 @@ function CryptoSharing({
   like,
   dislike,
   comment,
+  id,
 }) {
   const getKategori = (kategori) => {
     switch (kategori) {
@@ -30,12 +31,14 @@ function CryptoSharing({
     }
   };
 
+  console.log("id ini adalah", id);
+
   return (
     <>
       <div className="sharing-card">
         <div className="flex flex-col gap-[5px]">
           <div className="text-h5 flex-center-between">
-            <a href="/cryptosharing/detail">{title}</a>
+            <a href={`/cryptosharing/${id}`}>{title}</a>
             <div className="flex flex-row">
               <IconBookmark />
               <IconKebab />
@@ -46,7 +49,7 @@ function CryptoSharing({
             <span className="text-p3">{waktu}</span>
           </div>
         </div>
-        <a className="line-clamp-2" href="/cryptosharing/detail">
+        <a className="line-clamp-2" href={`/cryptosharing/${id}`}>
           {body}
         </a>
         <div className="flex flex-col gap-[5px]">

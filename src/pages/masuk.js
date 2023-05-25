@@ -8,8 +8,9 @@ import Footer from "@/components/Footer";
 import { doc, setDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-import FormError from "@/components/Artikel/Form/Error";
+import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
+import withUnProtected from "@/hoc/withUnprotected";
 
 function masuk() {
   const {
@@ -123,7 +124,7 @@ function masuk() {
             </form>
             <p className="text-p4 font-medium">
               Belum punya akun?
-              <a href="#" className="text-primary-1 font-bold">
+              <a href="/daftar" className="text-primary-1 font-bold">
                 &nbsp; Daftar
               </a>
             </p>
@@ -135,4 +136,4 @@ function masuk() {
   );
 }
 
-export default masuk;
+export default withUnProtected(masuk);

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { GoKebabHorizontal } from "react-icons/go";
 import React from "react";
 import { DataForum } from "@/Utils/CryptoSharing";
+import withProtected from "@/hoc/withProtected";
 
 function beranda() {
   return (
@@ -80,4 +81,4 @@ function beranda() {
   );
 }
 
-export default beranda;
+export default withProtected(beranda);

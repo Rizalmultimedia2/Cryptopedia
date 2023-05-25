@@ -1,6 +1,6 @@
 import React from "react";
 
-function SelectAvatar({ value }) {
+function SelectAvatar({ value, setAvatar }) {
   return (
     <>
       <li>
@@ -10,8 +10,14 @@ function SelectAvatar({ value }) {
           id={value}
           value={value}
           className="peer sr-only"
+          onClick={(e) =>
+            setAvatar((prev) => ({
+              ...prev,
+              avatar: e.target.value,
+            }))
+          }
         />
-        <label className={`select-avatar`} for={value}></label>
+        <label className={`select-avatar`} htmlFor={value}></label>
       </li>
     </>
   );

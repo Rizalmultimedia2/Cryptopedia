@@ -3,7 +3,7 @@ import DeleteModal from "../Modal/DeleteModal";
 import IconBookmark from "../Button/IconBookmark";
 import MateriModal from "../Modal/MateriModal";
 
-function CryptoMateri({ title, level, body, id }) {
+function CryptoMateri({ title, level, body, id, key }) {
   const getLevel = (level) => {
     switch (level) {
       case 1:
@@ -35,7 +35,7 @@ function CryptoMateri({ title, level, body, id }) {
 
   return (
     <>
-      <a className="sharing-card" href="#">
+      <a className="sharing-card" href="#" id={id} key={key}>
         <div className="flex flex-col gap-[5px]">
           <div className="flex-center-between text-h5">
             <span>{title}</span>

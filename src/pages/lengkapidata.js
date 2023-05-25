@@ -1,12 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import SelectAvatar from "@/components/Select/SelectAvatar";
 import Router, { useRouter } from "next/router";
-import InputForm from "@/components/InputForm";
+import { useForm } from "react-hook-form";
+import { useUser } from "@/context/user";
+import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
+import FormError from "@/components/Form/Error";
+import Swal from "sweetalert2";
+import withProtected from "@/hoc/withProtected";
 
 function lengkapidata() {
+  const user = useUser();
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const [formValues, setFormValues] = useState({
+    username: "",
+    trader: false,
+    avatar: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const onSubmit = async (e) => {
+    // e.preventDefault();
+    try {
+      await setDoc(
+        doc(db, "Users", user.uid),
+        {
+          username: formValues.username,
+          trader: formValues.trader,
+          avatar_id: formValues.avatar,
+        },
+        { merge: true }
+      );
+
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Lengkapi Data",
+        // text: "Silahkan isi lengkapi data",
+      });
+
+      setLoading(false);
+      router.push("/beranda");
+    } catch (error) {
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      const message = error.code;
+      console.log(message);
+      await Swal.fire({
+        icon: "error",
+        title: `${message}`,
+      });
+      setLoading(false);
+    }
+  };
   return (
     <>
       <Header />
@@ -14,43 +67,77 @@ function lengkapidata() {
         <div className="bg-primary-4 lg:visible invisible"></div>
         <div className="flex-center min-h-screen">
           <div className="form">
-            <Image src="/image/Logo.svg" height={120} width={133} />
+            <Image
+              src="/image/Logo.svg"
+              height={120}
+              width={133}
+              alt="Cryptopedia"
+            />
             <h1 className="text-primary-1 text-h5">Lengkapi data</h1>
-            <form action="" className="flex flex-col gap-[20px]">
-              <label for="email" className="sr-only"></label>
+            <form
+              action=""
+              className="flex flex-col gap-[20px]"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <label htmlFor="email" className="sr-only"></label>
               <input
                 readOnly
                 type="text"
                 id="email"
                 className="form-input bg-primary-4 placeholder-black pointer-events-none"
-                placeholder="example@gmail.com"
+                placeholder={user.email}
               />
-              <InputForm id="username" type="text" placeholder="Username" />
-              <label for="trader" className="sr-only"></label>
-              <select name="" id="trader" className="form-input">
+
+              <label htmlFor="username" className="sr-only"></label>
+              <input
+                type="text"
+                id="username"
+                className="form-input"
+                placeholder="Masukkan username"
+                value={formValues.username}
+                {...register("username", { required: true })}
+                onChange={(e) =>
+                  setFormValues((prev) => ({
+                    ...prev,
+                    [e.target.id]: e.target.value,
+                  }))
+                }
+              />
+              <FormError error={errors.username} />
+
+              <label htmlFor="trader" className="sr-only"></label>
+              <select
+                name=""
+                id="trader"
+                className="form-input"
+                defaultValue=""
+                onChange={(e) =>
+                  setFormValues((prev) => ({
+                    ...prev,
+                    [e.target.id]: e.target.value,
+                  }))
+                }
+              >
                 <option value="" disabled selected hidden>
                   Trader
                 </option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
               </select>
+
               <div className="w-full flex flex-col gap-4">
                 <span>Pilih avatar</span>
                 <ul className="flex flex-row w-full justify-between">
-                  <SelectAvatar value="avatar1" />
-                  <SelectAvatar value="avatar2" />
-                  <SelectAvatar value="avatar3" />
-                  <SelectAvatar value="avatar4" />
-                  <SelectAvatar value="avatar5" />
-                  <SelectAvatar value="avatar6" />
+                  <SelectAvatar value="avatar1" setAvatar={setFormValues} />
+                  <SelectAvatar value="avatar2" setAvatar={setFormValues} />
+                  <SelectAvatar value="avatar3" setAvatar={setFormValues} />
+                  <SelectAvatar value="avatar4" setAvatar={setFormValues} />
+                  <SelectAvatar value="avatar5" setAvatar={setFormValues} />
+                  <SelectAvatar value="avatar6" setAvatar={setFormValues} />
+                  {console.log(formValues.avatar)}
                 </ul>
               </div>
-              <button
-                type="button"
-                // nanti ubah ke type submit jika sudah ke be
-                className="button-input-1"
-                onClick={() => router.push("/beranda")}
-              >
+              <button type="submit" className="button-input-1">
                 Lengkapi data
               </button>
             </form>
@@ -61,4 +148,4 @@ function lengkapidata() {
   );
 }
 
-export default lengkapidata;
+export default withProtected(lengkapidata);

@@ -9,7 +9,7 @@ function Searchbar({ placeholder }) {
         className="flex flex-row items-center rounded-[5px] h-[45px]"
       >
         <label
-          for="searchbar"
+          htmlFor="searchbar"
           className="mb-2 text-sm font-medium text-gray-900 sr-only"
         >
           Search

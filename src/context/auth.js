@@ -25,6 +25,7 @@ const AuthStateChangeProvider = ({ children }) => {
   useEffect(() => {
     InitiateAuthStateChange();
     console.log("testing");
+    // return <></>;
   }, []);
 
   if (isLoading) {

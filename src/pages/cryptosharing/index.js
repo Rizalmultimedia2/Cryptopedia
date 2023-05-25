@@ -1,16 +1,30 @@
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import SelectCategory from "@/components/Select/SelectCategory";
 import Banner from "@/components/Banner";
-import { DataForum } from "@/Utils/CryptoSharing";
+import { DataForum, testTing } from "@/Utils/CryptoSharing";
 import SharingModal from "@/components/Modal/SharingModal";
+import withProtected from "@/hoc/withProtected";
+import { getAllDataFromFirestore } from "../api/getData";
 
 function artikel() {
+  const [data, setData] = useState([]);
+  const getData = "Sharing";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataList = await getAllDataFromFirestore(getData);
+      setData(dataList);
+    };
+    fetchData();
+  }, []);
+  console.log("apakah masuk datanya", data);
+
   return (
     <>
       <Header />
@@ -42,19 +56,23 @@ function artikel() {
               <Searchbar placeholder="Cari Diskusi" />
             </div>
             <div className="flex flex-col gap-5">
-              {DataForum.map((item) => (
-                <CryptoSharing
-                  title={item.title}
-                  username={item.username}
-                  waktu={item.waktu}
-                  tanggal={item.tanggal}
-                  body={item.body}
-                  kategori={item.kategori}
-                  tag={item.tag}
-                  like={item.jumlah_like}
-                  dislike={item.jumlah_dislike}
-                  comment={item.jumlah_comment}
-                />
+              {data.map((item) => (
+                <>
+                  {console.log(item.id)}
+                  <CryptoSharing
+                    title={item.sharing_title}
+                    username="Rizal Herliansyah"
+                    waktu="nanti"
+                    tanggal={item.date}
+                    body={item.sharing_body}
+                    kategori={item.category}
+                    tag={item.tags}
+                    like={item.like}
+                    dislike={item.dislike}
+                    comment={item.total_comments}
+                    id={item.id}
+                  />
+                </>
               ))}
             </div>
           </div>

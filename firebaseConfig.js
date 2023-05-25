@@ -24,9 +24,9 @@ export const Authentication = () => {
   return auth;
 };
 
-export const SignUp = async (email, password) => {
-  await createUserWithEmailAndPassword(auth, email, password);
-};
+// export const SignUp = async (email, password) => {
+//   await createUserWithEmailAndPassword(auth, email, password);
+// };
 
 export const SignIn = async (email, password) => {
   await signInWithEmailAndPassword(auth, email, password);
