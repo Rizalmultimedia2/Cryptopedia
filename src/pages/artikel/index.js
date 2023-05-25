@@ -1,12 +1,27 @@
 import Artikel from "@/components/Artikel/Artikel";
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
-import React from "react";
-import { DataArtikel } from "@/Utils/Artikel";
+import React, { useEffect, useState } from "react";
+import { DataArtikel, testTing } from "@/Utils/Artikel";
 import Footer from "@/components/Footer";
 import SelectLevel from "@/components/Select/SelectLevel";
+import { getAllDataFromFirestore } from "../api/getData";
+import withProtected from "@/hoc/withProtected";
 
 function artikel() {
+  // testTing();
+  const [data, setData] = useState([]);
+  const getData = "Articles";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataList = await getAllDataFromFirestore(getData);
+      setData(dataList);
+    };
+    fetchData();
+  }, []);
+  console.log("apakah masuk datanya", data);
+
   return (
     <>
       <Header />
@@ -26,10 +41,11 @@ function artikel() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-16  md:gap-x-5 gap-y-[30px]">
-          {DataArtikel.map((item) => (
+          {DataArtikel.map((item, index) => (
             <Artikel
-              body={item.body}
-              title={item.title}
+              key={index}
+              body={item.articles_body}
+              title={item.articles_title}
               level={item.level}
               date={item.date}
               id={2}
@@ -42,4 +58,4 @@ function artikel() {
   );
 }
 
-export default artikel;
+export default withProtected(artikel);

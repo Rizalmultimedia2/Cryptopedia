@@ -21,8 +21,8 @@ function SelectBookmark() {
 
   return (
     <>
-      {data.map((item) => (
-        <li>
+      {data.map((item, index) => (
+        <li key={index}>
           <input
             type="radio"
             name="bookmark"

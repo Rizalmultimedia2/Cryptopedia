@@ -1,6 +1,7 @@
 import { useUser } from "@/context/user";
 import Image from "next/image";
 import React from "react";
+import Float from "./Float";
 
 function Header() {
   const user = useUser();
@@ -34,7 +35,7 @@ function Header() {
                 </a>
               </div>
             ) : (
-              <div>Foto</div>
+              <Float />
             )}
 
             {/* Mobile menu */}

@@ -4,16 +4,26 @@ import DeleteModal from "../Modal/DeleteModal";
 import ArtikelModal from "../Modal/ArtikelModal";
 
 function Artikel({ title, date, body, level, id }) {
-  const getColor = (level) => {
-    if (level == "Pemula") {
-      return "#29BF9F";
-    } else if (level == "Menengah") {
-      return "#FACA21";
-    } else if (level == "Ahli") {
-      return "#E96E70";
+  const getLevel = (level) => {
+    switch (level) {
+      case 1:
+        return "Pemula";
+      case 2:
+        return "Menengah";
+      case 3:
+        return "Ahli";
     }
   };
 
+  const getColor = (level) => {
+    if (level == 1) {
+      return "#29BF9F";
+    } else if (level == 2) {
+      return "#FACA21";
+    } else if (level == 3) {
+      return "#E96E70";
+    }
+  };
   const isAdmin = (id) => {
     if (id == 1) {
       return "visible";
@@ -39,7 +49,7 @@ function Artikel({ title, date, body, level, id }) {
             href="/artikel/detail"
           >
             <div className="level" style={{ background: getColor(level) }}>
-              <span>{level}</span>
+              {getLevel(level)}
             </div>
             <div className="text-p1 text-black font-bold">{title}</div>
             <p className="text-p3 text-black font-medium">{date}</p>

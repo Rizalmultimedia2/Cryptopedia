@@ -5,6 +5,7 @@ import React from "react";
 import { DataArtikel } from "@/Utils/Artikel";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import withProtected from "@/hoc/withProtected";
 
 function detail() {
   return (
@@ -103,4 +104,4 @@ function detail() {
   );
 }
 
-export default detail;
+export default withProtected(detail);

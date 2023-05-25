@@ -93,16 +93,13 @@ const addMultipleDataToFirestore = async (dataList) => {
   try {
     const batch = writeBatch(db);
 
-    // Mengiterasi dataList untuk menambahkan setiap data ke batch
     dataList.forEach((data) => {
       const docRef = doc(collection(db, "Starting"));
 
-      // Menambahkan operasi penulisan ke batch
       batch.set(docRef, data);
       console.log(data);
     });
 
-    // Menjalankan batch penulisan
     await batch.commit();
 
     console.log("Data berhasil ditambahkan ke Firestore");

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 function IconBookmark() {
   const [isActive, setIsActive] = useState(false);
@@ -7,6 +8,15 @@ function IconBookmark() {
   const handleClick = () => {
     setIsActive(!isActive);
   };
+
+  useEffect(() => {
+    if (isActive) {
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Bookmark",
+      });
+    }
+  }, [isActive]);
 
   return (
     <>

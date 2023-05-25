@@ -12,7 +12,7 @@ export default function Home() {
       <Header />
       <div className="container container-x flex-center flex-col gap-[100px] overflow-visible ">
         <div className="absolute top-0 overflow-visible h-[2750px] w-full lg:visible invisible pointer-events-none z-0">
-          <Image src="/image/bg.svg" className="" fill />
+          <Image src="/image/bg.svg" className="" fill alt="bg" />
         </div>
         <div className="flex-center flex-col gap-6 max-w-[620px] text-center lg:mt-0 mt-[150px] h-screen max-h-[900px]">
           <h1 className="text-h1 text-black ">

@@ -7,7 +7,6 @@ import MyBookmark from "@/components/Bookmark/MyBookmark";
 import TrendingForum from "@/components/Crypto Sharing/TrendingForum";
 import SelectCategory from "@/components/Select/SelectCategory";
 import Banner from "@/components/Banner";
-import { DataForum, testTing } from "@/Utils/CryptoSharing";
 import SharingModal from "@/components/Modal/SharingModal";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "../api/getData";
@@ -23,7 +22,7 @@ function artikel() {
     };
     fetchData();
   }, []);
-  console.log("apakah masuk datanya", data);
+  // console.log("apakah masuk datanya", data);
 
   return (
     <>
@@ -56,23 +55,22 @@ function artikel() {
               <Searchbar placeholder="Cari Diskusi" />
             </div>
             <div className="flex flex-col gap-5">
-              {data.map((item) => (
-                <>
-                  {console.log(item.id)}
-                  <CryptoSharing
-                    title={item.sharing_title}
-                    username="Rizal Herliansyah"
-                    waktu="nanti"
-                    tanggal={item.date}
-                    body={item.sharing_body}
-                    kategori={item.category}
-                    tag={item.tags}
-                    like={item.like}
-                    dislike={item.dislike}
-                    comment={item.total_comments}
-                    id={item.id}
-                  />
-                </>
+              {data.map((item, index) => (
+                <CryptoSharing
+                  title={item.sharing_title}
+                  key={index}
+                  username="Rizal Herliansyah"
+                  waktu="nanti"
+                  tanggal={item.date}
+                  body={item.sharing_body}
+                  kategori={item.category}
+                  tag={item.tags}
+                  like={item.like}
+                  dislike={item.dislike}
+                  comment={item.total_comments}
+                  id={item.id}
+                  line="yes"
+                />
               ))}
             </div>
           </div>
@@ -95,4 +93,4 @@ function artikel() {
   );
 }
 
-export default artikel;
+export default withProtected(artikel);

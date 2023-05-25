@@ -5,11 +5,22 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header/Header";
 import Image from "next/image";
 import { GoKebabHorizontal } from "react-icons/go";
-import React from "react";
-import { DataForum } from "@/Utils/CryptoSharing";
+import React, { useEffect, useState } from "react";
 import withProtected from "@/hoc/withProtected";
+import { getAllDataFromFirestore } from "./api/getData";
 
 function beranda() {
+  const [data, setData] = useState([]);
+  const getData = "Sharing";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataList = await getAllDataFromFirestore(getData);
+      setData(dataList);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header />
@@ -45,18 +56,21 @@ function beranda() {
           <div className="col-span-2 flex flex-col gap-5">
             <span className="text-h5">Forum Terbaru</span>
             <div className="flex flex-col gap-5">
-              {DataForum.map((item) => (
+              {data.map((item, index) => (
                 <CryptoSharing
-                  title={item.title}
-                  username={item.username}
-                  waktu={item.waktu}
-                  tanggal={item.tanggal}
-                  body={item.body}
-                  kategori={item.kategori}
-                  tag={item.tag}
-                  like={item.jumlah_like}
-                  dislike={item.jumlah_dislike}
-                  comment={item.jumlah_comment}
+                  title={item.sharing_title}
+                  username="Rizal Herliansyah"
+                  waktu="nanti"
+                  tanggal={item.date}
+                  body={item.sharing_body}
+                  kategori={item.category}
+                  tag={item.tags}
+                  like={item.like}
+                  dislike={item.dislike}
+                  comment={item.total_comments}
+                  id={item.id}
+                  line="yes"
+                  key={index}
                 />
               ))}
             </div>
@@ -64,8 +78,9 @@ function beranda() {
           <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-5">
             <span className="text-h5">Artikel Terbaru</span>
             <div className="flex flex-col gap-5">
-              {DataArtikel.map((item) => (
+              {DataArtikel.map((item, index) => (
                 <Artikel
+                  key={index}
                   body={item.body}
                   title={item.title}
                   level={item.level}

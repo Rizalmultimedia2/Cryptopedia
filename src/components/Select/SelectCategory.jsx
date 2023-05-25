@@ -49,8 +49,8 @@ function SelectCategory({ style, post }) {
 
   return (
     <>
-      {data.map((item) => (
-        <li>
+      {data.map((item, index) => (
+        <li key={index}>
           <input
             type="radio"
             name="kategori"
@@ -60,7 +60,7 @@ function SelectCategory({ style, post }) {
             onChange={handleChange}
             className="peer sr-only"
           />
-          <label className={`select-${style}`} for={item.value}>
+          <label className={`select-${style}`} htmlFor={item.value}>
             {item.label}
           </label>
         </li>

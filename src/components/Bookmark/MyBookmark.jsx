@@ -12,8 +12,8 @@ function MyBookmark() {
             <SelectBookmark />
           </ul>
           <div className="flex flex-col gap-4 my-2">
-            {[1, 2, 3, 4, 5].map((x) => (
-              <ItemBookmark />
+            {[1, 2, 3, 4, 5].map((x, index) => (
+              <ItemBookmark key={index} />
             ))}
           </div>
         </div>

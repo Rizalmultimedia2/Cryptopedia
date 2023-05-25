@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "@/components/Header/Header";
 import InputForm from "@/components/InputForm";
 import { FiChevronLeft } from "react-icons/fi";
+import withProtected from "@/hoc/withProtected";
 
 function ubahkatasandi() {
   return (
@@ -45,4 +46,4 @@ function ubahkatasandi() {
   );
 }
 
-export default ubahkatasandi;
+export default withProtected(ubahkatasandi);

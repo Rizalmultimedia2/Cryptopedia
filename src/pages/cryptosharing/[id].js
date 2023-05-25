@@ -1,14 +1,37 @@
 import { FiChevronLeft } from "react-icons/fi";
 import Header from "@/components/Header/Header";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Banner from "@/components/Banner";
 import Komentar from "@/components/Komentar";
+import { useRouter } from "next/router";
+import { db } from "../../../firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 import withProtected from "@/hoc/withProtected";
 
 function detail() {
+  const router = useRouter();
+  const { id } = router.query;
+  const [data, setData] = useState([]);
+  //   console.log({ id });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docRef = doc(db, "Sharing", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setData(docSnap.data());
+      } else {
+        console.log("Document not found!");
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header />
@@ -20,16 +43,17 @@ function detail() {
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-4">
             <CryptoSharing
-              title="Altcoin apa yang akan terbang"
+              title={data.sharing_title}
               username="Rizal Herliansyah Hidayat"
               waktu="1 jam yang lalu"
               tanggal="12-12-2023"
-              body=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident libero hic in mollitia placeat totam vero nam! Velit fuga laudantium sed iusto ea sint ab ducimus ad voluptates perferendis?"
-              kategori={1}
-              tag="#USDT #BUSD"
-              jumlah_like={10}
-              jumlah_dislike={5}
-              jumlah_comment={2}
+              body={data.sharing_body}
+              kategori={data.category}
+              tag={data.tags}
+              like={data.like}
+              dislike={data.dislike}
+              comment={data.total_comments}
+              line=""
             />
             <h5 className="text-h5">Komentar</h5>
             <div>

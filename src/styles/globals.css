@@ -116,7 +116,7 @@
 }
 
 .item-reaction {
-  @apply flex flex-row items-center justify-center gap-[5px];
+  @apply flex flex-row items-center justify-center gap-2 text-[18px];
 }
 
 .flex-center-between {

@@ -1,14 +1,36 @@
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import { DataForum } from "@/Utils/CryptoSharing";
 import Image from "next/image";
 import InputForm from "@/components/InputForm";
+import { db } from "../../../firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
+import { useUser } from "@/context/user";
+import withProtected from "@/hoc/withProtected";
 
 function index() {
+  const user = useUser();
+  const [data, setData] = useState([]);
+  //   console.log({ id });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const docSnap = await getDoc(doc(db, "Users", user.uid));
+
+      if (docSnap.exists()) {
+        setData(docSnap.data());
+      } else {
+        console.log("Document not found!");
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header />
@@ -19,13 +41,14 @@ function index() {
               src="/image/artikel.png"
               fill
               className="rounded-full object-cover border-2 border-primary-1"
+              alt="Profile"
             />
           </div>
           <div className="flex lg:flex-row p-3 gap-7 border-2 border-primary-1 rounded-xl flex-col">
             <div className="flex flex-col gap-3">
               <h5 className="text-h5">Account Data</h5>
-              <div className="form-input">@yourusername</div>
-              <div className="form-input">@youremail</div>
+              <div className="form-input bg-gray-2">@{data.username}</div>
+              <div className="form-input bg-gray-2">{data.email}</div>
               <a className="button-normal w-fit" href="3">
                 Ubah kata sandi
               </a>
@@ -37,10 +60,16 @@ function index() {
                 <InputForm
                   id="fullname"
                   type="text"
-                  placeholder="Nama lengkap"
+                  placeholder={data.fullname}
                 />
-                <label for="trader" className="sr-only"></label>
-                <select name="" id="trader" className="form-input">
+                <label htmlFor="trader" className="sr-only"></label>
+                <select
+                  name=""
+                  id="trader"
+                  className="form-input"
+                  defaultValue={data.trader}
+                  value={data.trader}
+                >
                   <option value="" disabled selected hidden>
                     Trader
                   </option>
@@ -62,7 +91,7 @@ function index() {
               <Searchbar placeholder="Cari postingan" />
             </div>
             <div className="flex flex-col gap-5">
-              {DataForum.map((item) => (
+              {/* {DataForum.map((item) => (
                 <CryptoSharing
                   title={item.title}
                   username={item.username}
@@ -75,7 +104,7 @@ function index() {
                   dislike={item.jumlah_dislike}
                   comment={item.jumlah_comment}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">
@@ -90,4 +119,4 @@ function index() {
   );
 }
 
-export default index;
+export default withProtected(index);

@@ -17,6 +17,7 @@ function CryptoSharing({
   dislike,
   comment,
   id,
+  line,
 }) {
   const getKategori = (kategori) => {
     switch (kategori) {
@@ -31,7 +32,7 @@ function CryptoSharing({
     }
   };
 
-  console.log("id ini adalah", id);
+  const handleClick = () => {};
 
   return (
     <>
@@ -49,10 +50,13 @@ function CryptoSharing({
             <span className="text-p3">{waktu}</span>
           </div>
         </div>
-        <a className="line-clamp-2" href={`/cryptosharing/${id}`}>
+        <a
+          className={!line ? "" : "line-clamp-2"}
+          href={`/cryptosharing/${id}`}
+        >
           {body}
         </a>
-        <div className="flex flex-col gap-[5px]">
+        <div className="flex flex-col gap-3">
           <div className="flex-center rounded-md text-p3 text-black py-1 px-4 w-fit bg-primary-4 font-bold">
             {getKategori(kategori)}
           </div>
@@ -60,15 +64,15 @@ function CryptoSharing({
             <span className="text-black">{tag}</span>
             <div className="flex flex-row gap-5">
               <div className="item-reaction">
-                <FaRegCommentDots />
+                <FaRegCommentDots className="cursor-pointer" />
                 <span>{comment}</span>
               </div>
               <div className="item-reaction">
-                <FiThumbsDown className="text-red-1" />
+                <FiThumbsDown className="text-red-1 cursor-pointer" />
                 <span>{dislike}</span>
               </div>
               <div className="item-reaction">
-                <FiThumbsUp className="text-primary-2" />
+                <FiThumbsUp className="text-primary-2 cursor-pointer" />
                 <span>{like}</span>
               </div>
             </div>
