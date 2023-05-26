@@ -36,7 +36,7 @@ function Artikel({ title, date, body, level, id }) {
     <>
       <div className="ring-hover z-0">
         <div className="flex flex-col w-full bg-white border border-gray-4 rounded-lg gap-[10px] overflow-hidden">
-          <a className="relative h-[230px]" href="/artikel/detail">
+          <a className="relative h-[230px]" href={`/artikel/${id}`}>
             <Image
               src="/image/artikel.png"
               fill
@@ -46,7 +46,7 @@ function Artikel({ title, date, body, level, id }) {
           </a>
           <a
             className="flex flex-col gap-[5px] px-[7px] mb-[10px] "
-            href="/artikel/detail"
+            href={`/artikel/${id}`}
           >
             <div className="level" style={{ background: getColor(level) }}>
               {getLevel(level)}

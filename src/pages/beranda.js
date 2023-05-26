@@ -8,15 +8,27 @@ import { GoKebabHorizontal } from "react-icons/go";
 import React, { useEffect, useState } from "react";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "./api/getData";
+import { collection, limit, query, where } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
 
 function beranda() {
   const [data, setData] = useState([]);
-  const getData = "Sharing";
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataList = await getAllDataFromFirestore(getData);
+      const q = query(collection(db, "Sharing"));
+      const dataList = await getAllDataFromFirestore(q);
       setData(dataList);
+    };
+    fetchData();
+  }, []);
+
+  const [artikel, setArtikel] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const q = query(collection(db, "Articles"));
+      const dataList = await getAllDataFromFirestore(q);
+      setArtikel(dataList);
     };
     fetchData();
   }, []);
@@ -78,11 +90,11 @@ function beranda() {
           <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-5">
             <span className="text-h5">Artikel Terbaru</span>
             <div className="flex flex-col gap-5">
-              {DataArtikel.map((item, index) => (
+              {artikel.map((item, index) => (
                 <Artikel
                   key={index}
-                  body={item.body}
-                  title={item.title}
+                  body={item.articles_body}
+                  title={item.articles_title}
                   level={item.level}
                   date={item.date}
                 />

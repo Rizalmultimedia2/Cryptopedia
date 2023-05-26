@@ -2,11 +2,12 @@ import Artikel from "@/components/Artikel/Artikel";
 import Header from "@/components/Header/Header";
 import Searchbar from "@/components/Searchbar";
 import React, { useEffect, useState } from "react";
-import { DataArtikel, testTing } from "@/Utils/Artikel";
 import Footer from "@/components/Footer";
 import SelectLevel from "@/components/Select/SelectLevel";
 import { getAllDataFromFirestore } from "../api/getData";
 import withProtected from "@/hoc/withProtected";
+import { collection, limit, query, where } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 function artikel() {
   // testTing();
@@ -15,7 +16,8 @@ function artikel() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataList = await getAllDataFromFirestore(getData);
+      const q = query(collection(db, "Articles"), limit(100));
+      const dataList = await getAllDataFromFirestore(q);
       setData(dataList);
     };
     fetchData();
@@ -41,15 +43,18 @@ function artikel() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-16  md:gap-x-5 gap-y-[30px]">
-          {DataArtikel.map((item, index) => (
-            <Artikel
-              key={index}
-              body={item.articles_body}
-              title={item.articles_title}
-              level={item.level}
-              date={item.date}
-              id={2}
-            />
+          {data.map((item, index) => (
+            <>
+              {console.log(item)}
+              <Artikel
+                key={index}
+                body={item.articles_body}
+                title={item.articles_title}
+                level={item.level}
+                date={item.date}
+                id={item.id}
+              />
+            </>
           ))}
         </div>
       </div>

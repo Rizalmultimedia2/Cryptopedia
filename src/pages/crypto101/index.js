@@ -8,14 +8,16 @@ import Banner from "@/components/Banner";
 import SelectLevel from "@/components/Select/SelectLevel";
 import { getAllDataFromFirestore } from "../api/getData";
 import withProtected from "@/hoc/withProtected";
+import { collection, limit, query, where } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 function index() {
   const [data, setData] = useState([]);
-  const getData = "Starting";
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataList = await getAllDataFromFirestore(getData);
+      const q = query(collection(db, "Starting"), limit(100));
+      const dataList = await getAllDataFromFirestore(q);
       setData(dataList);
     };
     fetchData();

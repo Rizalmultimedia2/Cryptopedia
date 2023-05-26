@@ -5,8 +5,8 @@ import { db } from "../../firebaseConfig";
 
 const dateString = "01/20/2023 23:31:30";
 const dateObject = new Date(dateString);
-// const timestamp = Timestamp.fromDate(dateObject);
-const timestamp = "01/20/2023 23:31:30";
+const timestamp = Timestamp.fromDate(dateObject);
+// const timestamp = "01/20/2023 23:31:30";
 
 export const DataArtikel = [
   {

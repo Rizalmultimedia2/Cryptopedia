@@ -10,6 +10,8 @@ import Banner from "@/components/Banner";
 import SharingModal from "@/components/Modal/SharingModal";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "../api/getData";
+import { collection, limit, query, where } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 function artikel() {
   const [data, setData] = useState([]);
@@ -17,7 +19,8 @@ function artikel() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataList = await getAllDataFromFirestore(getData);
+      const q = query(collection(db, "Sharing"), limit(100));
+      const dataList = await getAllDataFromFirestore(q);
       setData(dataList);
     };
     fetchData();

@@ -15,7 +15,6 @@ function detail() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
-  //   console.log({ id });
 
   useEffect(() => {
     const fetchData = async () => {
