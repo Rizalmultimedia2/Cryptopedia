@@ -21,13 +21,13 @@ function CryptoSharing({
 }) {
   const getKategori = (kategori) => {
     switch (kategori) {
-      case 1:
+      case 0:
         return "Semua";
-      case 2:
+      case 1:
         return "Tren";
-      case 3:
+      case 2:
         return "Teknikal & Fundamental";
-      case 4:
+      case 3:
         return "General";
     }
   };

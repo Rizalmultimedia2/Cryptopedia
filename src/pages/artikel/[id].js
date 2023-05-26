@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import withProtected from "@/hoc/withProtected";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, limit, query } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
@@ -63,7 +63,8 @@ function detail() {
   const [articles, seArticles] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const dataList = await getAllDataFromFirestore("Articles", 4);
+      const q = query(collection(db, "Articles"), limit(4));
+      const dataList = await getAllDataFromFirestore(q);
       seArticles(dataList);
     };
     fetchData();
@@ -99,6 +100,7 @@ function detail() {
               src="/image/Artikel.png"
               fill
               className="object-cover rounded-xl"
+              alt="Cover"
             />
           </div>
           <div className="flex flex-col gap-5">{body}</div>
@@ -106,18 +108,20 @@ function detail() {
             <span className="font-semibold">
               Apakah kamu suka dengan artikel ini?{" "}
             </span>
-            <FiThumbsDown className="text-red-1" />
-            <FiThumbsUp className="text-primary-1" />
+            <FiThumbsDown className="text-red-1 cursor-pointer" />
+            <FiThumbsUp className="text-primary-1 cursor-pointer" />
           </div>
         </div>
         <div className="col-span-1 flex lg:flex-col flex-wrap gap-5">
           <span className="text-h4">Artikel Lainnya</span>
-          {articles.map((item) => (
+          {articles.map((item, index) => (
             <Artikel
+              key={index}
               body={item.articles_body}
               title={item.articles_title}
               level={item.level}
               date={item.date}
+              id={item.id}
             />
           ))}
         </div>

@@ -4,11 +4,6 @@ import { format } from "date-fns";
 // Fungsi untuk mengambil semua data dari koleksi Firestore
 export const getAllDataFromFirestore = async (q) => {
   try {
-    // const q = query(
-    //   collection(db, getData),
-    //   where(field, "==", filter),
-    //   limit(num)
-    // );
     const querySnapshot = await getDocs(q);
 
     const dataList = [];

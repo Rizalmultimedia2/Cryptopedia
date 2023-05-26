@@ -12,29 +12,49 @@ import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "../api/getData";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
+import Loading from "@/components/Loading";
 
-function artikel() {
+function cryptoSharing() {
   const [data, setData] = useState([]);
-  const getData = "Sharing";
+  const [filter, setFilter] = useState();
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(collection(db, "Sharing"), limit(100));
-      const dataList = await getAllDataFromFirestore(q);
+      setLoading(true);
+      let dataQuery;
+      if (filter) {
+        const q = query(
+          collection(db, "Sharing"),
+          where("category", "==", filter)
+        );
+        dataQuery = q;
+      } else {
+        const q = query(collection(db, "Sharing"), limit(100));
+        dataQuery = q;
+      }
+
+      const dataList = await getAllDataFromFirestore(dataQuery);
+      setLoading(false);
       setData(dataList);
     };
     fetchData();
-  }, []);
-  // console.log("apakah masuk datanya", data);
+  }, [filter]);
+
+  const handleFilter = (value) => {
+    setFilter(value);
+  };
+
+  console.log("nomor filter", filter);
 
   return (
     <>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-3">
-          <h3 className="text-h3">Crypto Sharing</h3>
+          <h3 className="text-h2">Crypto Sharing</h3>
           <div className="flex justify-between">
-            <span className="text-p1">
+            <span className="text-p21 max-w-[800px]">
               Belajar Cryptocurrency lebih mudah dengan berdiskusi
             </span>
             <SharingModal
@@ -50,14 +70,16 @@ function artikel() {
             <div>
               <TrendingForum />
             </div>
-
+            {isLoading && <Loading />}
             <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden">
-              <SelectCategory style="category" post={0} />
+              <SelectCategory style="category" post={0} filter={handleFilter} />
             </ul>
             <div>
               <Searchbar placeholder="Cari Diskusi" />
             </div>
             <div className="flex flex-col gap-5">
+              {isLoading && <Loading />}
+
               {data.map((item, index) => (
                 <CryptoSharing
                   title={item.sharing_title}
@@ -96,4 +118,4 @@ function artikel() {
   );
 }
 
-export default withProtected(artikel);
+export default withProtected(cryptoSharing);

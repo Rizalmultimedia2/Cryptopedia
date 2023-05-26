@@ -1,11 +1,33 @@
 import React, { useState } from "react";
 
-function SelectCategory({ style, post }) {
+function SelectCategory({ style, post, filter }) {
   const [selected, setSelected] = useState("semua");
 
   const handleChange = (event) => {
     console.log(event.target.value);
     setSelected(event.target.value);
+    const value = event.target.value;
+    let num;
+
+    switch (value) {
+      case "semua":
+        num = 0;
+        break;
+      case "tren":
+        num = 1;
+        break;
+      case "teknikal":
+        num = 2;
+        break;
+      case "general":
+        num = 3;
+        break;
+      default:
+        num = 0;
+        break;
+    }
+
+    filter(num);
   };
 
   const data =

@@ -3,7 +3,16 @@ import DeleteModal from "../Modal/DeleteModal";
 import IconBookmark from "../Button/IconBookmark";
 import MateriModal from "../Modal/MateriModal";
 
-function CryptoMateri({ title, level, body, id }) {
+function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
+  const clickHandler = () => {
+    setVisible(true);
+    setId({
+      sid: id,
+      sbody: body,
+      stitle: title,
+      slevel: level,
+    });
+  };
   const getLevel = (level) => {
     switch (level) {
       case 1:
@@ -35,7 +44,7 @@ function CryptoMateri({ title, level, body, id }) {
 
   return (
     <>
-      <a className="sharing-card" href="#" id={id}>
+      <a className="sharing-card" href="#" id={id} onClick={clickHandler}>
         <div className="flex flex-col gap-[5px]">
           <div className="flex-center-between text-h5">
             <span>{title}</span>

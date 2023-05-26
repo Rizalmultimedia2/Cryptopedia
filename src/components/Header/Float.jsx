@@ -1,6 +1,6 @@
 import { useUser } from "@/context/user";
 import React, { useEffect, useState } from "react";
-import { db } from "../../../firebaseConfig";
+import { SignOut, db } from "../../../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 
 function Float() {
@@ -49,7 +49,9 @@ function Float() {
                 </div>
                 <div className="border border-t-1 my-2"></div>
                 <div className="w-full">
-                  <a className="button-delete w-full">Logout</a>
+                  <button className="button-delete w-full" onClick={SignOut}>
+                    Logout
+                  </button>
                 </div>
               </div>
             </div>

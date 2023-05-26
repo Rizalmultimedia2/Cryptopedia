@@ -1,4 +1,3 @@
-import { DataArtikel } from "@/Utils/Artikel";
 import Artikel from "@/components/Artikel/Artikel";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Footer from "@/components/Footer";
@@ -10,27 +9,33 @@ import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "./api/getData";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
+import Loading from "@/components/Loading";
 
 function beranda() {
   const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const q = query(collection(db, "Sharing"));
       const dataList = await getAllDataFromFirestore(q);
       setData(dataList);
     };
     fetchData();
+    setLoading(false);
   }, []);
 
   const [artikel, setArtikel] = useState([]);
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       const q = query(collection(db, "Articles"));
       const dataList = await getAllDataFromFirestore(q);
       setArtikel(dataList);
     };
     fetchData();
+    setLoading(false);
   }, []);
 
   return (
@@ -67,6 +72,7 @@ function beranda() {
         <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-[60px] gap-[30px]">
           <div className="col-span-2 flex flex-col gap-5">
             <span className="text-h5">Forum Terbaru</span>
+            {isLoading && <Loading />}
             <div className="flex flex-col gap-5">
               {data.map((item, index) => (
                 <CryptoSharing
@@ -89,6 +95,7 @@ function beranda() {
           </div>
           <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-5">
             <span className="text-h5">Artikel Terbaru</span>
+            {isLoading && <Loading />}
             <div className="flex flex-col gap-5">
               {artikel.map((item, index) => (
                 <Artikel
@@ -97,6 +104,7 @@ function beranda() {
                   title={item.articles_title}
                   level={item.level}
                   date={item.date}
+                  id={item.id}
                 />
               ))}
             </div>
