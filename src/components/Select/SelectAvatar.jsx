@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 function SelectAvatar({ value, setAvatar }) {
@@ -17,7 +18,15 @@ function SelectAvatar({ value, setAvatar }) {
             }))
           }
         />
-        <label className={`select-avatar`} htmlFor={value}></label>
+        <label className="select-avatar flex-center" htmlFor={value}>
+          <Image
+            src={`/avatar/${value}.svg`}
+            height={55}
+            width={55}
+            className="object-cover"
+            alt={value}
+          />
+        </label>
       </li>
     </>
   );

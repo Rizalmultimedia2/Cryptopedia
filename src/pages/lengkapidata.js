@@ -127,7 +127,7 @@ function lengkapidata() {
 
               <div className="w-full flex flex-col gap-4">
                 <span>Pilih avatar</span>
-                <ul className="flex flex-row w-full justify-between">
+                <ul className="flex flex-row w-full justify-between overflow-visible">
                   <SelectAvatar value="avatar1" setAvatar={setFormValues} />
                   <SelectAvatar value="avatar2" setAvatar={setFormValues} />
                   <SelectAvatar value="avatar3" setAvatar={setFormValues} />

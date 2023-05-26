@@ -38,7 +38,7 @@ function index() {
         <div className="flex-center flex-row gap-8 flex-wrap">
           <div className="relative h-[200px] w-[200px] rounded-full">
             <Image
-              src="/image/artikel.png"
+              src={`/avatar/${data.avatar_id}.svg`}
               fill
               className="rounded-full object-cover border-2 border-primary-1"
               alt="Profile"
