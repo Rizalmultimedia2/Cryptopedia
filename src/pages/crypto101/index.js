@@ -11,6 +11,7 @@ import withProtected from "@/hoc/withProtected";
 import { db } from "../../../firebaseConfig";
 import { collection, limit, orderBy, query, where } from "firebase/firestore";
 import Loading from "@/components/Loading";
+import CryptoMateriDetail from "@/components/Crypto101/CryptoMateriDetail";
 
 function index() {
   const [data, setData] = useState([]);
@@ -96,11 +97,13 @@ function index() {
             {atvisible ? (
               <>
                 <div>
-                  <CryptoMateri
+                  <CryptoMateriDetail
                     title={idStarting.stitle}
                     level={idStarting.slevel}
                     body={idStarting.sbody}
                     id={idStarting.sid}
+                    visible={atvisible}
+                    setVisible={setVisible}
                   />
                 </div>
               </>

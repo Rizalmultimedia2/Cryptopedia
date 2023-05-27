@@ -13,20 +13,28 @@ import { getAllDataFromFirestore } from "../api/getData";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
+import { useUser } from "@/context/user";
 
 function cryptoSharing() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [isLoading, setLoading] = useState(false);
+  const user = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       let dataQuery;
-      if (filter) {
+      if (filter <= 3 && filter > 0) {
         const q = query(
           collection(db, "Sharing"),
           where("category", "==", filter)
+        );
+        dataQuery = q;
+      } else if (filter == 4) {
+        const q = query(
+          collection(db, "Sharing"),
+          where("user_id", "==", user.uid)
         );
         dataQuery = q;
       } else {
@@ -70,7 +78,6 @@ function cryptoSharing() {
             <div>
               <TrendingForum />
             </div>
-            {isLoading && <Loading />}
             <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden">
               <SelectCategory style="category" post={0} filter={handleFilter} />
             </ul>

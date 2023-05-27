@@ -4,23 +4,29 @@ import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
-import { DataForum } from "@/Utils/CryptoSharing";
 import Image from "next/image";
 import InputForm from "@/components/InputForm";
 import { db } from "../../../firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, query, where } from "firebase/firestore";
 import { useUser } from "@/context/user";
 import withProtected from "@/hoc/withProtected";
+import { getAllDataFromFirestore } from "../api/getData";
 
 function index() {
   const user = useUser();
   const [data, setData] = useState([]);
+  const [myPost, setMyPost] = useState([]);
   //   console.log({ id });
 
   useEffect(() => {
     const fetchData = async () => {
       const docSnap = await getDoc(doc(db, "Users", user.uid));
-
+      const q = query(
+        collection(db, "Sharing"),
+        where("user_id", "==", user.uid)
+      );
+      const dataList = await getAllDataFromFirestore(q);
+      setMyPost(dataList);
       if (docSnap.exists()) {
         setData(docSnap.data());
       } else {
@@ -31,6 +37,7 @@ function index() {
     fetchData();
   }, []);
 
+  console.log("Postingan saya", myPost);
   return (
     <>
       <Header />
@@ -91,20 +98,23 @@ function index() {
               <Searchbar placeholder="Cari postingan" />
             </div>
             <div className="flex flex-col gap-5">
-              {/* {DataForum.map((item) => (
+              {myPost.map((item, index) => (
                 <CryptoSharing
-                  title={item.title}
-                  username={item.username}
-                  waktu={item.waktu}
-                  tanggal={item.tanggal}
-                  body={item.body}
-                  kategori={item.kategori}
-                  tag={item.tag}
-                  like={item.jumlah_like}
-                  dislike={item.jumlah_dislike}
-                  comment={item.jumlah_comment}
+                  title={item.sharing_title}
+                  key={index}
+                  username="Rizal Herliansyah"
+                  waktu="nanti"
+                  tanggal={item.date}
+                  body={item.sharing_body}
+                  kategori={item.category}
+                  tag={item.tags}
+                  like={item.like}
+                  dislike={item.dislike}
+                  comment={item.total_comments}
+                  id={item.id}
+                  line="yes"
                 />
-              ))} */}
+              ))}
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">

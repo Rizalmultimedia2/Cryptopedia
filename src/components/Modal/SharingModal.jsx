@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ItemModal from "./ItemModal";
 import SelectCategory from "../Select/SelectCategory";
 
 function SharingModal({ name, title, button, icon, show }) {
-  console.log(`${show} showw`);
+  const [num, setNum] = useState(0);
+  const [formValues, setFormValues] = useState({
+    sharing_title: "",
+    tags: [],
+    sharing_body: "",
+    category: 0,
+    like: 0,
+    dislike: 0,
+    total_bookmark: [],
+    total_comments: 0,
+  });
+
+  useEffect(() => {
+    setFormValues((prev) => ({
+      ...prev,
+      category: num,
+    }));
+  }, [num]);
+
+  // console.log("form value", formValues);
   return (
     <>
-      {console.log(`${show} showw`)}
       <Modal
         icon={icon}
         name={name}
@@ -15,30 +33,45 @@ function SharingModal({ name, title, button, icon, show }) {
         size={550}
         title={title}
         show={show}
+        data={formValues}
+        nameTable="Sharing"
         Children={[
           <ItemModal
             label="Judul"
-            id="title"
+            id="sharing_title"
             type="text"
             placeholder="Masukkan judul"
+            setform={setFormValues}
           />,
-          <ItemModal label="Tag" id="tag" type="text" placeholder="Tag" />,
+          <ItemModal
+            label="Tag"
+            id="tags"
+            type="text"
+            placeholder="Tag"
+            setform={setFormValues}
+          />,
           <div className="flex gap-2 flex-col">
-            <label for="comment" class="text-p2">
+            <label htmlFor="sharing_body" className="text-p2">
               Masukkan isi diskusi
             </label>
             <textarea
-              id="comment"
+              id="sharing_body"
               rows="4"
-              class="textarea-modal"
+              className="textarea-modal"
               placeholder="Masukkan isi diskusi"
               required
+              onChange={(e) =>
+                setFormValues((prev) => ({
+                  ...prev,
+                  [e.target.id]: e.target.value,
+                }))
+              }
             ></textarea>
           </div>,
           <div className="flex flex-col w-full gap-1">
             <span class="text-p2">Category</span>
             <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
-              <SelectCategory style="category" post={1} />
+              <SelectCategory style="category" post={1} filter={setNum} />
             </ul>
           </div>,
         ]}

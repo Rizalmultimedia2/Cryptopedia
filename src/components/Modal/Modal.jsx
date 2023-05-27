@@ -1,9 +1,58 @@
-import React, { Children } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import EditButton from "../Button/EditButton";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
+import Swal from "sweetalert2";
+import { useUser } from "@/context/user";
 
-function Modal({ Children, title, button, size, name, icon }) {
+function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
   const [showModal, setShowModal] = React.useState(false);
+  const user = useUser();
+
+  const onSubmit = async (e) => {
+    try {
+      const combineData = {
+        ...data,
+        user_id: user.uid,
+        date: serverTimestamp(),
+      };
+      const collectionRef = collection(db, nameTable);
+      const docRef = await addDoc(collectionRef, combineData);
+      console.log(
+        "Data berhasil ditambahkan ke Firestore dengan ID:",
+        docRef.id
+      );
+
+      await setDoc(
+        doc(db, "Users", user.uid),
+        {
+          created_sharing: arrayUnion(docRef.id),
+        },
+        { merge: true }
+      );
+
+      Swal.fire({
+        icon: "success",
+        title: "Berhasil Menambahkan Forum",
+      });
+
+      setShowModal(false);
+    } catch (error) {
+      console.error(
+        "Terjadi kesalahan saat menambahkan data ke Firestore:",
+        error
+      );
+    }
+  };
+
   return (
     <>
       {button == 1 ? (
@@ -42,7 +91,7 @@ function Modal({ Children, title, button, size, name, icon }) {
                 <button
                   className="button-normal"
                   type="button"
-                  onClick={() => setShowModal(false)}
+                  onClick={onSubmit}
                 >
                   {name}
                 </button>

@@ -22,6 +22,9 @@ function SelectCategory({ style, post, filter }) {
       case "general":
         num = 3;
         break;
+      case "mypost":
+        num = 4;
+        break;
       default:
         num = 0;
         break;

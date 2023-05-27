@@ -10,11 +10,14 @@ import { useRouter } from "next/router";
 import { db } from "../../../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import withProtected from "@/hoc/withProtected";
+import Loading from "@/components/Loading";
+import CryptoSharingDetail from "@/components/Crypto Sharing/CryptoSharingDetail";
 
 function detail() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +44,7 @@ function detail() {
         </a>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-4">
-            <CryptoSharing
+            <CryptoSharingDetail
               title={data.sharing_title}
               username="Rizal Herliansyah Hidayat"
               waktu="1 jam yang lalu"
@@ -52,34 +55,32 @@ function detail() {
               like={data.like}
               dislike={data.dislike}
               comment={data.total_comments}
+              id={id}
               line=""
             />
             <h5 className="text-h5">Komentar</h5>
             <div>
-              <form class="flex flex-row gap-5 items-center">
-                <label for="comment" class="sr-only">
+              <form className="flex flex-row gap-5 items-center">
+                <label htmlFor="comment" className="sr-only">
                   Your comment
                 </label>
                 <textarea
                   id="comment"
                   rows="2"
-                  class="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black ring-focus"
+                  className="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black ring-focus"
                   placeholder="Berikan komentar"
                   required
                 ></textarea>
                 <button
                   type="submit"
-                  class="button-normal basis-1/6 h-fit w-fit"
+                  className="button-normal basis-1/6 h-fit w-fit"
                 >
                   Komentar
                 </button>
               </form>
             </div>
             <div className="flex flex-col gap-4">
-              <Komentar />
-              <Komentar />
-              <Komentar />
-              <Komentar />
+              <Komentar id={id} />
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">
@@ -98,7 +99,7 @@ function detail() {
         <div className="flex flex-col gap-6">
           <h4 className="text-h4">Forum Lainnya</h4>
           <div className="flex flex-row gap-6">
-            {[1, 2].map((x) => (
+            {/* {[1, 2].map((x) => (
               <CryptoSharing
                 title="Altcoin apa yang akan terbang"
                 username="Rizal Herliansyah Hidayat"
@@ -111,7 +112,7 @@ function detail() {
                 jumlah_dislike={5}
                 jumlah_comment={2}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>

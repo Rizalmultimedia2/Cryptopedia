@@ -1,7 +1,11 @@
+import { useUser } from "@/context/user";
+import { collection, doc, getDoc, where } from "firebase/firestore";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "../../firebaseConfig";
+import { getAllDataFromFirestore } from "@/pages/api/getData";
 
-function Komentar() {
+function Komentar({ id }) {
   return (
     <>
       <div className="flex flex-col border rounded-[10px] border-gray-4 p-[10px] gap-[10px]">
@@ -11,6 +15,7 @@ function Komentar() {
             height={40}
             width={40}
             className="rounded-[100px]"
+            alt="profile"
           />
           <div className="w-full">
             <span className="text-h6">Yuli</span>

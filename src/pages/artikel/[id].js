@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import parse from "html-react-parser";
 import { getAllDataFromFirestore } from "../api/getData";
 import Artikel from "@/components/Artikel/Artikel";
+import Loading from "@/components/Loading";
 
 function detail() {
   const router = useRouter();
@@ -18,6 +19,7 @@ function detail() {
   const [data, setData] = useState([]);
   const [date, setDate] = useState([]);
   const [body, setBody] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const getLevel = (level) => {
     switch (level) {
@@ -44,6 +46,7 @@ function detail() {
     const fetchData = async () => {
       const docRef = doc(db, "Articles", id);
       const docSnap = await getDoc(docRef);
+      setLoading(true);
 
       if (docSnap.exists()) {
         const convertedDate = docSnap.data().date.toDate();
@@ -55,6 +58,7 @@ function detail() {
       } else {
         console.log("Document not found!");
       }
+      setLoading(false);
     };
 
     fetchData();
@@ -62,10 +66,13 @@ function detail() {
 
   const [articles, seArticles] = useState([]);
   useEffect(() => {
+    setLoading(true);
+
     const fetchData = async () => {
       const q = query(collection(db, "Articles"), limit(4));
       const dataList = await getAllDataFromFirestore(q);
       seArticles(dataList);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -89,6 +96,8 @@ function detail() {
               {" "}
               {getLevel(data.level)}
             </span>
+            {isLoading && <Loading />}
+            {/* Kalau gambar pakai api, simpan disini */}
             <p className="text-h2">{data.articles_title}</p>
             <span className="text-p2">
               {date}
@@ -114,6 +123,8 @@ function detail() {
         </div>
         <div className="col-span-1 flex lg:flex-col flex-wrap gap-5">
           <span className="text-h4">Artikel Lainnya</span>
+          {isLoading && <Loading />}
+
           {articles.map((item, index) => (
             <Artikel
               key={index}
