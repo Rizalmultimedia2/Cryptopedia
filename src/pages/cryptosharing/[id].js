@@ -2,25 +2,78 @@ import { FiChevronLeft } from "react-icons/fi";
 import Header from "@/components/Header/Header";
 import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
-import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Banner from "@/components/Banner";
-import Komentar from "@/components/Komentar";
 import { useRouter } from "next/router";
 import { db } from "../../../firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import withProtected from "@/hoc/withProtected";
 import Loading from "@/components/Loading";
 import CryptoSharingDetail from "@/components/Crypto Sharing/CryptoSharingDetail";
+import { useUser } from "@/context/user";
+import Komentar from "@/components/Komentar/Komentar";
 
 function detail() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [comment, setComment] = useState("");
+  const user = useUser();
+
+  const onSubmit = async (e) => {
+    try {
+      const combineData = {
+        ...comment,
+        user_id: user.uid,
+        post_id: id,
+        date: serverTimestamp(),
+      };
+
+      const collectionRef = collection(db, "Comments");
+      const docRef = await addDoc(collectionRef, combineData);
+      console.log(
+        "Data berhasil ditambahkan ke Firestore dengan ID:",
+        docRef.id
+      );
+
+      await setDoc(
+        doc(db, "Users", user.uid),
+        {
+          comments: arrayUnion(docRef.id),
+        },
+        { merge: true }
+      );
+
+      setLoading(false);
+    } catch (error) {
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      console.error(
+        "Terjadi kesalahan saat menambahkan data ke Firestore:",
+        error
+      );
+      // const message = GetSignUpErrorMessage(error.code);
+      // console.log(message);
+      await Swal.fire({
+        icon: "error",
+        title: `${message}`,
+      });
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const docRef = doc(db, "Sharing", id);
       const docSnap = await getDoc(docRef);
 
@@ -29,6 +82,7 @@ function detail() {
       } else {
         console.log("Document not found!");
       }
+      setLoading(false);
     };
 
     fetchData();
@@ -44,10 +98,11 @@ function detail() {
         </a>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-4">
+            {isLoading && <Loading />}
             <CryptoSharingDetail
               title={data.sharing_title}
-              username="Rizal Herliansyah Hidayat"
-              waktu="1 jam yang lalu"
+              username={data.username}
+              waktu="1 jam yang"
               tanggal="12-12-2023"
               body={data.sharing_body}
               kategori={data.category}
@@ -70,17 +125,24 @@ function detail() {
                   className="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black ring-focus"
                   placeholder="Berikan komentar"
                   required
+                  onChange={(e) =>
+                    setComment((prev) => ({
+                      ...prev,
+                      [e.target.id]: [e.target.value],
+                    }))
+                  }
                 ></textarea>
                 <button
-                  type="submit"
+                  type="button"
                   className="button-normal basis-1/6 h-fit w-fit"
+                  onClick={onSubmit}
                 >
                   Komentar
                 </button>
               </form>
             </div>
             <div className="flex flex-col gap-4">
-              <Komentar id={id} />
+              <Komentar idPost={id} />
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">

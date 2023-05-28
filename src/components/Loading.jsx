@@ -6,7 +6,7 @@ function Loading() {
       <div role="status" className="flex justify-center">
         <svg
           aria-hidden="true"
-          className="w-40 h-40 mr-2 text-gray-4 animate-spin fill-primary-1"
+          className="w-36 h-36 mr-2 text-gray-4 animate-spin fill-primary-1"
           viewBox="0 0 100 101"
         >
           <path
