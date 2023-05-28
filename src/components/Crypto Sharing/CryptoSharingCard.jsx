@@ -1,14 +1,13 @@
-import React from "react";
-import { GoKebabVertical } from "react-icons/go";
-import { FiBookmark, FiThumbsUp, FiThumbsDown } from "react-icons/fi";
+import React, { useEffect, useState } from "react";
+import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { FaRegCommentDots } from "react-icons/fa";
 import IconBookmark from "../Button/IconBookmark";
 import IconKebab from "../Button/IconKebab";
+import { db } from "../../../firebaseConfig";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 function CryptoSharing({
   title,
-  username,
-  waktu,
   tanggal,
   body,
   kategori,
@@ -32,7 +31,26 @@ function CryptoSharing({
     }
   };
 
-  const handleClick = () => {};
+  const [dataUser, setDataUser] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("ID kambing", id);
+      const q = query(
+        collection(db, "Users"),
+        where("created_sharing", "array-contains", id)
+      );
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        const user = doc.data();
+        setDataUser(user);
+        console.log("Data pengguna:", user);
+      });
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -46,8 +64,10 @@ function CryptoSharing({
             </div>
           </div>
           <div className="flex-center-between">
-            <span className="font-bold text-h6 text-primary-1">{username}</span>
-            <span className="text-p3">{waktu}</span>
+            <span className="font-bold text-h6 text-primary-1">
+              {dataUser.username}
+            </span>
+            <span className="text-p3">{tanggal}</span>
           </div>
         </div>
         <a
@@ -64,15 +84,15 @@ function CryptoSharing({
             <span className="text-black">{tag}</span>
             <div className="flex flex-row gap-5">
               <div className="item-reaction">
-                <FaRegCommentDots className="cursor-pointer" />
+                <FaRegCommentDots />
                 <span>{comment}</span>
               </div>
               <div className="item-reaction">
-                <FiThumbsDown className="text-red-1 cursor-pointer" />
+                <FiThumbsDown className="text-red-1" />
                 <span>{dislike}</span>
               </div>
               <div className="item-reaction">
-                <FiThumbsUp className="text-primary-2 cursor-pointer" />
+                <FiThumbsUp className="text-primary-2" />
                 <span>{like}</span>
               </div>
             </div>

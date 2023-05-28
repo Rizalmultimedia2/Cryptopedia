@@ -1,9 +1,11 @@
-import React from "react";
-import { GoKebabVertical } from "react-icons/go";
+import React, { useEffect, useState } from "react";
 import { FiBookmark, FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { FaRegCommentDots } from "react-icons/fa";
 import IconBookmark from "../Button/IconBookmark";
 import IconKebab from "../Button/IconKebab";
+import { format } from "date-fns";
+import { getOneDataFromFirestore } from "@/pages/api/getData";
+import LikeDislike from "../Button/LikeDislike";
 
 function CryptoSharingDetail({
   title,
@@ -16,7 +18,6 @@ function CryptoSharingDetail({
   like,
   dislike,
   comment,
-  id,
   line,
 }) {
   const getKategori = (kategori) => {
@@ -32,6 +33,21 @@ function CryptoSharingDetail({
     }
   };
 
+  const [formattedDate, setFormattedDate] = useState();
+
+  useEffect(() => {
+    const fetchFormattedDate = async () => {
+      if (tanggal) {
+        const convertedDate = tanggal.toDate();
+        const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
+        setFormattedDate(formattedDate);
+      }
+    };
+
+    fetchFormattedDate();
+  }, [tanggal]);
+  console.log("tanggalnya format", formattedDate);
+
   return (
     <>
       <div className="sharing-card w-full">
@@ -45,7 +61,9 @@ function CryptoSharingDetail({
           </div>
           <div className="flex-center-between">
             <span className="font-bold text-h6 text-primary-1">{username}</span>
-            <span className="text-p3">{waktu}</span>
+            <span className="text-p3">
+              {formattedDate ? formattedDate : null}
+            </span>
           </div>
         </div>
         <div className={!line ? "" : "line-clamp-2"}>{body}</div>
@@ -56,18 +74,11 @@ function CryptoSharingDetail({
           <div className="flex-center-between text-p2">
             <span className="text-black">{tag}</span>
             <div className="flex flex-row gap-5">
-              <div className="item-reaction">
-                <FaRegCommentDots className="cursor-pointer" />
-                <span>{comment}</span>
+              <div className="item-reaction-click">
+                <FaRegCommentDots />
+                <span className="text-p21">{comment}</span>
               </div>
-              <div className="item-reaction">
-                <FiThumbsDown className="text-red-1 cursor-pointer" />
-                <span>{dislike}</span>
-              </div>
-              <div className="item-reaction">
-                <FiThumbsUp className="text-primary-2 cursor-pointer" />
-                <span>{like}</span>
-              </div>
+              <LikeDislike like={like} dislike={dislike} />
             </div>
           </div>
         </div>

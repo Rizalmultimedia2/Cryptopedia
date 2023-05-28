@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SignOut, db } from "../../../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
+import { getOneDataFromFirestore } from "@/pages/api/getData";
 
 function Float() {
   const user = useUser();
@@ -15,15 +16,9 @@ function Float() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docSnap = await getDoc(doc(db, "Users", user.uid));
-
-      if (docSnap.exists()) {
-        setData(docSnap.data());
-      } else {
-        console.log("Document not found!");
-      }
+      const dataList = await getOneDataFromFirestore("Users", user.uid);
+      setData(dataList);
     };
-
     fetchData();
   }, []);
 

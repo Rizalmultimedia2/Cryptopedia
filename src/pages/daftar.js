@@ -48,6 +48,8 @@ function daftar() {
         id: res.user.uid,
         email: formValues.email,
         fullname: formValues.nama,
+        saved_starting: [],
+        saved_sharing: [],
       });
 
       Swal.fire({

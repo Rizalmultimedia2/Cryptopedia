@@ -123,6 +123,10 @@
   @apply flex flex-row items-center justify-center gap-2 text-[18px];
 }
 
+.item-reaction-click {
+  @apply flex flex-row items-center justify-center gap-2 text-[22px];
+}
+
 .flex-center-between {
   @apply flex justify-between items-center;
 }

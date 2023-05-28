@@ -53,8 +53,6 @@ function cryptoSharing() {
     setFilter(value);
   };
 
-  console.log("nomor filter", filter);
-
   return (
     <>
       <Header />
@@ -91,8 +89,6 @@ function cryptoSharing() {
                 <CryptoSharing
                   title={item.sharing_title}
                   key={index}
-                  username="Rizal Herliansyah"
-                  waktu="nanti"
                   tanggal={item.date}
                   body={item.sharing_body}
                   kategori={item.category}

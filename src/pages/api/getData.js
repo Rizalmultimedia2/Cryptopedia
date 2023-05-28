@@ -1,5 +1,15 @@
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
 import { format } from "date-fns";
+import { useState } from "react";
+import { db } from "../../../firebaseConfig";
 
 // Fungsi untuk mengambil semua data dari koleksi Firestore
 export const getAllDataFromFirestore = async (q) => {
@@ -26,5 +36,43 @@ export const getAllDataFromFirestore = async (q) => {
     return dataList;
   } catch (error) {
     console.error("Terjadi kesalahan:", error);
+  }
+};
+
+export const getOneDataFromFirestore = async (table, id) => {
+  try {
+    const docSnap = await getDoc(doc(db, table, id));
+    console.log("Table ", table, id);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+
+      console.log("Data tunggal dari Firestore:", data);
+      return data;
+    } else {
+      console.log("Document tidak ditemukan!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Terjadi kesalahan:", error);
+    return null;
+  }
+};
+
+export const getOneDataWithFilter = async (q) => {
+  try {
+    const docSnap = await getDocs(q);
+
+    if (!docSnap.empty) {
+      const user = docSnap.docs[0].data();
+      console.log("Data pengguna:", user);
+      return user;
+    } else {
+      console.log("Pengguna tidak ditemukan!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Terjadi kesalahan:", error);
+    return null;
   }
 };

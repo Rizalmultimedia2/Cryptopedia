@@ -14,6 +14,9 @@ function SharingModal({ name, title, button, icon, show }) {
     dislike: 0,
     total_bookmark: [],
     total_comments: 0,
+    user_likes: [],
+    user_dislike: [],
+    user_bookmarked: [],
   });
 
   useEffect(() => {

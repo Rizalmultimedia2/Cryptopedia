@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../../firebaseConfig";
 import Loading from "../Loading";
 
-function DataKomentar({ comment, user_id, post_id }) {
+function DataKomentar({ comment, user_id, post_id, date }) {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState();
 
@@ -39,7 +39,7 @@ function DataKomentar({ comment, user_id, post_id }) {
                 <span className="text-h6">{data.fullname}</span>
                 <div className="flex justify-between text-p4">
                   <span className="">@{data.username}</span>
-                  <span>1 menit yang lalu</span>
+                  <span>{date}</span>
                 </div>
               </div>
             </div>

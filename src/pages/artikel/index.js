@@ -60,7 +60,7 @@ function artikel() {
             </div>
           </div>
         </div>
-        {isLoading && <Loading />}
+        {/* {isLoading && <Loading />} */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-16  md:gap-x-5 gap-y-[30px]">
           {data.map((item, index) => (
             <Artikel

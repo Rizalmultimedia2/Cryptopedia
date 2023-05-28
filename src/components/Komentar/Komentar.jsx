@@ -33,6 +33,7 @@ function Komentar({ idPost }) {
               comment={item.comment}
               user_id={item.user_id}
               post_id={item.post_id}
+              date={item.date}
             />
           ))
         : null}

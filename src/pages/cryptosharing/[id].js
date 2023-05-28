@@ -11,23 +11,33 @@ import {
   arrayUnion,
   collection,
   doc,
-  getDoc,
+  getDocs,
+  limit,
+  query,
   serverTimestamp,
   setDoc,
+  where,
 } from "firebase/firestore";
 import withProtected from "@/hoc/withProtected";
 import Loading from "@/components/Loading";
 import CryptoSharingDetail from "@/components/Crypto Sharing/CryptoSharingDetail";
-import { useUser } from "@/context/user";
+import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Komentar from "@/components/Komentar/Komentar";
+import {
+  getAllDataFromFirestore,
+  getOneDataFromFirestore,
+} from "../api/getData";
+import { useUser } from "@/context/user";
 
 function detail() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
+  const [dataUser, setDataUser] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [comment, setComment] = useState("");
   const user = useUser();
+  const [dataList, setDataList] = useState([]);
 
   const onSubmit = async (e) => {
     try {
@@ -54,6 +64,7 @@ function detail() {
       );
 
       setLoading(false);
+      router.reload();
     } catch (error) {
       const errorMessage = error.message;
       console.log(errorMessage);
@@ -61,30 +72,37 @@ function detail() {
         "Terjadi kesalahan saat menambahkan data ke Firestore:",
         error
       );
-      // const message = GetSignUpErrorMessage(error.code);
-      // console.log(message);
-      await Swal.fire({
-        icon: "error",
-        title: `${message}`,
-      });
+      // // const message = GetSignUpErrorMessage(error.code);
+      // // console.log(message);
+      // await Swal.fire({
+      //   icon: "error",
+      //   title: `${message}`,
+      // });
       setLoading(false);
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      const docRef = doc(db, "Sharing", id);
-      const docSnap = await getDoc(docRef);
+      const dataList = await getOneDataFromFirestore("Sharing", id);
+      setData(dataList);
 
-      if (docSnap.exists()) {
-        setData(docSnap.data());
-      } else {
-        console.log("Document not found!");
-      }
+      const q = query(
+        collection(db, "Users"),
+        where("created_sharing", "array-contains", id)
+      );
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        const user = doc.data();
+        setDataUser(user);
+      });
+
+      const qy = query(collection(db, "Sharing"), limit(2));
+      const list = await getAllDataFromFirestore(qy);
+      setDataList(list);
       setLoading(false);
     };
-
     fetchData();
   }, []);
 
@@ -99,20 +117,22 @@ function detail() {
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-4">
             {isLoading && <Loading />}
-            <CryptoSharingDetail
-              title={data.sharing_title}
-              username={data.username}
-              waktu="1 jam yang"
-              tanggal="12-12-2023"
-              body={data.sharing_body}
-              kategori={data.category}
-              tag={data.tags}
-              like={data.like}
-              dislike={data.dislike}
-              comment={data.total_comments}
-              id={id}
-              line=""
-            />
+            {data ? (
+              <CryptoSharingDetail
+                title={data.sharing_title}
+                username={dataUser.username}
+                waktu="1 jam yang"
+                tanggal={data.date}
+                body={data.sharing_body}
+                kategori={data.category}
+                tag={data.tags}
+                like={data.like}
+                dislike={data.dislike}
+                comment={data.total_comments}
+                line=""
+              />
+            ) : null}
+
             <h5 className="text-h5">Komentar</h5>
             <div>
               <form className="flex flex-row gap-5 items-center">
@@ -141,7 +161,7 @@ function detail() {
                 </button>
               </form>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 max-h-[700px] overflow-y-scroll overflow-x-visible">
               <Komentar idPost={id} />
             </div>
           </div>
@@ -161,20 +181,21 @@ function detail() {
         <div className="flex flex-col gap-6">
           <h4 className="text-h4">Forum Lainnya</h4>
           <div className="flex flex-row gap-6">
-            {/* {[1, 2].map((x) => (
+            {dataList.map((item, index) => (
               <CryptoSharing
-                title="Altcoin apa yang akan terbang"
-                username="Rizal Herliansyah Hidayat"
-                waktu="1 jam yang lalu"
-                tanggal="12-12-2023"
-                body=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum provident libero hic in mollitia placeat totam vero nam! Velit fuga laudantium sed iusto ea sint ab ducimus ad voluptates perferendis?"
-                kategori={1}
-                tag="#USDT #BUSD"
-                jumlah_like={10}
-                jumlah_dislike={5}
-                jumlah_comment={2}
+                title={item.sharing_title}
+                key={index}
+                tanggal={item.date}
+                body={item.sharing_body}
+                kategori={item.category}
+                tag={item.tags}
+                like={item.like}
+                dislike={item.dislike}
+                comment={item.total_comments}
+                id={item.id}
+                line="yes"
               />
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
