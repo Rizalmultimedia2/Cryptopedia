@@ -79,7 +79,7 @@ function CryptoSharing({
             {getKategori(kategori)}
           </div>
           <div className="flex-center-between text-p2">
-            <span className="text-black">{tag}</span>
+            <span className="text-black">@{tag}</span>
             <div className="flex flex-row gap-5">
               <div className="item-reaction">
                 <FaRegCommentDots />

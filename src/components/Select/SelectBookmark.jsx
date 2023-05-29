@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 
-function SelectBookmark() {
+function SelectBookmark({ tabel }) {
   const [selected, setSelected] = useState("cryptosharing");
 
   const handleChange = (event) => {
-    console.log(event.target.value);
-    setSelected(event.target.value);
+    const item = event.target.value;
+    console.log(item);
+    setSelected(item);
+    if (item == "cryptosharing") {
+      tabel("Sharing");
+    } else if (item == "crypto101") {
+      tabel("Starting");
+    }
   };
 
   const data = [

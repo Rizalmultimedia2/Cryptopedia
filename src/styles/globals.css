@@ -140,7 +140,7 @@
 }
 
 .item-bookmark {
-  @apply flex flex-row items-center text-p2 bg-[#CDEDE6] p-[10px] rounded-md gap-3;
+  @apply flex flex-row items-center text-p2 bg-[#CDEDE6]/50 p-[10px] rounded-md gap-3;
 }
 
 .ring-hover-item {

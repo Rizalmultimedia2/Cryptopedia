@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { db } from "../../../firebaseConfig";
 
-function ItemBookmark({ id, tabel }) {
+function ItemBookmarkStarting({ id, tabel }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -24,10 +24,10 @@ function ItemBookmark({ id, tabel }) {
     <>
       <a className="item-bookmark ring-hover-item" href="/cryptosharing/${id}">
         <FiBookmark className="text-[20px] text-primary-2 fill-primary-2" />
-        {data.sharing_title}
+        {data.starting_title}
       </a>
     </>
   );
 }
 
-export default ItemBookmark;
+export default ItemBookmarkStarting;

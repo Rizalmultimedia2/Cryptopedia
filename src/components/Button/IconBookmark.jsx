@@ -1,15 +1,10 @@
 import { useUser } from "@/context/user";
 import {
-  addDoc,
   arrayRemove,
   arrayUnion,
-  collection,
   doc,
   getDoc,
-  getDocs,
-  query,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
@@ -34,34 +29,68 @@ function IconBookmark({ post_id, field }) {
       }
     };
 
-    checkBookmarkStatus();
+    const checkBookmarkStatusStarting = async () => {
+      try {
+        const docRef = doc(db, "Users", user.uid);
+        const bookmarkedPosts = await getDoc(docRef);
+        const dataBookmark = bookmarkedPosts.data().saved_starting;
+        setIsBookmarked(dataBookmark.includes(post_id));
+      } catch (error) {
+        console.error("Terjadi kesalahan:", error);
+      }
+    };
+
+    if (field == "saved_sharing") {
+      checkBookmarkStatus();
+    } else if (field == "saved_starting") {
+      checkBookmarkStatusStarting();
+    }
   }, []);
 
   const handleClick = async () => {
     const docRef = doc(db, "Users", user.uid);
+    console.log("Docref ", docRef);
 
     try {
-      if (isBookmarked) {
-        console.log("is bookmark", isBookmarked);
-        // Menghapus bookmark
-        await updateDoc(docRef, {
-          saved_sharing: arrayRemove(post_id),
-        });
-        setIsBookmarked(false);
-      } else {
-        console.log("is bookmark", isBookmarked);
-        // Menambahkan bookmark
-        await updateDoc(docRef, {
-          saved_sharing: arrayUnion(post_id),
-        });
-        setIsBookmarked(true);
-        Swal.fire({
-          icon: "success",
-          title: "Berhasil Bookmark",
-        });
+      if (field == "saved_sharing") {
+        if (isBookmarked) {
+          console.log("is bookmark", isBookmarked);
+          await updateDoc(docRef, {
+            saved_sharing: arrayRemove(post_id),
+          });
+          setIsBookmarked(false);
+        } else {
+          console.log("is bookmark", isBookmarked);
+          await updateDoc(docRef, {
+            saved_sharing: arrayUnion(post_id),
+          });
+          setIsBookmarked(true);
+          Swal.fire({
+            icon: "success",
+            title: "Berhasil Bookmark",
+          });
+        }
+      } else if (field == "saved_starting") {
+        if (isBookmarked) {
+          console.log("is bookmark", isBookmarked);
+          await updateDoc(docRef, {
+            saved_starting: arrayRemove(post_id),
+          });
+          setIsBookmarked(false);
+        } else {
+          console.log("is bookmark", isBookmarked);
+          await updateDoc(docRef, {
+            saved_starting: arrayUnion(post_id),
+          });
+          setIsBookmarked(true);
+          Swal.fire({
+            icon: "success",
+            title: "Berhasil Bookmark",
+          });
+        }
       }
     } catch (error) {
-      console.error("Terjadi kesalahan:", error);
+      console.error("Terjadi kesalahana:", error);
     }
   };
 

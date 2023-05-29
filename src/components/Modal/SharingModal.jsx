@@ -9,6 +9,7 @@ function SharingModal({ name, title, button, icon, show }) {
     sharing_title: "",
     tags: [],
     sharing_body: "",
+    id: "",
     category: 0,
     like: 0,
     dislike: 0,

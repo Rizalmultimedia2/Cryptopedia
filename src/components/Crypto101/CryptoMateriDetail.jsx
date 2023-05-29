@@ -45,7 +45,7 @@ function CryptoMateriDetail({ title, level, body, id, setVisible }) {
               {title}
             </span>
             <div>
-              <IconBookmark />
+              <IconBookmark post_id={id} field="saved_starting" />
             </div>
           </div>
           <div className="level" style={{ background: getColor(level) }}>

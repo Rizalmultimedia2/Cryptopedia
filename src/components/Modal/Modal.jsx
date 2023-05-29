@@ -8,6 +8,7 @@ import {
   doc,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
@@ -28,6 +29,12 @@ function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
       };
       const collectionRef = collection(db, nameTable);
       const docRef = await addDoc(collectionRef, combineData);
+      const getId = docRef.id;
+
+      await updateDoc(doc(db, nameTable, getId), {
+        id: getId,
+      });
+
       console.log(
         "Data berhasil ditambahkan ke Firestore dengan ID:",
         docRef.id

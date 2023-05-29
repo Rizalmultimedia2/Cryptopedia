@@ -49,7 +49,7 @@ function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
           <div className="flex-center-between text-h5">
             <span>{title}</span>
             <div>
-              <IconBookmark />
+              <IconBookmark post_id={id} field="saved_starting" />
             </div>
           </div>
           <div className="level" style={{ background: getColor(level) }}>

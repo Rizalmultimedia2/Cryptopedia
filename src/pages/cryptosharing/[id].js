@@ -52,6 +52,11 @@ function detail() {
 
       const collectionRef = collection(db, "Comments");
       const docRef = await addDoc(collectionRef, combineData);
+      const getId = docRef.id;
+
+      await updateDoc(doc(db, "Comments", getId), {
+        id: getId,
+      });
       console.log(
         "Data berhasil ditambahkan ke Firestore dengan ID:",
         docRef.id
@@ -131,7 +136,6 @@ function detail() {
               <CryptoSharingDetail
                 title={data.sharing_title}
                 username={dataUser.username}
-                waktu="1 jam yang"
                 tanggal={data.date}
                 body={data.sharing_body}
                 kategori={data.category}
@@ -139,6 +143,7 @@ function detail() {
                 like={data.like}
                 dislike={data.dislike}
                 comment={data.total_comments}
+                id={id}
                 line=""
               />
             ) : null}

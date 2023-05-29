@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FiBookmark, FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { FaRegCommentDots } from "react-icons/fa";
 import IconBookmark from "../Button/IconBookmark";
 import IconKebab from "../Button/IconKebab";
 import { format } from "date-fns";
-import { getOneDataFromFirestore } from "@/pages/api/getData";
 import LikeDislike from "../Button/LikeDislike";
 
 function CryptoSharingDetail({
   title,
   username,
-  waktu,
   tanggal,
   body,
   kategori,
@@ -18,6 +15,7 @@ function CryptoSharingDetail({
   like,
   dislike,
   comment,
+  id,
   line,
 }) {
   const getKategori = (kategori) => {
@@ -55,7 +53,8 @@ function CryptoSharingDetail({
           <div className="text-h5 flex-center-between">
             <div>{title}</div>
             <div className="flex flex-row">
-              <IconBookmark />
+              {console.log("Posringan id dari detail ", id)}
+              <IconBookmark field="saved_sharing" post_id={id} />
               <IconKebab />
             </div>
           </div>
@@ -72,7 +71,7 @@ function CryptoSharingDetail({
             {getKategori(kategori)}
           </div>
           <div className="flex-center-between text-p2">
-            <span className="text-black">{tag}</span>
+            <span className="text-black">@{tag}</span>
             <div className="flex flex-row gap-5">
               <div className="item-reaction-click">
                 <FaRegCommentDots />
