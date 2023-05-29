@@ -5,18 +5,53 @@ import Footer from "@/components/Footer";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
 import Image from "next/image";
-import InputForm from "@/components/InputForm";
 import { db } from "../../../firebaseConfig";
-import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { useUser } from "@/context/user";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "../api/getData";
+import FormError from "@/components/Form/Error";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 
 function index() {
   const user = useUser();
+  const router = useRouter();
+  const [name, setName] = useState();
   const [data, setData] = useState([]);
   const [myPost, setMyPost] = useState([]);
-  //   console.log({ id });
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (e) => {
+    // if (/\s/.test(name)) {
+    //   setError("name", {
+    //     type: "noSpace",
+    //   });
+    // } else {
+    const data = { fullname: name };
+    const updateName = doc(db, "Users", user.uid);
+    await updateDoc(updateName, data);
+
+    await Swal.fire({
+      icon: "success",
+      title: "Berhasil Update Profil",
+    });
+
+    router.reload();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,21 +89,37 @@ function index() {
           <div className="flex lg:flex-row p-3 gap-7 border-2 border-primary-1 rounded-xl flex-col">
             <div className="flex flex-col gap-3">
               <h5 className="text-h5">Account Data</h5>
-              <div className="form-input bg-gray-2">@{data.username}</div>
-              <div className="form-input bg-gray-2">{data.email}</div>
-              <a className="button-normal w-fit" href="3">
-                Ubah kata sandi
-              </a>
+              <div className="flex flex-col gap-6">
+                <div className="form-input bg-gray-2">@{data.username}</div>
+                <div className="form-input bg-gray-2">{data.email}</div>
+                <a className="button-normal w-fit -mt-2" href="3">
+                  Ubah kata sandi
+                </a>
+              </div>
             </div>
 
             <div className="flex flex-col gap-3">
               <h5 className="text-h5">Personal data</h5>
-              <form action="" className="flex flex-col gap-3">
-                <InputForm
-                  id="fullname"
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-6"
+              >
+                <label htmlFor="name" className="sr-only"></label>
+                <input
                   type="text"
+                  id="name"
+                  className="form-input"
                   placeholder={data.fullname}
+                  value={name}
+                  {...register("name", {
+                    required: true,
+                    minLength: 7,
+                    maxLength: 25,
+                  })}
+                  onChange={(e) => setName(e.target.value)}
                 />
+                <FormError error={errors.name} />
+
                 <label htmlFor="trader" className="sr-only"></label>
                 <select
                   name=""
@@ -83,7 +134,7 @@ function index() {
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                 </select>
-                <button type="submit" className="button-normal w-fit">
+                <button type="submit" className="button-normal w-fit -mt-2">
                   Edit profile
                 </button>
               </form>

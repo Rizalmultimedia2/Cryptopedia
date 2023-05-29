@@ -35,7 +35,6 @@ function CryptoSharing({
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("ID kambing", id);
       const q = query(
         collection(db, "Users"),
         where("created_sharing", "array-contains", id)
@@ -45,7 +44,6 @@ function CryptoSharing({
       querySnapshot.forEach((doc) => {
         const user = doc.data();
         setDataUser(user);
-        console.log("Data pengguna:", user);
       });
     };
 
@@ -59,7 +57,7 @@ function CryptoSharing({
           <div className="text-h5 flex-center-between">
             <a href={`/cryptosharing/${id}`}>{title}</a>
             <div className="flex flex-row">
-              <IconBookmark />
+              <IconBookmark post_id={id} field="saved_sharing" />
               <IconKebab />
             </div>
           </div>

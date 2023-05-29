@@ -72,7 +72,7 @@ function SharingModal({ name, title, button, icon, show }) {
             ></textarea>
           </div>,
           <div className="flex flex-col w-full gap-1">
-            <span class="text-p2">Category</span>
+            <span className="text-p2">Category</span>
             <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
               <SelectCategory style="category" post={1} filter={setNum} />
             </ul>

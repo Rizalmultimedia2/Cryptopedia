@@ -12,10 +12,12 @@ import {
 import { db } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
 import { useUser } from "@/context/user";
+import { useRouter } from "next/router";
 
 function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
   const [showModal, setShowModal] = React.useState(false);
   const user = useUser();
+  const router = useRouter();
 
   const onSubmit = async (e) => {
     try {
@@ -43,6 +45,7 @@ function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
         icon: "success",
         title: "Berhasil Menambahkan Forum",
       });
+      router.reload();
 
       setShowModal(false);
     } catch (error) {

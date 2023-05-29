@@ -76,3 +76,15 @@ export const getOneDataWithFilter = async (q) => {
     return null;
   }
 };
+
+export const countDocument = async (id) => {
+  try {
+    const q = query(collection(db, "Comments"), where("post_id", "==", id));
+    const getData = await getDocs(q);
+    const count = getData.size;
+    return count;
+  } catch (error) {
+    console.error("Terjadi kesalahan:", error);
+    return null;
+  }
+};

@@ -16,6 +16,7 @@ import {
   query,
   serverTimestamp,
   setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import withProtected from "@/hoc/withProtected";
@@ -24,6 +25,7 @@ import CryptoSharingDetail from "@/components/Crypto Sharing/CryptoSharingDetail
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
 import Komentar from "@/components/Komentar/Komentar";
 import {
+  countDocument,
   getAllDataFromFirestore,
   getOneDataFromFirestore,
 } from "../api/getData";
@@ -84,6 +86,14 @@ function detail() {
 
   useEffect(() => {
     const fetchData = async () => {
+      const documentCount = await countDocument(id);
+      const documentRef = doc(db, "Sharing", id);
+      const comments = {
+        total_comments: documentCount,
+      };
+
+      await updateDoc(documentRef, comments);
+
       const dataList = await getOneDataFromFirestore("Sharing", id);
       setData(dataList);
 
