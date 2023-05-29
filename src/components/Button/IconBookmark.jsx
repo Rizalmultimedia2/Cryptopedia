@@ -65,10 +65,12 @@ function IconBookmark({ post_id, field }) {
             saved_sharing: arrayUnion(post_id),
           });
           setIsBookmarked(true);
-          Swal.fire({
+          await Swal.fire({
             icon: "success",
             title: "Berhasil Bookmark",
           });
+
+          router.reload();
         }
       } else if (field == "saved_starting") {
         if (isBookmarked) {
@@ -83,10 +85,11 @@ function IconBookmark({ post_id, field }) {
             saved_starting: arrayUnion(post_id),
           });
           setIsBookmarked(true);
-          Swal.fire({
+          await Swal.fire({
             icon: "success",
             title: "Berhasil Bookmark",
           });
+          // router.reload();
         }
       }
     } catch (error) {

@@ -8,7 +8,8 @@ import { useUser } from "@/context/user";
 import ItemBookmarkStarting from "./ItemBookmarkStarting";
 
 function MyBookmark() {
-  const [bookmarkSharing, setBookmarkSharing] = useState([]);
+  const [sharing, setSharing] = useState([]);
+  const [starting, setStarting] = useState([]);
   const [optionBookmark, setOptionBookmark] = useState("Sharing");
   const user = useUser();
 
@@ -16,13 +17,8 @@ function MyBookmark() {
     const fetchData = async () => {
       const docRef = doc(db, "Users", user.uid);
       const dataList = await getDoc(docRef);
-      if (optionBookmark == "Sharing") {
-        console.log("Masuk ke sharing", dataList.data().saved_sharing);
-        setBookmarkSharing(dataList.data().saved_sharing);
-      } else if (optionBookmark == "Starting") {
-        console.log("Masuk ke starting", dataList.data().saved_starting);
-        setBookmarkSharing(dataList.data().saved_starting);
-      }
+      setSharing(dataList.data().saved_sharing);
+      setStarting(dataList.data().saved_starting);
     };
 
     fetchData();
@@ -36,19 +32,16 @@ function MyBookmark() {
             <SelectBookmark tabel={setOptionBookmark} />
           </ul>
           <div className="flex flex-col gap-4 my-2">
-            {console.log(
-              "Sebelum ke item bookmark",
-              optionBookmark,
-              bookmarkSharing
-            )}
+            {/* {console.log("Sebelum ke item bookmark", optionBookmark, sharing)} */}
+            {/* {console.log("Sebelum ke item bookmark", optionBookmark, starting)} */}
             {optionBookmark == "Sharing"
-              ? bookmarkSharing.map((item, index) => (
+              ? sharing.map((item, index) => (
                   <ItemBookmark key={index} id={item} tabel="Sharing" />
                 ))
-              : bookmarkSharing.map((item, index) => (
+              : starting.map((item, index) => (
                   <ItemBookmarkStarting
                     key={index}
-                    id={item}
+                    starting_id={item}
                     tabel="Starting"
                   />
                 ))}

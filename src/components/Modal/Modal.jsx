@@ -48,7 +48,7 @@ function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
         { merge: true }
       );
 
-      Swal.fire({
+      await Swal.fire({
         icon: "success",
         title: "Berhasil Menambahkan Forum",
       });
@@ -79,7 +79,7 @@ function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
 
       {showModal ? (
         <>
-          <form className="flex-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none text-black">
+          <form className="form-modal">
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col max-w-[${size}px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
             >

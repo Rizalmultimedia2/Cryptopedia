@@ -162,3 +162,7 @@
 .item-headbar {
   @apply item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-1 lg:p-0;
 }
+
+.form-modal {
+  @apply flex-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none text-black;
+}

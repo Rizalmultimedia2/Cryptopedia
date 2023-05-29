@@ -8,7 +8,7 @@ function ItemBookmark({ id, tabel }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, tabel, id);
+      const docRef = doc(db, "Sharing", id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setData(docSnap.data());
@@ -18,11 +18,14 @@ function ItemBookmark({ id, tabel }) {
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <>
-      <a className="item-bookmark ring-hover-item" href="/cryptosharing/${id}">
+      <a
+        className="item-bookmark ring-hover-item"
+        href={`/cryptosharing/${id}`}
+      >
         <FiBookmark className="text-[20px] text-primary-2 fill-primary-2" />
         {data.sharing_title}
       </a>

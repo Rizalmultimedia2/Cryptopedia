@@ -58,7 +58,7 @@ function CryptoSharing({
             <a href={`/cryptosharing/${id}`}>{title}</a>
             <div className="flex flex-row">
               <IconBookmark post_id={id} field="saved_sharing" />
-              <IconKebab />
+              <IconKebab post_id={id} card={"y"} />
             </div>
           </div>
           <div className="flex-center-between">
@@ -79,7 +79,7 @@ function CryptoSharing({
             {getKategori(kategori)}
           </div>
           <div className="flex-center-between text-p2">
-            <span className="text-black">@{tag}</span>
+            <span className="text-black">#{tag}</span>
             <div className="flex flex-row gap-5">
               <div className="item-reaction">
                 <FaRegCommentDots />

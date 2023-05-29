@@ -55,7 +55,7 @@ function CryptoSharingDetail({
             <div className="flex flex-row">
               {console.log("Posringan id dari detail ", id)}
               <IconBookmark field="saved_sharing" post_id={id} />
-              <IconKebab />
+              <IconKebab post_id={id} card={""} />
             </div>
           </div>
           <div className="flex-center-between">
@@ -71,7 +71,7 @@ function CryptoSharingDetail({
             {getKategori(kategori)}
           </div>
           <div className="flex-center-between text-p2">
-            <span className="text-black">@{tag}</span>
+            <span className="text-black">#{tag}</span>
             <div className="flex flex-row gap-5">
               <div className="item-reaction-click">
                 <FaRegCommentDots />

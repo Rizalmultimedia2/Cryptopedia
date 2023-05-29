@@ -1,10 +1,46 @@
+import {
+  arrayRemove,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import React from "react";
 import { FiTrash } from "react-icons/fi";
+import { db } from "../../../firebaseConfig";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import { useUser } from "@/context/user";
 
-function DeleteModal({ title, button }) {
+function DeleteModal({ title, button, post_id, type }) {
   const [showModal, setShowModal] = React.useState(false);
+  const router = useRouter();
+  const user = useUser();
+
   const clickHandler = () => {
     setShowModal(!showModal);
+  };
+
+  const deleteData = async () => {
+    try {
+      const docRef = doc(db, "Sharing", post_id);
+      await deleteDoc(docRef);
+      console.log("Dokumen berhasil dihapus");
+
+      const docId = doc(db, "Users", user.uid);
+      const updateData = {};
+      updateData["created_sharing"] = arrayRemove(post_id);
+      await updateDoc(docId, updateData);
+
+      await Swal.fire({
+        icon: "success",
+        title: "Berhasil Menghapus Postingan",
+      });
+
+      router.push("/cryptosharing");
+    } catch (error) {
+      console.error("Terjadi kesalahan saat menghapus dokumen:", error);
+    }
   };
 
   return (
@@ -47,7 +83,7 @@ function DeleteModal({ title, button }) {
                 <button
                   className="button-delete"
                   type="button"
-                  onClick={() => setShowModal(false)}
+                  onClick={deleteData}
                 >
                   Hapus
                 </button>
