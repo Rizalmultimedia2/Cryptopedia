@@ -108,8 +108,8 @@ const addMultipleDataToFirestore = async (dataList) => {
   }
 };
 
-export const testTing = () => {
-  useEffect(() => {
-    addMultipleDataToFirestore(DataMateri);
-  }, []);
-};
+// export const testTing = () => {
+//   useEffect(() => {
+//     addMultipleDataToFirestore(DataMateri);
+//   }, []);
+// };

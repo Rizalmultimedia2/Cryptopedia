@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { getAllDataFromFirestore } from "./api/getData";
+import { useUser } from "@/context/user";
 
 export default function Home() {
   const [sharing, setSharing] = useState([]);

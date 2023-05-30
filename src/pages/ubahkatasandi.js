@@ -4,6 +4,7 @@ import Header from "@/components/Header/Header";
 import InputForm from "@/components/InputForm";
 import { FiChevronLeft } from "react-icons/fi";
 import withProtected from "@/hoc/withProtected";
+import Link from "next/link";
 
 function ubahkatasandi() {
   return (
@@ -13,10 +14,10 @@ function ubahkatasandi() {
         <div className="bg-primary-4 lg:visible invisible"></div>
         <div className="flex-center min-h-screen">
           <div className="form">
-            <a className="place-self-start px-3" href="/profile">
+            <Link className="place-self-start px-3" href="/profile">
               <FiChevronLeft className="inline" />
               Kembali
-            </a>
+            </Link>
             <Image src="/image/Logo.svg" height={120} width={133} />
             <h1 className="text-primary-1 text-h5">Ubah Kata Sandi</h1>
             <form action="" className="flex flex-col gap-[20px]">

@@ -92,26 +92,29 @@ function detail() {
   useEffect(() => {
     const fetchData = async () => {
       const documentCount = await countDocument(id);
-      const documentRef = doc(db, "Sharing", id);
-      const comments = {
-        total_comments: documentCount,
-      };
-
-      await updateDoc(documentRef, comments);
+      if (id) {
+        const documentRef = doc(db, "Sharing", id);
+        const comments = {
+          total_comments: documentCount,
+        };
+        await updateDoc(documentRef, comments);
+      }
 
       const dataList = await getOneDataFromFirestore("Sharing", id);
       setData(dataList);
 
-      const q = query(
-        collection(db, "Users"),
-        where("created_sharing", "array-contains", id)
-      );
-      const querySnapshot = await getDocs(q);
+      if (id) {
+        const q = query(
+          collection(db, "Users"),
+          where("created_sharing", "array-contains", id)
+        );
+        const querySnapshot = await getDocs(q);
 
-      querySnapshot.forEach((doc) => {
-        const user = doc.data();
-        setDataUser(user);
-      });
+        querySnapshot.forEach((doc) => {
+          const user = doc.data();
+          setDataUser(user);
+        });
+      }
 
       const qy = query(collection(db, "Sharing"), limit(2));
       const list = await getAllDataFromFirestore(qy);
@@ -119,7 +122,7 @@ function detail() {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <>

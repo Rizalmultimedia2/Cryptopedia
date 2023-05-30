@@ -4,8 +4,8 @@ function Thead({ head }) {
   console.log({ head });
   return (
     <>
-      {head.map((x) => (
-        <th scope="col" className="px-6 py-3">
+      {head.map((x, index) => (
+        <th scope="col" className="px-6 py-3" key={index}>
           {x}
         </th>
       ))}

@@ -10,14 +10,16 @@ function Komentar({ idPost }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(
-        collection(db, "Comments"),
-        where("post_id", "==", idPost)
-      );
-      // console.log("q adalah", q);
+      if (idPost) {
+        const q = query(
+          collection(db, "Comments"),
+          where("post_id", "==", idPost)
+        );
+        // console.log("q adalah", q);
 
-      const dataList = await getAllDataFromFirestore(q);
-      setData(dataList);
+        const dataList = await getAllDataFromFirestore(q);
+        setData(dataList);
+      }
     };
     fetchData();
   }, []);

@@ -2,6 +2,7 @@ import { useUser } from "@/context/user";
 import Image from "next/image";
 import React from "react";
 import Float from "./Float";
+import Link from "next/link";
 
 function Header() {
   const user = useUser();
@@ -21,18 +22,18 @@ function Header() {
           <div className="flex items-center lg:order-2">
             {!uid ? (
               <div>
-                <a
+                <Link
                   href="/daftar"
                   className="text-primary-1 focus:ring-2 focus:ring-primary-4 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 border border-primary-1 focus:outline-none"
                 >
                   Daftar
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/masuk"
                   className="text-white bg-primary-1 hover:bg-primary-800 focus:ring-2 focus:ring-primary-4 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                 >
                   Masuk
-                </a>
+                </Link>
               </div>
             ) : (
               <Float />
@@ -79,29 +80,33 @@ function Header() {
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-10 lg:mt-0">
               <li>
-                <a href="/beranda" className="item-headbar" aria-current="page">
+                <Link
+                  href="/beranda"
+                  className="item-headbar"
+                  aria-current="page"
+                >
                   Beranda
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/artikel" className="item-headbar">
+                <Link href="/artikel" className="item-headbar">
                   Artikel
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/cryptosharing" className="item-headbar">
+                <Link href="/cryptosharing" className="item-headbar">
                   Crypto Sharing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/crypto101" className="item-headbar">
+                <Link href="/crypto101" className="item-headbar">
                   Crypto 101
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="item-headbar">
+                <Link href="/" className="item-headbar">
                   Tentang
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

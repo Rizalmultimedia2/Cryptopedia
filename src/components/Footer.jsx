@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -30,19 +31,19 @@ function Footer() {
                     </a>
                   </li>
                   <li className="mb-4">
-                    <a href="/artikel" className="hover:underline">
+                    <Link href="/artikel" className="hover:underline">
                       Atikel
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
-                    <a href="/crypto101" className="hover:underline">
+                    <Link href="/crypto101" className="hover:underline">
                       Crypto 101
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/cryptosharing" className="hover:underline">
+                    <Link href="/cryptosharing" className="hover:underline">
                       Crypto Sharing
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

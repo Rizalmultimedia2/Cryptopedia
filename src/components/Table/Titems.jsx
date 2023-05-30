@@ -10,8 +10,10 @@ function Titems({ no, items }) {
         >
           {no}
         </th>
-        {items.map((x) => (
-          <td className="px-6 py-3">{x}</td>
+        {items.map((x, index) => (
+          <td className="px-6 py-3" key={index}>
+            {x}
+          </td>
         ))}
         <td className="px-6 py-3 text-center">
           <button className="button-delete">Hapus</button>

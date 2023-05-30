@@ -12,7 +12,6 @@ function LikeDislike({ getLike, getDislike, post_id }) {
 
   const router = useRouter();
   const { id } = router.query;
-  const docRef = doc(db, "Sharing", id);
 
   // console.log("data getlike", getLike, "get dislike", getDislike);
   const handleLikes = async () => {
@@ -24,6 +23,7 @@ function LikeDislike({ getLike, getDislike, post_id }) {
     }
     setLikes(!docLikes);
     setDislikes(false);
+    const docRef = doc(db, "Sharing", id);
     await updateDoc(docRef, {
       likes: getLike + 1,
       dislikes: getDislike,
@@ -39,6 +39,7 @@ function LikeDislike({ getLike, getDislike, post_id }) {
     }
     setDislikes(!dislikes);
     setLikes(false);
+    const docRef = doc(db, "Sharing", id);
     await updateDoc(docRef, {
       likes: getLike,
       dislikes: getDislike + 1,
