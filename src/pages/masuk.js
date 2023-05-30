@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
+import Link from "next/link";
 
 function Masuk() {
   const {
@@ -120,9 +121,9 @@ function Masuk() {
             </form>
             <p className="text-p4 font-medium">
               Belum punya akun?
-              <a href="/daftar" className="text-primary-1 font-bold">
+              <Link href="/daftar" className="text-primary-1 font-bold">
                 &nbsp; Daftar
-              </a>
+              </Link>
             </p>
           </div>
         </div>

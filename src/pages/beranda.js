@@ -10,6 +10,7 @@ import { getAllDataFromFirestore } from "./api/getData";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import Loading from "@/components/Loading";
+import Link from "next/link";
 
 function Beranda() {
   const [data, setData] = useState([]);
@@ -48,9 +49,9 @@ function Beranda() {
               Belajar dan berdiskusi Cryptocurrency dengan mudah
             </p>
             Pemula di Crypto?{" "}
-            <a href="/crypto101" className="text-primary-1 font-semibold ">
+            <Link href="/crypto101" className="text-primary-1 font-semibold ">
               Klik disini
-            </a>
+            </Link>
           </div>
           <div className="flex flex-row gap-4 w-full h-[50px]">
             <Image
@@ -60,13 +61,13 @@ function Beranda() {
               className="rounded-full object-cover"
               alt="avatars"
             />
-            <a
+            <Link
               href="/cryptosharing"
               className="button-normal flex-center-between gap-3 w-[300px]"
             >
               <span>Klik untuk membuat diskusi</span>
               <GoKebabHorizontal />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-[60px] gap-[30px]">

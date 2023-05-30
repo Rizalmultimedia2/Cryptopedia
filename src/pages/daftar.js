@@ -11,6 +11,7 @@ import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import Link from "next/link";
 
 function Daftar() {
   const {
@@ -201,10 +202,10 @@ function Daftar() {
             </form>
             <p className="text-p4 font-medium">
               Sudah punya akun?
-              <a href="/masuk" className="text-primary-1 font-bold">
+              <Link href="/masuk" className="text-primary-1 font-bold">
                 {" "}
                 Login
-              </a>
+              </Link>
             </p>
           </div>
         </div>
