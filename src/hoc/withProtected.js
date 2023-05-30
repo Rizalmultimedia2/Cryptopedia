@@ -2,7 +2,7 @@ import { useUser } from "@/context/user";
 import { useRouter } from "next/router";
 
 const withProtected = (Pages) => {
-  return (props) => {
+  const WrappedComponent = (props) => {
     const router = useRouter();
     const user = useUser();
     const { uid } = user;
@@ -14,6 +14,12 @@ const withProtected = (Pages) => {
 
     return <Pages {...props} />;
   };
+
+  WrappedComponent.displayName = `withProtected(${
+    Pages.displayName || Pages.name || "Component"
+  })`;
+
+  return WrappedComponent;
 };
 
 export default withProtected;

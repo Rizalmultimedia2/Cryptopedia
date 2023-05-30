@@ -15,11 +15,12 @@ function MateriModal({ name, icon, button, title }) {
         Children={[
           <ItemModal
             label="Judul"
+            key="item1"
             id="title"
             type="text"
             placeholder="Masukkan judul"
           />,
-          <div>
+          <div key="item2">
             <label for="comment" class="text-p2">
               Masukkan isi materi
             </label>
@@ -31,7 +32,7 @@ function MateriModal({ name, icon, button, title }) {
               required
             ></textarea>
           </div>,
-          <div className="flex flex-col w-full gap-1">
+          <div className="flex flex-col w-full gap-1" key="item3">
             <span class="text-p2">Category</span>
             <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
               <SelectLevel style="category" />

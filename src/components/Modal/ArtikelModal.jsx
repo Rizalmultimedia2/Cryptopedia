@@ -14,12 +14,13 @@ function ArtikelModal({ name, title, icon }) {
         Children={[
           <ItemModal
             icon={1}
+            key="item1"
             label="Judul"
             id="title"
             type="text"
             placeholder="Masukkan judul"
           />,
-          <div className="w-full">
+          <div className="w-full" key="item2">
             <label For="level">Level</label>
             <select name="" id="level" className="form-input w-full">
               <option value="" disabled selected hidden>
@@ -30,7 +31,7 @@ function ArtikelModal({ name, title, icon }) {
               <option value="Ahli">Ahli</option>
             </select>
           </div>,
-          <div>
+          <div key="item3">
             <label for="body" class="text-p2">
               Konten
             </label>
@@ -42,7 +43,7 @@ function ArtikelModal({ name, title, icon }) {
               required
             ></textarea>
           </div>,
-          <ItemModal label="Gambar" id="gambar" type="image" />,
+          <ItemModal key="item4" label="Gambar" id="gambar" type="image" />,
         ]}
       ></Modal>
     </>

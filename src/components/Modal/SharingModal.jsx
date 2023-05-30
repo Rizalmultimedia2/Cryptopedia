@@ -41,6 +41,7 @@ function SharingModal({ name, title, button, icon, show }) {
         nameTable="Sharing"
         Children={[
           <ItemModal
+            key="item1"
             label="Judul"
             id="sharing_title"
             type="text"
@@ -48,13 +49,14 @@ function SharingModal({ name, title, button, icon, show }) {
             setform={setFormValues}
           />,
           <ItemModal
+            key="item2"
             label="Tag"
             id="tags"
             type="text"
             placeholder="Tag"
             setform={setFormValues}
           />,
-          <div className="flex gap-2 flex-col">
+          <div className="flex gap-2 flex-col" key="item3">
             <label htmlFor="sharing_body" className="text-p2">
               Masukkan isi diskusi
             </label>
@@ -72,7 +74,7 @@ function SharingModal({ name, title, button, icon, show }) {
               }
             ></textarea>
           </div>,
-          <div className="flex flex-col w-full gap-1">
+          <div className="flex flex-col w-full gap-1" key="item4">
             <span className="text-p2">Category</span>
             <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
               <SelectCategory style="category" post={1} filter={setNum} />
