@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { getAllDataFromFirestore } from "./api/getData";
-import { useUser } from "@/context/user";
+import Link from "next/link";
 
 export default function Home() {
   const [sharing, setSharing] = useState([]);
@@ -38,10 +38,10 @@ export default function Home() {
             Belajar, bertanya, dan saling berbagi ide tentang cryptocurrency
             secara analisa teknikal maupun fundamental
           </p>
-          <a className="button-normal" href="/cryptosharing">
+          <Link className="button-normal" href="/cryptosharing">
             Bergabung ke dalam diskusi {""}
             <FiChevronRight />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:flex-row flex-col lg:gap-[100px] gap-10 lg:items-start items-center z-30 ">
           <div className="flex flex-col max-w-[550px] lg:text-left text-center">
@@ -65,7 +65,7 @@ export default function Home() {
           </h2>
           <div className="flex flex-col gap-6 w-full">
             {sharing.map((item, index) => (
-              <div className="">
+              <div className="" key={index}>
                 <CryptoSharing
                   title={item.sharing_title}
                   key={index}

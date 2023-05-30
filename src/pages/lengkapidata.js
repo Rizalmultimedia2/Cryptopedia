@@ -11,7 +11,7 @@ import FormError from "@/components/Form/Error";
 import Swal from "sweetalert2";
 import withProtected from "@/hoc/withProtected";
 
-function lengkapidata() {
+function LengkaiData() {
   const user = useUser();
   const router = useRouter();
   const {
@@ -155,4 +155,4 @@ function lengkapidata() {
   );
 }
 
-export default withProtected(lengkapidata);
+export default withProtected(LengkaiData);

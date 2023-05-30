@@ -34,8 +34,9 @@ function index() {
               <Searchbar placeholder="Cari Materi" />
             </div>
             <div className="flex flex-col gap-5">
-              {DataMateri.map((item) => (
+              {DataMateri.map((item, index) => (
                 <CryptoMateri
+                  key={index}
                   title={item.title}
                   level={item.level}
                   body={item.body}

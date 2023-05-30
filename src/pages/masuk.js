@@ -10,7 +10,7 @@ import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
 
-function masuk() {
+function Masuk() {
   const {
     register,
     handleSubmit,
@@ -132,4 +132,4 @@ function masuk() {
   );
 }
 
-export default withUnProtected(masuk);
+export default withUnProtected(Masuk);

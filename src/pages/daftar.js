@@ -12,7 +12,7 @@ import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-function daftar() {
+function Daftar() {
   const {
     register,
     handleSubmit,
@@ -214,4 +214,4 @@ function daftar() {
   );
 }
 
-export default withUnProtected(daftar);
+export default withUnProtected(Daftar);

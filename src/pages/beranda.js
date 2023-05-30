@@ -11,7 +11,7 @@ import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import Loading from "@/components/Loading";
 
-function beranda() {
+function Beranda() {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -116,4 +116,4 @@ function beranda() {
   );
 }
 
-export default withProtected(beranda);
+export default withProtected(Beranda);

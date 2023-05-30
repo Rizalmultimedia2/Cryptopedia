@@ -11,14 +11,14 @@ function Header() {
     <header className="sticky top-0 z-40">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 shadow-shadows-1">
         <div className="flex-center-between flex-wrap mx-auto container">
-          <a href="/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <Image
               src="/image/Logo.svg"
               height={50}
               width={55}
               alt="Cryptopedia"
             />
-          </a>
+          </Link>
           <div className="flex items-center lg:order-2">
             {!uid ? (
               <div>

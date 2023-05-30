@@ -30,6 +30,7 @@ import {
   getOneDataFromFirestore,
 } from "../api/getData";
 import { useUser } from "@/context/user";
+import Link from "next/link";
 
 function DetailSharing() {
   const router = useRouter();
@@ -128,10 +129,10 @@ function DetailSharing() {
     <>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-6">
-        <a href="/cryptosharing">
+        <Link href="/cryptosharing">
           <FiChevronLeft className="inline" />
           <span>Kembali</span>
-        </a>
+        </Link>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-4">
             {isLoading && <Loading />}
