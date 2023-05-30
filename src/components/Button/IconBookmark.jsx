@@ -49,7 +49,6 @@ function IconBookmark({ post_id, field }) {
 
   const handleClick = async () => {
     const docRef = doc(db, "Users", user.uid);
-    console.log("Docref ", docRef);
 
     try {
       if (field == "saved_sharing") {
@@ -96,7 +95,6 @@ function IconBookmark({ post_id, field }) {
       console.error("Terjadi kesalahana:", error);
     }
   };
-
   return (
     <>
       <FiBookmark

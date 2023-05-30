@@ -43,12 +43,13 @@ function CryptoSharing({
 
       querySnapshot.forEach((doc) => {
         const user = doc.data();
+        console.log("datanya siapa aja emang", user.username);
         setDataUser(user);
       });
     };
 
     fetchData();
-  }, []);
+  }, [id]);
 
   return (
     <>

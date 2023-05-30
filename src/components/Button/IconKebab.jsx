@@ -29,7 +29,6 @@ function IconKebab({ post_id, card }) {
     fetchData();
   }, [isVisible]);
 
-  console.log("ini setown", own);
   return (
     <>
       <GoKebabVertical className="cursor-pointer" onClick={handleClick} />

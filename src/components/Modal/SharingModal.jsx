@@ -13,7 +13,7 @@ function SharingModal({ name, title, button, icon, show }) {
     category: 0,
     like: 0,
     dislike: 0,
-    total_bookmark: [],
+    total_bookmark: 0,
     total_comments: 0,
     user_likes: [],
     user_dislike: [],

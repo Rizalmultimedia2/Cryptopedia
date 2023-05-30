@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { db } from "../../../firebaseConfig";
 
-function ItemBookmark({ id, tabel }) {
+function ItemBookmark({ id }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {

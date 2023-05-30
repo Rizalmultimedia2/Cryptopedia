@@ -37,6 +37,7 @@ function cryptoSharing() {
           where("user_id", "==", user.uid)
         );
         dataQuery = q;
+        // console.log("masuk ke bagian sini ga", user.uid);
       } else {
         const q = query(collection(db, "Sharing"), limit(100));
         dataQuery = q;

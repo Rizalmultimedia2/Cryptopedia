@@ -23,27 +23,24 @@ function MyBookmark() {
 
     fetchData();
   }, [optionBookmark]);
+
   return (
     <>
-      <div className="flex-center flex-col bg-white border border-gray-4 rounded-lg px-5 py-6 gap-5 z-10">
+      <div className="flex-center flex-col bg-white border border-gray-4 rounded-lg px-5 py-6 gap-5 z-10 ">
         <p className="text-h4 text-primary-1 font-bold">MyBookmark</p>
         <div className="flex flex-col w-full gap-3">
           <ul className="flex items-center justify-start gap-3 ">
             <SelectBookmark tabel={setOptionBookmark} />
           </ul>
-          <div className="flex flex-col gap-4 my-2">
+          <div className="flex flex-col gap-4 my-2 max-h-[300px] overflow-y-scroll">
             {/* {console.log("Sebelum ke item bookmark", optionBookmark, sharing)} */}
             {/* {console.log("Sebelum ke item bookmark", optionBookmark, starting)} */}
             {optionBookmark == "Sharing"
               ? sharing.map((item, index) => (
-                  <ItemBookmark key={index} id={item} tabel="Sharing" />
+                  <ItemBookmark key={index} id={item} />
                 ))
-              : starting.map((item, index) => (
-                  <ItemBookmarkStarting
-                    key={index}
-                    starting_id={item}
-                    tabel="Starting"
-                  />
+              : starting.map((id, index) => (
+                  <ItemBookmarkStarting key={index} id={id} />
                 ))}
           </div>
         </div>

@@ -17,7 +17,7 @@ function lengkapidata() {
   const {
     register,
     handleSubmit,
-    watch,
+    setError,
     formState: { errors },
   } = useForm();
   const [formValues, setFormValues] = useState({
@@ -28,7 +28,14 @@ function lengkapidata() {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {
-    // e.preventDefault();
+    if (/\s/.test(formValues.username)) {
+      setError("username", {
+        type: "noSpace",
+        message: "Tidak boleh ada spasi",
+      });
+      return;
+    }
+
     try {
       await setDoc(
         doc(db, "Users", user.uid),
@@ -43,7 +50,6 @@ function lengkapidata() {
       Swal.fire({
         icon: "success",
         title: "Berhasil Lengkapi Data",
-        // text: "Silahkan isi lengkapi data",
       });
 
       setLoading(false);
@@ -95,7 +101,7 @@ function lengkapidata() {
                 className="form-input"
                 placeholder="Masukkan username"
                 value={formValues.username}
-                {...register("username", { required: true })}
+                {...register("username", { required: true, maxLength: 15 })}
                 onChange={(e) =>
                   setFormValues((prev) => ({
                     ...prev,
@@ -117,6 +123,7 @@ function lengkapidata() {
                     [e.target.id]: e.target.value,
                   }))
                 }
+                required
               >
                 <option value="" disabled selected hidden>
                   Trader

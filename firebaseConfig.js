@@ -16,17 +16,12 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
-// const analytics = getAnalytics(app);
 export const storage = getStorage();
 export const db = getFirestore();
 
 export const Authentication = () => {
   return auth;
 };
-
-// export const SignUp = async (email, password) => {
-//   await createUserWithEmailAndPassword(auth, email, password);
-// };
 
 export const SignIn = async (email, password) => {
   await signInWithEmailAndPassword(auth, email, password);

@@ -2,8 +2,11 @@ import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import IconBookmark from "../Button/IconBookmark";
 import MateriModal from "../Modal/MateriModal";
+import { useRouter } from "next/router";
 
 function CryptoMateriDetail({ title, level, body, id, setVisible }) {
+  const router = useRouter();
+  const materi = router.query.materi;
   const clickHandler = () => {
     setVisible(false);
   };
@@ -45,7 +48,7 @@ function CryptoMateriDetail({ title, level, body, id, setVisible }) {
               {title}
             </span>
             <div>
-              <IconBookmark post_id={id} field="saved_starting" />
+              <IconBookmark post_id={materi} field="saved_starting" />
             </div>
           </div>
           <div className="level" style={{ background: getColor(level) }}>

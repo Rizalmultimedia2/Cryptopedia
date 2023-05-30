@@ -33,7 +33,6 @@ function daftar() {
   pass.current = watch("password");
 
   const onSubmit = async (e) => {
-    // e.preventDefault();
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
@@ -41,25 +40,23 @@ function daftar() {
         formValues.password
       );
 
-      // console.log({ res });
-      // console.log("res uid " + res.uid);
-
       await setDoc(doc(db, "Users", res.user.uid), {
         id: res.user.uid,
         email: formValues.email,
         fullname: formValues.nama,
         saved_starting: [],
         saved_sharing: [],
+        username: "",
       });
 
-      Swal.fire({
+      router.push("/lengkapidata");
+      await Swal.fire({
         icon: "success",
         title: "Berhasil Mendaftar",
         text: "Silahkan isi lengkapi data",
       });
 
       setLoading(false);
-      router.push("/lengkapidata");
     } catch (error) {
       const errorMessage = error.message;
       console.log(errorMessage);
@@ -89,7 +86,6 @@ function daftar() {
               alt="Cryptopedia"
             />
             <h1 className="text-primary-1 text-h5">Daftar</h1>
-            {/* <form onSubmit={handleClick} className="flex flex-col gap-[20px]"> */}
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col gap-[20px]"
@@ -101,7 +97,7 @@ function daftar() {
                 className="form-input"
                 placeholder="Masukkan nama lengkap"
                 value={formValues.nama}
-                {...register("nama", { required: true })}
+                {...register("nama", { required: true, maxLength: 25 })}
                 onChange={(e) =>
                   setFormValues((prev) => ({
                     ...prev,
@@ -135,7 +131,11 @@ function daftar() {
                   className="form-input-lessborder"
                   placeholder="Kata sandi"
                   value={formValues.password}
-                  {...register("password", { required: true, minLength: 8 })}
+                  {...register("password", {
+                    required: true,
+                    minLength: 8,
+                    maxLength: 15,
+                  })}
                   onChange={(e) =>
                     setFormValues((prev) => ({
                       ...prev,
@@ -171,6 +171,7 @@ function daftar() {
                   {...register("passwordConfirmation", {
                     required: true,
                     minLength: 8,
+                    maxLength: 15,
                     validate: (value) => value === pass.current,
                   })}
                   onChange={(e) =>

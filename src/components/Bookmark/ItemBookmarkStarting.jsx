@@ -1,29 +1,33 @@
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { db } from "../../../firebaseConfig";
 import Loading from "../Loading";
 
-function ItemBookmarkStarting({ starting_id, tabel }) {
+function ItemBookmarkStarting({ id }) {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
-      const data = JSON.stringify(starting_id);
-      const docRef = doc(db, "Starting", data);
+      const docRef = doc(db, "Starting", id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setData(docSnap.data());
       } else {
         console.log("Dokumen tidak ditemukan");
       }
-      setIsLoading(false);
     };
 
     fetchData();
-  }, [starting_id]);
+  }, [id]);
 
   return (
     <>

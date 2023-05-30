@@ -1,11 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
-import InputForm from "@/components/InputForm";
 import { useRouter } from "next/router";
 import { GetSignInErrorMessage, SignIn, auth, db } from "../../firebaseConfig";
 import Footer from "@/components/Footer";
-import { doc, setDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import FormError from "@/components/Form/Error";
@@ -16,7 +14,6 @@ function masuk() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const router = useRouter();
@@ -30,7 +27,6 @@ function masuk() {
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (e) => {
-    // e.preventDefault();
     try {
       const res = await SignIn(formValues.email, formValues.password);
 

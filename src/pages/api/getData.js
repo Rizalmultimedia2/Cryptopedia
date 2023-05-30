@@ -3,12 +3,10 @@ import {
   doc,
   getDoc,
   getDocs,
-  limit,
   query,
   where,
 } from "firebase/firestore";
 import { format } from "date-fns";
-import { useState } from "react";
 import { db } from "../../../firebaseConfig";
 
 // Fungsi untuk mengambil semua data dari koleksi Firestore

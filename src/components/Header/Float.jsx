@@ -1,14 +1,15 @@
 import { useUser } from "@/context/user";
 import React, { useEffect, useState } from "react";
-import { SignOut, db } from "../../../firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
+import { SignOut } from "../../../firebaseConfig";
 import Image from "next/image";
 import { getOneDataFromFirestore } from "@/pages/api/getData";
+import { useRouter } from "next/router";
 
 function Float() {
   const user = useUser();
   const [isVisible, setIsVisible] = useState(false);
   const [data, setData] = useState([]);
+  const router = useRouter();
 
   const handleClick = () => {
     setIsVisible(!isVisible);

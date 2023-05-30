@@ -11,6 +11,7 @@ function SelectAvatar({ value, setAvatar }) {
           id={value}
           value={value}
           className="peer sr-only"
+          required
           onClick={(e) =>
             setAvatar((prev) => ({
               ...prev,

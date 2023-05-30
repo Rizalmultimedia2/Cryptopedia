@@ -2,9 +2,21 @@ import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import IconBookmark from "../Button/IconBookmark";
 import MateriModal from "../Modal/MateriModal";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
+import Link from "next/link";
 
 function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
-  const clickHandler = () => {
+  const clickHandler = async () => {
+    const querySnapshot = await getDocs(collection(db, "Starting"));
+    querySnapshot.forEach((doc) => {
+      // Mendapatkan ID dokumen
+      const documentId = doc.id;
+
+      // Mendapatkan data dokumen
+      const documentData = doc.data();
+    });
+    console.log("kesini gak sih");
     setVisible(true);
     setId({
       sid: id,
@@ -44,7 +56,12 @@ function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
 
   return (
     <>
-      <a className="sharing-card" href="#" id={id} onClick={clickHandler}>
+      <Link
+        href={`?materi=${id}`}
+        className="sharing-card"
+        id={id}
+        onClick={clickHandler}
+      >
         <div className="flex flex-col gap-[5px]">
           <div className="flex-center-between text-h5">
             <span>{title}</span>
@@ -66,7 +83,7 @@ function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
             title="Edit Materi Baru"
           />
         </div>
-      </a>
+      </Link>
     </>
   );
 }
