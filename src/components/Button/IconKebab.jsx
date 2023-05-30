@@ -18,11 +18,13 @@ function IconKebab({ post_id, card }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Users", user.uid);
-      const setDoc = await getDoc(docRef);
-      const docSet = setDoc.data().created_sharing;
-      if (Array.isArray(docSet)) {
-        setOwn(docSet.includes(post_id));
+      if (user.uid) {
+        const docRef = doc(db, "Users", user.uid);
+        const setDoc = await getDoc(docRef);
+        const docSet = setDoc.data().created_sharing;
+        if (Array.isArray(docSet)) {
+          setOwn(docSet.includes(post_id));
+        }
       }
     };
 

@@ -36,7 +36,8 @@ function DeleteModal({ title, button, post_id, type }) {
         icon: "success",
         title: "Berhasil Menghapus Postingan",
       });
-
+      setShowModal(false);
+      router.reload();
       router.push("/cryptosharing");
     } catch (error) {
       console.error("Terjadi kesalahan saat menghapus dokumen:", error);
