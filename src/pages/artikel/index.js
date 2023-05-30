@@ -9,12 +9,16 @@ import withProtected from "@/hoc/withProtected";
 import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
+import parse from "html-react-parser";
 
 function IndexArtikel() {
   // testTing();
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [isLoading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [body, setBody] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +46,32 @@ function IndexArtikel() {
     setFilter(value);
   };
 
+  // useEffect(() => {
+  //   const handleSearch = async () => {
+  //     try {
+  //       let dataQuery;
+  //       if (searchQuery) {
+  //         const q = query(
+  //           collection(db, "Articles"),
+  //           where("articles_title", "==", searchQuery)
+  //         );
+  //         console.log("search query atas", searchQuery);
+  //         dataQuery = q;
+  //       } else {
+  //         const q = query(collection(db, "Articles"), limit(100));
+  //         dataQuery = q;
+  //       }
+  //       const dataList = await getAllDataFromFirestore(dataQuery);
+  //       setData(dataList);
+  //     } catch (error) {
+  //       console.error("Error searching data:", error);
+  //     }
+  //   };
+
+  //   handleSearch();
+  // }, [searchQuery]);
+
+  console.log("search query", searchQuery);
   return (
     <>
       <Header />
@@ -50,11 +80,15 @@ function IndexArtikel() {
           <p className="font-bold text-h2">Artikel Terbaru</p>
           <div className="flex md:justify-between flex-wrap items-center gap-5">
             <div className="w-[400px]">
-              <Searchbar placeholder="Cari artikel" />
+              <Searchbar
+                placeholder="Cari artikel"
+                onChange={(e) => setSearchQuery(e.target.value)}
+                searchQuery={searchQuery}
+              />
             </div>
-            <div className="flex flex-row items-center gap-5">
+            <div className="flex flex-row flex-wrap items-center gap-5">
               <p>level</p>
-              <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-visible">
+              <ul className="flex flex-row flex-wrap gap-2 text-h6 rounded-lg w-fit overflow-visible">
                 <SelectLevel style="level" filter={handleFilter} />
               </ul>
             </div>

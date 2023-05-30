@@ -99,10 +99,13 @@ function DetailArtikel() {
             {isLoading && <Loading />}
             {/* Kalau gambar pakai api, simpan disini */}
             <p className="text-h2">{data.articles_title}</p>
-            <span className="text-p2">
-              {date}
-              <span className="text-primary-1"> Rizal Herliansyah Hidayat</span>
-            </span>
+            <div>
+              <span className="text-p2">{date}</span>
+              <span className="text-primary-1 lg:inline block">
+                {" "}
+                Rizal Herliansyah Hidayat
+              </span>
+            </div>
           </div>
           <div className="relative h-[380px]">
             <Image
@@ -113,7 +116,7 @@ function DetailArtikel() {
             />
           </div>
           <div className="flex flex-col gap-5">{body}</div>
-          <div className="py-5 px-5 bg-[#CDEDE6]/25 w-fit text-p1 flex flex-row items-center gap-3">
+          <div className="py-5 px-5 bg-[#CDEDE6]/25 w-fit text-p1 flex flex-row items-center gap-3 flex-wrap">
             <span className="font-semibold">
               Apakah kamu suka dengan artikel ini?{" "}
             </span>

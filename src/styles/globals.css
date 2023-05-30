@@ -8,42 +8,34 @@
 }
 
 .text-h1 {
-  font-size: 64px;
   font-weight: bold;
 }
 
 .text-h2 {
-  font-size: 48px;
   font-weight: bold;
 }
 
 .text-h3 {
-  font-size: 36px;
   font-weight: bold;
 }
 
 .text-h4 {
-  font-size: 30px;
   font-weight: bold;
 }
 
 .text-h5 {
-  font-size: 24px;
   font-weight: bold;
 }
 
 .text-h6 {
-  font-size: 16px;
   font-weight: bold;
 }
 
 .text-h7 {
-  font-size: 14px;
   font-weight: bold;
 }
 
 .text-h8 {
-  font-size: 12px;
   font-weight: bold;
 }
 
@@ -69,6 +61,14 @@
 
 .form-input {
   @apply flex items-center h-[45px] font-medium min-w-[350px] border border-gray-400 rounded-lg text-p3 px-3 ring-focus;
+}
+
+.form-input-profile {
+  @apply flex items-center h-[45px] font-medium lg:min-w-[350px] border border-gray-400 rounded-lg text-p3 px-3 ring-focus;
+}
+
+.form-input-modal {
+  @apply flex items-center h-[45px] font-medium border border-gray-400 rounded-lg text-p3 px-3 ring-focus;
 }
 
 .form-input-lessborder {
@@ -104,15 +104,15 @@
 }
 
 .container-x {
-  @apply px-[50px];
+  @apply px-[30px];
 }
 
 .select-category {
-  @apply flex py-3 px-5 font-semibold bg-primary-4 cursor-pointer peer-checked:bg-primary-2 peer-checked:text-white h-full items-center text-center;
+  @apply flex py-3 lg:px-5 px-3 font-semibold bg-primary-4 cursor-pointer peer-checked:bg-primary-2 peer-checked:text-white h-full items-center text-center;
 }
 
 .select-level {
-  @apply border flex rounded-[10px] font-semibold py-3 px-5 ml-2 cursor-pointer peer-checked:border-primary-1 h-full items-center text-center peer-checked:ring-primary-1 peer-checked:ring-1;
+  @apply border flex rounded-[10px] font-semibold py-3 px-5 cursor-pointer peer-checked:border-primary-1 h-full items-center text-center peer-checked:ring-primary-1 peer-checked:ring-1;
 }
 
 .select-avatar {
@@ -140,7 +140,7 @@
 }
 
 .item-bookmark {
-  @apply flex flex-row items-center text-p2 bg-[#CDEDE6]/50 p-[10px] rounded-md gap-3;
+  @apply flex flex-row items-center text-p2 bg-[#CDEDE6]/50 p-[10px] rounded-md gap-3 mx-2 my-1;
 }
 
 .ring-hover-item {

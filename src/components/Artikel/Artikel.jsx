@@ -2,8 +2,10 @@ import Image from "next/image";
 import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import ArtikelModal from "../Modal/ArtikelModal";
+import parse from "html-react-parser";
 
 function Artikel({ title, date, body, level, id }) {
+  const getBody = parse(body);
   const getLevel = (level) => {
     switch (level) {
       case 1:
@@ -53,7 +55,7 @@ function Artikel({ title, date, body, level, id }) {
             </div>
             <div className="text-p1 text-black font-bold">{title}</div>
             <p className="text-p3 text-black font-medium">{date}</p>
-            <p className="line-clamp-2">{body}</p>
+            <div className="line-clamp-2">{getBody}</div>
           </a>
           <div
             className="flex-center gap-3 mb-3"

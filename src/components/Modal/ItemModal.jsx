@@ -12,7 +12,7 @@ function ItemModal({ id, type, placeholder, label, setform }) {
         <input
           type={type}
           id={id}
-          className="form-input"
+          className="form-input-modal"
           placeholder={placeholder}
           required
           onChange={(e) =>

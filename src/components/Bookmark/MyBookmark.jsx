@@ -32,7 +32,7 @@ function MyBookmark() {
           <ul className="flex items-center justify-start gap-3 ">
             <SelectBookmark tabel={setOptionBookmark} />
           </ul>
-          <div className="flex flex-col gap-4 my-2 max-h-[300px] overflow-y-scroll">
+          <div className="flex flex-col gap-1 max-h-[300px] overflow-x-visible overflow-y-scroll">
             {/* {console.log("Sebelum ke item bookmark", optionBookmark, sharing)} */}
             {/* {console.log("Sebelum ke item bookmark", optionBookmark, starting)} */}
             {optionBookmark == "Sharing"

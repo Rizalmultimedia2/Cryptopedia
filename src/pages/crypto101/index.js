@@ -61,7 +61,7 @@ function IndexMateri() {
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-2">
-          <h3 className="text-h2">Crypto 101</h3>
+          <h3 className="md:text-h2 text-h3">Crypto 101</h3>
           <div className="flex justify-between">
             <span className="text-p21 max-w-[800px]">
               Tempat belajar istilah dan pemahaman awal tentang cryptocurrency
@@ -71,13 +71,13 @@ function IndexMateri() {
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-5">
-            <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden">
+            <ul className="flex flex-row flex-wrap text-h6 rounded-lg w-fit overflow-hidden">
               <SelectLevel style="category" filter={handleFilter} />
             </ul>
             <div>
               <Searchbar placeholder="Cari Materi" />
             </div>
-            <div className="flex flex-col gap-5 max-h-screen overflow-y-scroll overflow-x-visible w-full p-2">
+            <div className="flex flex-col gap-5 lg:max-h-screen max-h-[300px] overflow-y-scroll overflow-x-visible w-full p-2 ">
               {isLoading && <Loading />}
               {data.map((item, index) => (
                 <CryptoMateri

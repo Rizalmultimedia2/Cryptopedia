@@ -37,7 +37,6 @@ function IndexSharing() {
           where("user_id", "==", user.uid)
         );
         dataQuery = q;
-        console.log("masuk ke bagian sini ga", user.uid);
       } else {
         const q = query(collection(db, "Sharing"), limit(100));
         dataQuery = q;
@@ -59,8 +58,8 @@ function IndexSharing() {
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-3">
-          <h3 className="text-h2">Crypto Sharing</h3>
-          <div className="flex justify-between">
+          <h3 className="md:text-h2 text-h3">Crypto Sharing</h3>
+          <div className="flex gap-3 justify-between flex-wrap">
             <span className="text-p21 max-w-[800px]">
               Belajar Cryptocurrency lebih mudah dengan berdiskusi
             </span>
@@ -77,7 +76,7 @@ function IndexSharing() {
             <div>
               <TrendingForum />
             </div>
-            <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden">
+            <ul className="flex flex-row text-h6 rounded-lg w-fit overflow-hidden flex-wrap">
               <SelectCategory style="category" post={0} filter={handleFilter} />
             </ul>
             <div>
@@ -94,8 +93,8 @@ function IndexSharing() {
                   body={item.sharing_body}
                   kategori={item.category}
                   tag={item.tags}
-                  like={item.like}
-                  dislike={item.dislike}
+                  likes={item.likes}
+                  dislikes={item.dislikes}
                   comment={item.total_comments}
                   id={item.id}
                   line="yes"

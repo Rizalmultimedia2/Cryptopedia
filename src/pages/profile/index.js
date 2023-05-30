@@ -86,12 +86,14 @@ function Index() {
               alt="Profile"
             />
           </div>
-          <div className="flex lg:flex-row p-3 gap-7 border-2 border-primary-1 rounded-xl flex-col">
+          <div className="flex lg:flex-row lg:p-3 p-8 gap-7 border-2 border-primary-1 rounded-xl flex-col">
             <div className="flex flex-col gap-3">
               <h5 className="text-h5">Account Data</h5>
               <div className="flex flex-col gap-6">
-                <div className="form-input bg-gray-2">@{data.username}</div>
-                <div className="form-input bg-gray-2">{data.email}</div>
+                <div className="form-input-profile bg-gray-2">
+                  @{data.username}
+                </div>
+                <div className="form-input-profile bg-gray-2">{data.email}</div>
                 <a className="button-normal w-fit -mt-2" href="3">
                   Ubah kata sandi
                 </a>
@@ -108,7 +110,7 @@ function Index() {
                 <input
                   type="text"
                   id="name"
-                  className="form-input"
+                  className="form-input-profile"
                   placeholder={data.fullname}
                   value={name}
                   {...register("name", {
@@ -124,7 +126,7 @@ function Index() {
                 <select
                   name=""
                   id="trader"
-                  className="form-input"
+                  className="form-input-profile"
                   defaultValue={data.trader}
                   value={data.trader}
                 >
@@ -144,7 +146,7 @@ function Index() {
         <hr />
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-5">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between flex-wrap gap-3">
               <h4 className="text-h4 text-black">My Post</h4>
               <Searchbar placeholder="Cari postingan" />
             </div>

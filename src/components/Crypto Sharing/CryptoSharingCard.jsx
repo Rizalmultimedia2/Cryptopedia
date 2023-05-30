@@ -12,8 +12,8 @@ function CryptoSharing({
   body,
   kategori,
   tag,
-  like,
-  dislike,
+  likes,
+  dislikes,
   comment,
   id,
   line,
@@ -62,7 +62,7 @@ function CryptoSharing({
               <IconKebab post_id={id} card={"y"} />
             </div>
           </div>
-          <div className="flex-center-between">
+          <div className="flex-center-between flex-wrap-reverse">
             <span className="font-bold text-h6 text-primary-1">
               {dataUser.username}
             </span>
@@ -88,11 +88,11 @@ function CryptoSharing({
               </div>
               <div className="item-reaction">
                 <FiThumbsDown className="text-red-1" />
-                <span>{dislike}</span>
+                <span>{dislikes}</span>
               </div>
               <div className="item-reaction">
                 <FiThumbsUp className="text-primary-2" />
-                <span>{like}</span>
+                <span>{likes}</span>
               </div>
             </div>
           </div>

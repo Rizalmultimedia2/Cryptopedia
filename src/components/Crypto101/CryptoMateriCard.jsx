@@ -63,7 +63,7 @@ function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
         onClick={clickHandler}
       >
         <div className="flex flex-col gap-[5px]">
-          <div className="flex-center-between text-h5">
+          <div className="flex-center-between text-h5 flex-wrap">
             <span>{title}</span>
             <div>
               <IconBookmark post_id={id} field="saved_starting" />
@@ -73,7 +73,7 @@ function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
             {getLevel(level)}
           </div>
         </div>
-        <div>{body}</div>
+        <div className="lg:line-clamp-2 line-clamp-none">{body}</div>
         <div className="flex-center gap-3" style={{ display: isAdmin(id) }}>
           <DeleteModal title="Hapus Materi" />
           <MateriModal

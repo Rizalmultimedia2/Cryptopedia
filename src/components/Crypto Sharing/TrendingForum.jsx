@@ -37,7 +37,6 @@ function TrendingForum() {
 
   return (
     <>
-      {console.log("Trending", data)}
       <div className="flex-center flex-col px-5 py-4 gap-3 border border-gray-4 rounded-lg">
         <h4 className="text-h4 text-primary-1">Trending Forum</h4>
         {data.map((item, index) => (
@@ -50,8 +49,8 @@ function TrendingForum() {
             body={item.sharing_body}
             kategori={item.category}
             tag={item.tags}
-            like={item.like}
-            dislike={item.dislike}
+            likes={item.likes}
+            dislikes={item.dislikes}
             comment={item.total_comments}
             id={item.id}
             line="yes"

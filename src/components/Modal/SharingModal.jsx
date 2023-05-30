@@ -27,7 +27,6 @@ function SharingModal({ name, title, button, icon, show }) {
     }));
   }, [num]);
 
-  // console.log("form value", formValues);
   return (
     <>
       <Modal

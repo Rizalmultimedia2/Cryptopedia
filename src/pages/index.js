@@ -30,11 +30,11 @@ export default function Home() {
         <div className="absolute top-0 overflow-visible h-[2750px] w-full lg:visible invisible pointer-events-none z-0">
           <Image src="/image/bg.svg" className="" fill alt="bg" />
         </div>
-        <div className="flex-center flex-col gap-6 max-w-[620px] text-center lg:mt-0 mt-[150px] h-screen max-h-[900px]">
-          <h1 className="text-h1 text-black ">
+        <div className="flex-center flex-col gap-6 max-w-[620px] text-center lg:mt-0 mt-[10px] h-screen max-h-[900px]">
+          <h1 className="lg:text-h1 md:text-h2 text-h3 text-black ">
             Rumah Diskusi dan Edukasi Cryptocurrency di Indonesia
           </h1>
-          <p className="text-p1">
+          <p className="lg:text-p1 text-p2">
             Belajar, bertanya, dan saling berbagi ide tentang cryptocurrency
             secara analisa teknikal maupun fundamental
           </p>
@@ -44,11 +44,13 @@ export default function Home() {
           </Link>
         </div>
         <div className="flex lg:flex-row flex-col lg:gap-[100px] gap-10 lg:items-start items-center z-30 ">
-          <div className="flex flex-col max-w-[550px] lg:text-left text-center">
-            <h2 className="text-h2 ">
+          <div className="flex flex-col max-w-[550px] lg:text-left text-center gap-2">
+            <h2 className="md:text-h2 text-h4">
               Dengan berbagai fitur yang memudahkan belajar crypto
             </h2>
-            <h3 className="text-h3">Artikel - Crypto 101 Crypto Sharing</h3>
+            <h3 className="lg:text-h3 text-h5">
+              Artikel - Crypto 101 Crypto Sharing
+            </h3>
           </div>
           <div className="max-w-[400px]">
             <Artikel
@@ -60,7 +62,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-center flex-col gap-5 w-full lg:max-w-[900px] z-30 ">
-          <h2 className="text-h2 max-w-[700px] text-center">
+          <h2 className="md:text-h2 text-h4 max-w-[700px] text-center">
             Diskusi di mana saja dan kapan saja
           </h2>
           <div className="flex flex-col gap-6 w-full">
@@ -73,8 +75,8 @@ export default function Home() {
                   body={item.sharing_body}
                   kategori={item.category}
                   tag={item.tags}
-                  like={item.like}
-                  dislike={item.dislike}
+                  likes={item.likes}
+                  dislikes={item.dislikes}
                   comment={item.total_comments}
                   id={item.id}
                   line="yes"
@@ -84,7 +86,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col lg:max-w-[1150px] w-full gap-5 xl:items-start items-center lg:text-left text-center z-30">
-          <h2 className="text-h2 max-w-[770px]">
+          <h2 className="md:text-h2 text-h4 max-w-[770px]">
             Masih pemula? tenang! Crypto 101 dan forum diskusi siap membantu
           </h2>
           <div className="max-w-[720px] xl:self-end">
@@ -96,7 +98,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col gap-6">
-          <h3 className="text-h3">#SemuaPahamCrypto</h3>
+          <h3 className="md:text-h3 text-h5">#SemuaPahamCrypto</h3>
         </div>
       </div>
       <Footer />
