@@ -15,7 +15,7 @@ import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 import { useUser } from "@/context/user";
 
-function cryptoSharing() {
+function IndexSharing() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [isLoading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ function cryptoSharing() {
           where("user_id", "==", user.uid)
         );
         dataQuery = q;
-        // console.log("masuk ke bagian sini ga", user.uid);
+        console.log("masuk ke bagian sini ga", user.uid);
       } else {
         const q = query(collection(db, "Sharing"), limit(100));
         dataQuery = q;
@@ -122,4 +122,4 @@ function cryptoSharing() {
   );
 }
 
-export default withProtected(cryptoSharing);
+export default withProtected(IndexSharing);

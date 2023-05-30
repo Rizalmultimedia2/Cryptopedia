@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
-function index() {
+function Index() {
   const user = useUser();
   const router = useRouter();
   const [name, setName] = useState();
@@ -149,10 +149,10 @@ function index() {
               <Searchbar placeholder="Cari postingan" />
             </div>
             <div className="flex flex-col gap-5">
-              {myPost.map((item, index) => (
+              {myPost.map((item, I) => (
                 <CryptoSharing
                   title={item.sharing_title}
-                  key={index}
+                  key={I}
                   username="Rizal Herliansyah"
                   waktu="nanti"
                   tanggal={item.date}
@@ -180,4 +180,4 @@ function index() {
   );
 }
 
-export default withProtected(index);
+export default withProtected(Index);

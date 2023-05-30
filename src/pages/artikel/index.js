@@ -10,7 +10,7 @@ import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 
-function artikel() {
+function IndexArtikel() {
   // testTing();
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
@@ -79,4 +79,4 @@ function artikel() {
   );
 }
 
-export default withProtected(artikel);
+export default withProtected(IndexArtikel);

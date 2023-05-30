@@ -31,7 +31,7 @@ import {
 } from "../api/getData";
 import { useUser } from "@/context/user";
 
-function detail() {
+function DetailSharing() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
@@ -222,4 +222,4 @@ function detail() {
   );
 }
 
-export default withProtected(detail);
+export default withProtected(DetailSharing);

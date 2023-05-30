@@ -13,7 +13,7 @@ import { getAllDataFromFirestore } from "../api/getData";
 import Artikel from "@/components/Artikel/Artikel";
 import Loading from "@/components/Loading";
 
-function detail() {
+function DetailArtikel() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
@@ -142,4 +142,4 @@ function detail() {
   );
 }
 
-export default withProtected(detail);
+export default withProtected(DetailArtikel);

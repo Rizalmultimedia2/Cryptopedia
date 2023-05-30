@@ -13,7 +13,7 @@ import { collection, limit, orderBy, query, where } from "firebase/firestore";
 import Loading from "@/components/Loading";
 import CryptoMateriDetail from "@/components/Crypto101/CryptoMateriDetail";
 
-function index() {
+function IndexMateri() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [atvisible, setVisible] = useState(false);
@@ -127,4 +127,4 @@ function index() {
   );
 }
 
-export default withProtected(index);
+export default withProtected(IndexMateri);
