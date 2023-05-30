@@ -44,7 +44,6 @@ function CryptoSharingDetail({
 
     fetchFormattedDate();
   }, [tanggal]);
-  console.log("tanggalnya format", formattedDate);
 
   return (
     <>
@@ -53,7 +52,6 @@ function CryptoSharingDetail({
           <div className="text-h5 flex-center-between">
             <div>{title}</div>
             <div className="flex flex-row">
-              {console.log("Posringan id dari detail ", id)}
               <IconBookmark field="saved_sharing" post_id={id} />
               <IconKebab post_id={id} card={""} />
             </div>
@@ -77,7 +75,7 @@ function CryptoSharingDetail({
                 <FaRegCommentDots />
                 <span className="text-p21">{comment}</span>
               </div>
-              <LikeDislike like={like} dislike={dislike} />
+              <LikeDislike getLike={like} getDislike={dislike} post_id={id} />
             </div>
           </div>
         </div>

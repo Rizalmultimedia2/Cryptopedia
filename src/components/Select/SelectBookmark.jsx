@@ -5,7 +5,6 @@ function SelectBookmark({ tabel }) {
 
   const handleChange = (event) => {
     const item = event.target.value;
-    console.log(item);
     setSelected(item);
     if (item == "cryptosharing") {
       tabel("Sharing");

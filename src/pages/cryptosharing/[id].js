@@ -140,8 +140,8 @@ function detail() {
                 body={data.sharing_body}
                 kategori={data.category}
                 tag={data.tags}
-                like={data.like}
-                dislike={data.dislike}
+                like={data.likes}
+                dislike={data.dislikes}
                 comment={data.total_comments}
                 id={id}
                 line=""

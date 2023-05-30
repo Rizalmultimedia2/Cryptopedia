@@ -1,29 +1,54 @@
+import { doc, updateDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
-import Swal from "sweetalert2";
+import { db } from "../../../firebaseConfig";
+import { useRouter } from "next/router";
 
-function LikeDislike({ children, like, dislike }) {
-  const [likes, setLikes] = useState(false);
+function LikeDislike({ getLike, getDislike, post_id }) {
+  const [docLikes, setLikes] = useState(false);
+  const [numLike, setNumLike] = useState();
+  const [numDislike, setNumDislike] = useState(0);
   const [dislikes, setDislikes] = useState(false);
 
-  const handleLikes = () => {
-    setLikes(!likes);
+  const router = useRouter();
+  const { id } = router.query;
+  const docRef = doc(db, "Sharing", id);
+
+  // console.log("data getlike", getLike, "get dislike", getDislike);
+  const handleLikes = async () => {
+    if (!docLikes) {
+      setNumLike(numLike + 1);
+      if (dislikes) {
+        setNumDislike(numDislike - 1);
+      }
+    }
+    setLikes(!docLikes);
     setDislikes(false);
+    await updateDoc(docRef, {
+      likes: getLike + 1,
+      dislikes: getDislike,
+    });
   };
 
-  const handleDislikes = () => {
+  const handleDislikes = async () => {
+    if (!dislikes) {
+      setNumDislike(numDislike + 1);
+      if (docLikes) {
+        setNumLike(numLike - 1);
+      }
+    }
     setDislikes(!dislikes);
     setLikes(false);
+    await updateDoc(docRef, {
+      likes: getLike,
+      dislikes: getDislike + 1,
+    });
   };
 
-  //   useEffect(() => {
-  //     if (isActive) {
-  //       Swal.fire({
-  //         icon: "success",
-  //         title: "Berhasil Bookmark",
-  //       });
-  //     }
-  //   }, [isActive]);
+  useEffect(() => {
+    setNumLike(getLike);
+    setNumDislike(getDislike);
+  }, [getLike, getDislike]);
 
   return (
     <>
@@ -34,16 +59,16 @@ function LikeDislike({ children, like, dislike }) {
           }`}
           onClick={handleDislikes}
         />
-        <span className="text-p21">{dislike}</span>
+        <span className="text-p21">{numDislike}</span>
       </div>
       <div className="item-reaction-click">
         <FiThumbsUp
           className={`text-primary-2 cursor-pointer ${
-            likes ? "fill-primary-2" : ""
+            docLikes ? "fill-primary-2" : ""
           }`}
           onClick={handleLikes}
         />
-        <span className="text-p21">{like}</span>
+        <span className="text-p21">{numLike}</span>
       </div>
     </>
   );

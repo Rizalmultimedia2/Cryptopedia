@@ -22,7 +22,6 @@ function Komentar({ idPost }) {
     fetchData();
   }, []);
 
-  console.log("data postingan", data);
   // console.log("data post", idPost);
   return (
     <>
