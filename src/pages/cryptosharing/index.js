@@ -14,6 +14,7 @@ import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 import { useUser } from "@/context/user";
+import Image from "next/image";
 
 function IndexSharing() {
   const [data, setData] = useState([]);
@@ -84,22 +85,33 @@ function IndexSharing() {
             </div>
             <div className="flex flex-col gap-5">
               {isLoading && <Loading />}
-
-              {data.map((item, index) => (
-                <CryptoSharing
-                  title={item.sharing_title}
-                  key={index}
-                  tanggal={item.date}
-                  body={item.sharing_body}
-                  kategori={item.category}
-                  tag={item.tags}
-                  likes={item.likes}
-                  dislikes={item.dislikes}
-                  comment={item.total_comments}
-                  id={item.id}
-                  line="yes"
-                />
-              ))}
+              {data && data.length ? (
+                data.map((item, index) => (
+                  <CryptoSharing
+                    title={item.sharing_title}
+                    key={index}
+                    tanggal={item.date}
+                    body={item.sharing_body}
+                    kategori={item.category}
+                    tag={item.tags}
+                    likes={item.likes}
+                    dislikes={item.dislikes}
+                    comment={item.total_comments}
+                    id={item.id}
+                    line="yes"
+                  />
+                ))
+              ) : (
+                <div className="flex-center flex-col">
+                  <Image
+                    src="/empty_state/no_bookmark.svg"
+                    width={300}
+                    height={182}
+                    alt="no-post"
+                  />
+                  <p className="text-p1">Tidak ada Postingan</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="lg:col-span-3 flex flex-col gap-5">

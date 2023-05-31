@@ -6,6 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import { useUser } from "@/context/user";
 import ItemBookmarkStarting from "./ItemBookmarkStarting";
+import Image from "next/image";
 
 function MyBookmark() {
   const [sharing, setSharing] = useState([]);
@@ -32,16 +33,38 @@ function MyBookmark() {
           <ul className="flex items-center justify-start gap-3 ">
             <SelectBookmark tabel={setOptionBookmark} />
           </ul>
-          <div className="flex flex-col gap-1 max-h-[300px] overflow-x-visible overflow-y-scroll">
-            {/* {console.log("Sebelum ke item bookmark", optionBookmark, sharing)} */}
-            {/* {console.log("Sebelum ke item bookmark", optionBookmark, starting)} */}
-            {optionBookmark == "Sharing"
-              ? sharing.map((item, index) => (
+          <div className="flex flex-col gap-1 border-t-2 max-h-[300px] overflow-x-visible overflow-y-scroll">
+            {optionBookmark == "Sharing" ? (
+              sharing && sharing.length ? (
+                sharing.map((item, index) => (
                   <ItemBookmark key={index} id={item} />
                 ))
-              : starting.map((id, index) => (
-                  <ItemBookmarkStarting key={index} id={id} />
-                ))}
+              ) : (
+                <div className="flex-center flex-col">
+                  <Image
+                    src="/empty_state/no_bookmark.svg"
+                    width={200}
+                    height={120}
+                    alt="no-bookmark"
+                  />
+                  <p className="text-p22">Tidak ada Bookmark</p>
+                </div>
+              )
+            ) : starting && starting.length ? (
+              starting.map((id, index) => (
+                <ItemBookmarkStarting key={index} id={id} />
+              ))
+            ) : (
+              <div className="flex-center flex-col">
+                <Image
+                  src="/empty_state/no_bookmark.svg"
+                  width={200}
+                  height={120}
+                  alt="no-bookmark"
+                />
+                <p className="text-p22">Tidak ada Bookmark</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

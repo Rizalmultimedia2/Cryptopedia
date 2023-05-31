@@ -26,8 +26,8 @@ function DataKomentar({ comment, user_id, post_id, date }) {
     <>
       <div className="flex flex-col border rounded-[10px] border-gray-4 p-[10px] gap-[10px]">
         {data ? (
-          <div>
-            <div className="felx flex row w-full gap-[10px]">
+          <div className="flex flex-col gap-2">
+            <div className="flex w-full gap-[10px]">
               <Image
                 src={`/avatar/${data.avatar_id}.svg`}
                 height={40}

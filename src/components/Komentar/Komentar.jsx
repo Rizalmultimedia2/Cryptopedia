@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getAllDataFromFirestore } from "@/pages/api/getData";
 import { db } from "../../../firebaseConfig";
 import DataKomentar from "./DataKomentar";
+import Image from "next/image";
 
 function Komentar({ idPost }) {
   const [data, setData] = useState([]);
@@ -24,20 +25,32 @@ function Komentar({ idPost }) {
     fetchData();
   }, []);
 
-  // console.log("data post", idPost);
+  console.log("Ada data ga", data);
   return (
     <>
-      {data
-        ? data.map((item, index) => (
-            <DataKomentar
-              key={index}
-              comment={item.comment}
-              user_id={item.user_id}
-              post_id={item.post_id}
-              date={item.date}
+      {data && data.length ? (
+        data.map((item, index) => (
+          <DataKomentar
+            key={index}
+            comment={item.comment}
+            user_id={item.user_id}
+            post_id={item.post_id}
+            date={item.date}
+          />
+        ))
+      ) : (
+        <>
+          <div className="flex-center flex-col">
+            <Image
+              src="/empty_state/no_msg.svg"
+              width={365}
+              height={186}
+              alt="no-comment"
             />
-          ))
-        : null}
+            <p className="text-p1">Tidak ada Komentar</p>
+          </div>
+        </>
+      )}
     </>
   );
 }
