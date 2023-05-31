@@ -56,7 +56,7 @@ function LikeDislike({ getLike, getDislike, post_id }) {
       <div className="item-reaction-click">
         <FiThumbsDown
           className={`text-red-1 cursor-pointer ${
-            dislikes ? "fill-red-1" : ""
+            dislikes ? "fill-red-4" : ""
           }`}
           onClick={handleDislikes}
         />
@@ -65,7 +65,7 @@ function LikeDislike({ getLike, getDislike, post_id }) {
       <div className="item-reaction-click">
         <FiThumbsUp
           className={`text-primary-2 cursor-pointer ${
-            docLikes ? "fill-primary-2" : ""
+            docLikes ? "fill-primary-4" : ""
           }`}
           onClick={handleLikes}
         />

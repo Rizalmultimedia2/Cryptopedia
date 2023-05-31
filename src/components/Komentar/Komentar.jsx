@@ -46,6 +46,7 @@ function Komentar({ idPost }) {
               width={365}
               height={186}
               alt="no-comment"
+              className="my-1"
             />
             <p className="text-p1">Tidak ada Komentar</p>
           </div>

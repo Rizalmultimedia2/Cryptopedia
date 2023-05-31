@@ -31,7 +31,7 @@ function Beranda() {
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const q = query(collection(db, "Articles"));
+      const q = query(collection(db, "Articles"), limit(5));
       const dataList = await getAllDataFromFirestore(q);
       setArtikel(dataList);
     };

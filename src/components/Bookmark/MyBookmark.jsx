@@ -46,6 +46,7 @@ function MyBookmark() {
                     width={200}
                     height={120}
                     alt="no-bookmark"
+                    className="my-1 mt-4"
                   />
                   <p className="text-p22">Tidak ada Bookmark</p>
                 </div>
@@ -61,6 +62,7 @@ function MyBookmark() {
                   width={200}
                   height={120}
                   alt="no-bookmark"
+                  className="my-1 mt-4"
                 />
                 <p className="text-p22">Tidak ada Bookmark</p>
               </div>
