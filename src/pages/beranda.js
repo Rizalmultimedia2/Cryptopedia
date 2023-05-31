@@ -84,8 +84,8 @@ function Beranda() {
                   body={item.sharing_body}
                   kategori={item.category}
                   tag={item.tags}
-                  like={item.like}
-                  dislike={item.dislike}
+                  likes={item.likes}
+                  dislikes={item.dislikes}
                   comment={item.total_comments}
                   id={item.id}
                   line="yes"
