@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ItemModal from "./ItemModal";
 import SelectCategory from "../Select/SelectCategory";
 import { FiPlus } from "react-icons/fi";
 import EditButton from "../Button/EditButton";
-import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";

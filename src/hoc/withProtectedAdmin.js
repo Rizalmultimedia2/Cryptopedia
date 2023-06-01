@@ -1,27 +1,29 @@
 import { useUser } from "@/context/user";
 import { useRouter } from "next/router";
+import { SignOut } from "../../firebaseConfig";
 
-const withUnProtected = (Pages) => {
+const withProtectedAdmin = (Pages) => {
   const WrappedComponent = (props) => {
     const router = useRouter();
     const user = useUser();
     const { uid } = user;
 
-    if (uid == "Oc5dUk0U7xWVBA3eiOCoFJ6hjc52") {
-      router.replace("/admin/daftarlaporan");
-    } else if (uid) {
-      router.replace("/beranda");
+    if (!uid) {
+      router.replace("/admin/masuk");
       return <></>;
+    } else if (uid != "Oc5dUk0U7xWVBA3eiOCoFJ6hjc52") {
+      SignOut();
+      router.replace("admin/masuk");
     }
 
     return <Pages {...props} />;
   };
 
-  WrappedComponent.displayName = `withUnProtected(${
+  WrappedComponent.displayName = `withProtectedAdmin(${
     Pages.displayName || Pages.name || "Component"
   })`;
 
   return WrappedComponent;
 };
 
-export default withUnProtected;
+export default withProtectedAdmin;

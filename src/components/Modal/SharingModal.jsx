@@ -36,6 +36,7 @@ function SharingModal({ name, title, button, icon, show }) {
         size={550}
         title={title}
         show={show}
+        alert="Forum"
         data={formValues}
         nameTable="Sharing"
         Children={[

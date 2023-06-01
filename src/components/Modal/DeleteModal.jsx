@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import { useUser } from "@/context/user";
 
-function DeleteModal({ title, button, post_id, type }) {
+function DeleteModal({ title, button, post_id, nameTable, nama }) {
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
   const user = useUser();
@@ -23,18 +23,20 @@ function DeleteModal({ title, button, post_id, type }) {
 
   const deleteData = async () => {
     try {
-      const docRef = doc(db, "Sharing", post_id);
+      const docRef = doc(db, nameTable, post_id);
       await deleteDoc(docRef);
       console.log("Dokumen berhasil dihapus");
 
-      const docId = doc(db, "Users", user.uid);
-      const updateData = {};
-      updateData["created_sharing"] = arrayRemove(post_id);
-      await updateDoc(docId, updateData);
+      if (nameTable == "Sharing") {
+        const docId = doc(db, "Users", user.uid);
+        const updateData = {};
+        updateData["created_sharing"] = arrayRemove(post_id);
+        await updateDoc(docId, updateData);
+      }
 
       await Swal.fire({
         icon: "success",
-        title: "Berhasil Menghapus Postingan",
+        title: `Berhasil Menghapus ${nama}`,
       });
       setShowModal(false);
       router.reload();
@@ -48,7 +50,7 @@ function DeleteModal({ title, button, post_id, type }) {
     <>
       {button == 1 ? (
         <button
-          className="button-delete flex gap-3"
+          className="button-delete flex gap-3 "
           type="button"
           onClick={() => setShowModal(true)}
         >
@@ -65,9 +67,10 @@ function DeleteModal({ title, button, post_id, type }) {
 
       {showModal ? (
         <>
-          <div className="flex-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none text-black">
+          <div></div>
+          <form className="form-modal z-[100]">
             <div
-              className={`border-0 rounded-md shadow-lg flex flex-col max-w-[350px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
+              className={`border-0 relative rounded-md shadow-lg flex flex-col max-w-[350px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
             >
               <div className="flex-center border-b border-solid border-gray-4 pb-3">
                 <h4 className="text-h4">{title}</h4>
@@ -90,7 +93,7 @@ function DeleteModal({ title, button, post_id, type }) {
                 </button>
               </div>
             </div>
-          </div>
+          </form>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}

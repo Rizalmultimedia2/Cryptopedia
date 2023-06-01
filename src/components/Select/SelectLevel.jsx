@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SelectLevel({ style, filter }) {
+function SelectLevel({ style, filter, post }) {
   const [selected, setSelected] = useState("semua");
 
   const handleChange = (event) => {
@@ -29,24 +29,40 @@ function SelectLevel({ style, filter }) {
     filter(num);
   };
 
-  const data = [
-    {
-      value: "semua",
-      label: "Semua",
-    },
-    {
-      value: "pemula",
-      label: "Pemula",
-    },
-    {
-      value: "menengah",
-      label: "Menengah",
-    },
-    {
-      value: "ahli",
-      label: "Ahli",
-    },
-  ];
+  const data =
+    post == 1
+      ? [
+          {
+            value: "pemula",
+            label: "Pemula",
+          },
+          {
+            value: "menengah",
+            label: "Menengah",
+          },
+          {
+            value: "ahli",
+            label: "Ahli",
+          },
+        ]
+      : [
+          {
+            value: "semua",
+            label: "Semua",
+          },
+          {
+            value: "pemula",
+            label: "Pemula",
+          },
+          {
+            value: "menengah",
+            label: "Menengah",
+          },
+          {
+            value: "ahli",
+            label: "Ahli",
+          },
+        ];
 
   return (
     <>

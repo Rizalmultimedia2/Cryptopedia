@@ -15,7 +15,17 @@ import Swal from "sweetalert2";
 import { useUser } from "@/context/user";
 import { useRouter } from "next/router";
 
-function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
+function Modal({
+  Children,
+  title,
+  button,
+  size,
+  name,
+  icon,
+  data,
+  nameTable,
+  alert,
+}) {
   const [showModal, setShowModal] = React.useState(false);
   const user = useUser();
   const router = useRouter();
@@ -50,7 +60,7 @@ function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
 
       await Swal.fire({
         icon: "success",
-        title: "Berhasil Menambahkan Forum",
+        title: `Berhasil Menambahkan ${alert}`,
       });
       router.reload();
 
@@ -79,7 +89,7 @@ function Modal({ Children, title, button, size, name, icon, data, nameTable }) {
 
       {showModal ? (
         <>
-          <form className="form-modal">
+          <form className="form-modal z-[100]">
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col lg:w-[500px] w-[350px] bg-white outline-none px-4 py-4 focus:outline-none`}
             >

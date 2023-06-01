@@ -57,10 +57,12 @@ function IconKebab({ post_id, card }) {
                     )}
                     <div className="flex flex-row items-center gap-2 cursor-pointer">
                       <DeleteModal
+                        nameTable="Sharing"
                         button={0}
                         title="Hapus Diskusi"
                         post_id={post_id}
                         type="deleteModal"
+                        nama="Sharing"
                       />
                     </div>{" "}
                   </>

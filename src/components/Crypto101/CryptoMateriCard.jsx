@@ -6,7 +6,16 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Link from "next/link";
 
-function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
+function CryptoMateri({
+  title,
+  level,
+  body,
+  id,
+  visible,
+  setVisible,
+  setId,
+  admin,
+}) {
   const clickHandler = async () => {
     const querySnapshot = await getDocs(collection(db, "Starting"));
     querySnapshot.forEach((doc) => {
@@ -46,44 +55,79 @@ function CryptoMateri({ title, level, body, id, visible, setVisible, setId }) {
     }
   };
 
-  const isAdmin = (id) => {
-    if (id == 1) {
-      return "visible";
-    } else {
-      return "none";
-    }
-  };
-
   return (
     <>
-      <Link
-        href={`?materi=${id}`}
-        className="sharing-card"
-        id={id}
-        onClick={clickHandler}
-      >
-        <div className="flex flex-col gap-[5px]">
-          <div className="flex-center-between text-h5 flex-wrap">
-            <span>{title}</span>
-            <div>
-              <IconBookmark post_id={id} field="saved_starting" />
+      {admin == 1 ? (
+        <div className="sharing-card" id={id}>
+          <div className="flex flex-col gap-[5px]">
+            <div className="flex-center-between text-h5 flex-wrap">
+              <span>{title}</span>
+              <div>
+                <IconBookmark post_id={id} field="saved_starting" />
+              </div>
+            </div>
+            <div className="level" style={{ background: getColor(level) }}>
+              {getLevel(level)}
             </div>
           </div>
-          <div className="level" style={{ background: getColor(level) }}>
-            {getLevel(level)}
+          <div className="lg:line-clamp-2 line-clamp-none">{body}</div>
+          <div className="flex-center gap-3">
+            <DeleteModal
+              title="Hapus Materi"
+              nameTable="Starting"
+              button={1}
+              post_id={id}
+              type="deleteModal"
+              nama="Materi"
+            />
+            <MateriModal
+              name="Edit Materi"
+              icon={0}
+              button={1}
+              title="Edit Materi Baru"
+            />
           </div>
         </div>
-        <div className="lg:line-clamp-2 line-clamp-none">{body}</div>
-        <div className="flex-center gap-3" style={{ display: isAdmin(id) }}>
-          <DeleteModal title="Hapus Materi" />
-          <MateriModal
-            name="Edit Materi"
-            icon={0}
-            button={1}
-            title="Edit Materi Baru"
-          />
-        </div>
-      </Link>
+      ) : (
+        <Link
+          href={`?materi=${id}`}
+          className="sharing-card"
+          id={id}
+          onClick={clickHandler}
+        >
+          <div className="flex flex-col gap-[5px]">
+            <div className="flex-center-between text-h5 flex-wrap">
+              <span>{title}</span>
+              <div>
+                <IconBookmark post_id={id} field="saved_starting" />
+              </div>
+            </div>
+            <div className="level" style={{ background: getColor(level) }}>
+              {getLevel(level)}
+            </div>
+          </div>
+          <div className="lg:line-clamp-2 line-clamp-none">{body}</div>
+          <div
+            className="flex-center gap-3"
+            style={{ display: isAdmin(admin) }}
+          >
+            <DeleteModal
+              title="Hapus Materi"
+              nameTable="Starting"
+              button={1}
+              post_id={id}
+              type="deleteModal"
+              nama="Materi"
+            />
+            <MateriModal
+              name="Edit Materi"
+              icon={0}
+              button={1}
+              title="Edit Materi Baru"
+            />
+          </div>
+        </Link>
+      )}
     </>
   );
 }

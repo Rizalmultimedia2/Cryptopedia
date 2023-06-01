@@ -1,19 +1,20 @@
 import Footer from "@/components/Footer";
-import Header from "@/components/Header/Header";
+import AdminHeader from "@/components/Header/AdminHeader";
 import Thead from "@/components/Table/Thead";
 import Titems from "@/components/Table/Titems";
+import withProtectedAdmin from "@/hoc/withProtectedAdmin";
 import React from "react";
 
 function daftarlaporan() {
   return (
     <>
-      <Header />
+      <AdminHeader />
       <div className="flex flex-col container container-x min-h-screen md:gap-[30px] gap-[5px] mt-[30px]">
         <div className="flex-center flex-col gap-5">
           <h3 className="text-h3">Daftar Laporan Crypto Sharing</h3>
-          <div class="flex overflow-x-auto max-w-[1200px] w-full">
-            <table class="w-full text-sm text-left text-gray-500">
-              <thead class="text-p3 text-black bg-primary-4 ">
+          <div className="flex overflow-x-auto max-w-[1200px] w-full">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-p3 text-black bg-primary-4 ">
                 <tr>
                   <Thead
                     head={[
@@ -54,4 +55,4 @@ function daftarlaporan() {
   );
 }
 
-export default daftarlaporan;
+export default withProtectedAdmin(daftarlaporan);
