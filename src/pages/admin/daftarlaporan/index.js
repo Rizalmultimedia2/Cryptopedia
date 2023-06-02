@@ -3,48 +3,89 @@ import AdminHeader from "@/components/Header/AdminHeader";
 import Thead from "@/components/Table/Thead";
 import Titems from "@/components/Table/Titems";
 import withProtectedAdmin from "@/hoc/withProtectedAdmin";
-import React from "react";
+import { getAllDataFromFirestore } from "@/pages/api/getData";
+import { collection, query } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { db } from "../../../../firebaseConfig";
 
 function daftarlaporan() {
+  const [data, setData] = useState([]);
+  const [num, setNum] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const q = query(collection(db, "report"));
+        const getData = await getAllDataFromFirestore(q);
+
+        const idCount = {};
+
+        getData.forEach((doc) => {
+          const id = doc.sharing_id;
+          if (!idCount[id]) {
+            idCount[id] = {
+              count: 1,
+              date: doc.date,
+            };
+          } else {
+            idCount[id].count += 1;
+          }
+        });
+
+        const idData = [];
+
+        for (const id in idCount) {
+          idData.push({
+            sharing_id: id,
+            date: idCount[id].date,
+            total: idCount[id].count,
+          });
+        }
+
+        setData(idData);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    console.log("Data per ID:");
+    console.log(data);
+    fetchData();
+  }, []);
+
+  console.log("isi data", data);
+
   return (
     <>
       <AdminHeader />
       <div className="flex flex-col container container-x min-h-screen md:gap-[30px] gap-[5px] mt-[30px]">
         <div className="flex-center flex-col gap-5">
           <h3 className="text-h3">Daftar Laporan Crypto Sharing</h3>
-          <div className="flex overflow-x-auto max-w-[1200px] w-full">
-            <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-p3 text-black bg-primary-4 ">
+          <div className="flex overflow-x-auto max-w-[1200px] w-full rounded-lg">
+            <table className="w-full text-sm text-black text-center">
+              <thead className="text-p3  bg-primary-1 ">
                 <tr>
                   <Thead
                     head={[
                       "No",
-                      "Status",
-                      "Waktu",
-                      "Akun Pelapor",
-                      "Alasan",
+                      "Id Sharing",
+                      "Terakhir dilaporkan",
+                      "Jumlah Laporan",
                       "Aksi",
                     ]}
                   />
                 </tr>
               </thead>
               <tbody>
-                <Titems
-                  no={1}
-                  items={["test", "10 jam yang lalu", "@rizal", "karena.."]}
-                />
-                <Titems
-                  no={1}
-                  items={["test", "10 jam yang lalu", "@rizal", "karena.."]}
-                />
-                <Titems
-                  no={1}
-                  items={["test", "10 jam yang lalu", "@rizal", "karena.."]}
-                />
-                <Titems
-                  no={1}
-                  items={["test", "10 jam yang lalu", "@rizal", "karena.."]}
-                />
+                {data.map((item, index) => (
+                  <Titems
+                    key={index}
+                    num={index + 1}
+                    post_id={item.sharing_id}
+                    date={item.date}
+                    total={item.total}
+                  />
+                ))}
               </tbody>
             </table>
           </div>

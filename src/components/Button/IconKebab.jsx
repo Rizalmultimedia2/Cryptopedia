@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GoKebabVertical } from "react-icons/go";
 import DeleteModal from "../Modal/DeleteModal";
-import LaporkanDiskusi from "../Crypto101/LaporkanDiskusi";
+import LaporkanDiskusi from "../Crypto Sharing/LaporkanDiskusi";
 import { useUser } from "@/context/user";
 import { db } from "../../../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
@@ -40,7 +40,7 @@ function IconKebab({ post_id, card }) {
             <div className="absolute top-[120%] right-[100%] z-40">
               <div className="flex flex-col bg-primary-1 text-light-color text-p2 font-medium px-4 py-3 gap-1 rounded-l ">
                 <div className="flex flex-row items-center gap-2 cursor-pointer">
-                  <LaporkanDiskusi title="Laporkan Diskusi" />
+                  <LaporkanDiskusi title="Laporkan Diskusi" post_id={post_id} />
                 </div>
                 {own ? (
                   <>

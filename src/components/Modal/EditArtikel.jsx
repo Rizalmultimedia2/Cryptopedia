@@ -11,9 +11,13 @@ function EditArtikel({ name, title, post_id }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Articles", post_id);
-      const get = await getDoc(docRef);
-      setFormValues(get.data());
+      try {
+        const docRef = doc(db, "Articles", post_id);
+        const get = await getDoc(docRef);
+        setFormValues(get.data());
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     fetchData();

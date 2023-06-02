@@ -1,9 +1,13 @@
 import {
   arrayRemove,
+  collection,
   deleteDoc,
   doc,
   getDoc,
+  getDocs,
+  query,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import React from "react";
 import { FiTrash } from "react-icons/fi";
@@ -26,6 +30,24 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
       const docRef = doc(db, nameTable, post_id);
       await deleteDoc(docRef);
       console.log("Dokumen berhasil dihapus");
+
+      if (nameTable == "report") {
+        const q = query(
+          collection(db, nameTable),
+          where("sharing_id", "==", post_id)
+        );
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+          deleteDoc(doc.ref)
+            .then(() => {
+              console.log("Dokumen berhasil dihapus");
+            })
+            .catch((error) => {
+              console.error("Error saat menghapus dokumen:", error);
+            });
+        });
+      }
 
       if (nameTable == "Sharing") {
         const docId = doc(db, "Users", user.uid);
