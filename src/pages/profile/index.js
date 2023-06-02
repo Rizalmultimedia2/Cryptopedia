@@ -21,6 +21,7 @@ import FormError from "@/components/Form/Error";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function Index() {
   const user = useUser();
@@ -89,9 +90,9 @@ function Index() {
                   @{data.username}
                 </div>
                 <div className="form-input-profile bg-gray-2">{data.email}</div>
-                <a className="button-normal w-fit -mt-2" href="3">
+                <Link className="button-normal w-fit -mt-2" href="3">
                   Ubah kata sandi
-                </a>
+                </Link>
               </div>
             </div>
 

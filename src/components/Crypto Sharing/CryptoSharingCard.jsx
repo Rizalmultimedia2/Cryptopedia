@@ -5,6 +5,7 @@ import IconBookmark from "../Button/IconBookmark";
 import IconKebab from "../Button/IconKebab";
 import { db } from "../../../firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import Link from "next/link";
 
 function CryptoSharing({
   title,
@@ -56,7 +57,7 @@ function CryptoSharing({
       <div className="sharing-card w-full">
         <div className="flex flex-col gap-[5px]">
           <div className="text-h5 flex-center-between">
-            <a href={`/cryptosharing/${id}`}>{title}</a>
+            <Link href={`/cryptosharing/${id}`}>{title}</Link>
             <div className="flex flex-row">
               <IconBookmark post_id={id} field="saved_sharing" />
               <IconKebab post_id={id} card={"y"} />
@@ -69,12 +70,12 @@ function CryptoSharing({
             <span className="text-p3">{tanggal}</span>
           </div>
         </div>
-        <a
+        <Link
           className={!line ? "" : "line-clamp-2"}
           href={`/cryptosharing/${id}`}
         >
           {body}
-        </a>
+        </Link>
         <div className="flex flex-col gap-3">
           <div className="flex-center rounded-md text-p3 text-black py-1 px-4 w-fit bg-primary-4 font-bold">
             {getKategori(kategori)}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 function Banner({ title, body, link }) {
@@ -9,7 +10,7 @@ function Banner({ title, body, link }) {
       >
         <p className="text-p1 font-semibold text-white">{title}</p>
         <p className="text-p4 text-white">{body}</p>
-        <a
+        <Link
           href={link}
           className="button-normal font-bold w-fit"
           style={{
@@ -18,7 +19,7 @@ function Banner({ title, body, link }) {
           }}
         >
           Klik Disini
-        </a>
+        </Link>
       </div>
       ;
     </>

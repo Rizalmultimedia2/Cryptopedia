@@ -4,6 +4,7 @@ import { SignOut } from "../../../firebaseConfig";
 import Image from "next/image";
 import { getOneDataFromFirestore } from "@/pages/api/getData";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function Float() {
   const user = useUser();
@@ -58,9 +59,9 @@ function Float() {
                   <div className="flex flex-col gap-2">
                     <span className="font-medium">@{data.username}</span>
                     <span className="text-p4 font-semibold">{user.email}</span>
-                    <a className="button-normal h-8" href="/profile">
+                    <Link className="button-normal h-8" href="/profile">
                       Profile
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="border border-t-1 my-2"></div>

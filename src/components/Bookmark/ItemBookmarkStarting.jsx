@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { db } from "../../../firebaseConfig";
 import Loading from "../Loading";
+import Link from "next/link";
 
 function ItemBookmarkStarting({ id }) {
   const [data, setData] = useState([]);
@@ -31,11 +32,11 @@ function ItemBookmarkStarting({ id }) {
 
   return (
     <>
-      <a className="item-bookmark ring-hover-item" href="#">
+      <Link className="item-bookmark ring-hover-item" href="#">
         <FiBookmark className="text-[20px] text-primary-2 fill-primary-2" />
         {isLoading && <Loading />}
         {data && data.starting_title}
-      </a>
+      </Link>
     </>
   );
 }

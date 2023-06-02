@@ -1,10 +1,10 @@
 import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import IconBookmark from "../Button/IconBookmark";
-import MateriModal from "../Modal/MateriModal";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Link from "next/link";
+import EditStarting from "../Modal/EditStarting";
 
 function CryptoMateri({
   title,
@@ -80,11 +80,11 @@ function CryptoMateri({
               type="deleteModal"
               nama="Materi"
             />
-            <MateriModal
+            <EditStarting
               name="Edit Materi"
-              icon={0}
-              button={1}
               title="Edit Materi Baru"
+              post_id={id}
+              edit={1}
             />
           </div>
         </div>
@@ -107,25 +107,6 @@ function CryptoMateri({
             </div>
           </div>
           <div className="lg:line-clamp-2 line-clamp-none">{body}</div>
-          <div
-            className="flex-center gap-3"
-            style={{ display: isAdmin(admin) }}
-          >
-            <DeleteModal
-              title="Hapus Materi"
-              nameTable="Starting"
-              button={1}
-              post_id={id}
-              type="deleteModal"
-              nama="Materi"
-            />
-            <MateriModal
-              name="Edit Materi"
-              icon={0}
-              button={1}
-              title="Edit Materi Baru"
-            />
-          </div>
         </Link>
       )}
     </>

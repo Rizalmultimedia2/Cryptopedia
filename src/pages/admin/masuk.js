@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import {
-  GetSignInErrorMessage,
-  SignIn,
-  auth,
-  db,
-} from "../../../firebaseConfig";
-import Footer from "@/components/Footer";
+import { GetSignInErrorMessage, SignIn } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
-import Link from "next/link";
-import AdminHeader from "@/components/Header/AdminHeader";
 
 function Masuk() {
   const {
@@ -32,7 +24,6 @@ function Masuk() {
   const onSubmit = async (e) => {
     try {
       if (formValues.email == "admin@cryptopedia.com") {
-        console.log("formvalues email", formValues.email);
         const res = await SignIn(formValues.email, formValues.password);
       }
       await Swal.fire({
@@ -40,9 +31,8 @@ function Masuk() {
         title: "Berhasil masuk",
       });
 
-      await router.push("/admin/daftarlaporan");
+      router.push("/admin/daftarlaporan");
     } catch (error) {
-      const errorMessage = error.message;
       const message = GetSignInErrorMessage(error.code);
       await Swal.fire({
         icon: "error",

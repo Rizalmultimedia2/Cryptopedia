@@ -9,7 +9,7 @@ function Footer() {
         <div className="mx-auto w-full container p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <a href="#" className="flex flex-col items-start gap-2">
+              <Link href="#" className="flex flex-col items-start gap-2">
                 <Image
                   src="/image/logo-white.svg"
                   className="fill-white"
@@ -20,15 +20,15 @@ function Footer() {
                 <span className=" text-2xl font-semibold dark:text-white">
                   Cryptopedia
                 </span>
-              </a>
+              </Link>
             </div>
             <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
                 <ul className="font-medium">
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <Link href="#" className="hover:underline">
                       Tentang
-                    </a>
+                    </Link>
                   </li>
                   <li className="mb-4">
                     <Link href="/artikel" className="hover:underline">
@@ -53,9 +53,9 @@ function Footer() {
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm sm:text-center">
               © 2023{" "}
-              <a href="#" className="hover:underline">
+              <Link href="/" className="hover:underline">
                 Cryptopedia™
-              </a>
+              </Link>
               . All Rights Reserved.
             </span>
             <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">

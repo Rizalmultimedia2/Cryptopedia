@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Modal from "@/components/Modal/Modal";
 import ItemModal from "@/components/Modal/ItemModal";
-import SelectLevel from "../Select/SelectLevel";
 
-function MateriModal({ name, icon, button, title }) {
-  const [num, setNum] = useState(0);
+function MateriModal({ name, icon, button, title, edit, id }) {
   const [formValues, setFormValues] = useState({
     starting_title: "",
     starting_body: "",
     level: 1,
     user_bookmarked: [],
   });
-
-  useEffect(() => {
-    setFormValues((prev) => ({
-      ...prev,
-      level: num,
-    }));
-  }, [num]);
-
-  useEffect(() => {
-    console.log("form values", formValues);
-  }, [formValues]);
 
   return (
     <>
@@ -33,6 +20,7 @@ function MateriModal({ name, icon, button, title }) {
         title={title}
         alert="Materi"
         data={formValues}
+        action="Edit"
         nameTable="Starting"
         Children={[
           <ItemModal

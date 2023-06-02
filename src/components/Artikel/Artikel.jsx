@@ -3,6 +3,8 @@ import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
 import ArtikelModal from "../Modal/ArtikelModal";
 import parse from "html-react-parser";
+import Link from "next/link";
+import EditArtikel from "../Modal/EditArtikel";
 
 function Artikel({ title, date, body, level, id, admin }) {
   const getBody = parse(body);
@@ -38,25 +40,49 @@ function Artikel({ title, date, body, level, id, admin }) {
     <>
       <div className="ring-hover h-fit">
         <div className="flex flex-col w-full bg-white border border-gray-4 rounded-lg gap-[10px] overflow-hidden">
-          <a className="relative h-[230px]" href={`/artikel/${id}`}>
-            <Image
-              src="/image/artikel.png"
-              fill
-              className="object-cover"
-              alt="image"
-            />
-          </a>
-          <a
-            className="flex flex-col gap-[5px] px-[7px] mb-[10px] "
-            href={`/artikel/${id}`}
-          >
-            <div className="level" style={{ background: getColor(level) }}>
-              {getLevel(level)}
-            </div>
-            <div className="text-p1 text-black font-bold">{title}</div>
-            <p className="text-p3 text-black font-medium">{date}</p>
-            <div className="line-clamp-2">{getBody}</div>
-          </a>
+          {admin == 1 ? (
+            <>
+              <div className="relative h-[230px]">
+                <Image
+                  src="/image/artikel.png"
+                  fill
+                  className="object-cover"
+                  alt="image"
+                />
+              </div>
+              <div className="flex flex-col gap-[5px] px-[7px] mb-[10px] ">
+                <div className="level" style={{ background: getColor(level) }}>
+                  {getLevel(level)}
+                </div>
+                <div className="text-p1 text-black font-bold">{title}</div>
+                <p className="text-p3 text-black font-medium">{date}</p>
+                <div className="line-clamp-2">{getBody}</div>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link className="relative h-[230px]" href={`/artikel/${id}`}>
+                <Image
+                  src="/image/artikel.png"
+                  fill
+                  className="object-cover"
+                  alt="image"
+                />
+              </Link>
+              <Link
+                className="flex flex-col gap-[5px] px-[7px] mb-[10px] "
+                href={`/artikel/${id}`}
+              >
+                <div className="level" style={{ background: getColor(level) }}>
+                  {getLevel(level)}
+                </div>
+                <div className="text-p1 text-black font-bold">{title}</div>
+                <p className="text-p3 text-black font-medium">{date}</p>
+                <div className="line-clamp-2">{getBody}</div>
+              </Link>
+            </>
+          )}
+
           <div
             className="flex-center gap-3 mb-3 "
             style={{ display: isAdmin(admin) }}
@@ -69,7 +95,11 @@ function Artikel({ title, date, body, level, id, admin }) {
               type="deleteModal"
               nama="Artikel"
             />
-            <ArtikelModal name="Edit artikel" title="Edit Artikel" icon={0} />
+            <EditArtikel
+              name="Edit artikel"
+              title="Edit Artikel"
+              post_id={id}
+            />
           </div>
         </div>
       </div>

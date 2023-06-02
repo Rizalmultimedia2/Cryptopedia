@@ -11,7 +11,7 @@ function AdminHeader() {
   const { uid } = user;
   const handleClick = async () => {
     SignOut();
-    await router.push("/admin/masuk");
+    await router.replace("/admin/masuk");
   };
 
   return (

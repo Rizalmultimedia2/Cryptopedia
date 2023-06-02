@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
-import SelectCategory from "../Select/SelectCategory";
-import { FiPlus } from "react-icons/fi";
-import EditButton from "../Button/EditButton";
 import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
-function EditModal({ name, title, button, icon, show, post_id }) {
-  const [num, setNum] = useState(0);
+function EditStarting({ name, title, post_id }) {
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
   const [formValues, setFormValues] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Sharing", post_id);
+      const docRef = doc(db, "Starting", post_id);
       const get = await getDoc(docRef);
       setFormValues(get.data());
     };
@@ -23,29 +19,21 @@ function EditModal({ name, title, button, icon, show, post_id }) {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setFormValues((prev) => ({
-      ...prev,
-      category: num,
-    }));
-  }, [num]);
-
   const onSubmit = async (e) => {
     try {
       const updateData = {
-        sharing_title: formValues.sharing_title,
-        tags: formValues.tags,
-        sharing_body: formValues.sharing_body,
-        category: num,
+        starting_title: formValues.starting_title,
+        starting_body: formValues.starting_body,
+        level: formValues.level,
         date: serverTimestamp(),
       };
 
-      const docRef = doc(db, "Sharing", formValues.id);
+      const docRef = doc(db, "Starting", post_id);
       await updateDoc(docRef, updateData);
 
       await Swal.fire({
         icon: "success",
-        title: "Berhasil Mengedit Forum",
+        title: "Berhasil Mengedit Materi",
       });
       router.reload();
 
@@ -60,18 +48,13 @@ function EditModal({ name, title, button, icon, show, post_id }) {
 
   return (
     <>
-      {button == 1 ? (
-        <button
-          className="button-normal flex gap-3"
-          type="button"
-          onClick={() => setShowModal(true)}
-        >
-          {icon == 1 ? <FiPlus /> : null} {name}
-        </button>
-      ) : (
-        <EditButton setShow={setShowModal} />
-      )}
-
+      <button
+        className="button-normal flex gap-3"
+        type="button"
+        onClick={() => setShowModal(true)}
+      >
+        {name}
+      </button>
       {showModal ? (
         <>
           <form className="form-modal">
@@ -84,33 +67,14 @@ function EditModal({ name, title, button, icon, show, post_id }) {
               <div className="flex-center flex-col p-6 gap-4">
                 <div className="w-full flex flex-col gap-2">
                   <div className="flex flex-col gap-1">
-                    <label htmlFor="sharing_title" className="">
+                    <label htmlFor="starting_title" className="">
                       Judul
                     </label>
                     <input
                       type="text"
-                      id="sharing_title"
+                      id="starting_title"
                       className="form-input"
-                      value={formValues.sharing_title}
-                      required
-                      onChange={(e) =>
-                        setFormValues((prev) => ({
-                          ...prev,
-                          [e.target.id]: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="tags" className="">
-                      Tag
-                    </label>
-                    <input
-                      type="text"
-                      id="tags"
-                      className="form-input"
-                      value={formValues.tags}
+                      value={formValues.starting_title}
                       required
                       onChange={(e) =>
                         setFormValues((prev) => ({
@@ -122,15 +86,15 @@ function EditModal({ name, title, button, icon, show, post_id }) {
                   </div>
 
                   <div className="flex gap-2 flex-col">
-                    <label htmlFor="sharing_body" className="text-p2">
-                      Masukkan isi diskusi
+                    <label htmlFor="starting_body" className="text-p2">
+                      Masukkan isi materi
                     </label>
                     <textarea
-                      id="sharing_body"
+                      id="starting_body"
                       rows="4"
                       className="textarea-modal"
-                      placeholder="Masukkan isi diskusi"
-                      value={formValues.sharing_body}
+                      placeholder="Masukkan isi materi"
+                      value={formValues.starting_body}
                       required
                       onChange={(e) =>
                         setFormValues((prev) => ({
@@ -142,14 +106,27 @@ function EditModal({ name, title, button, icon, show, post_id }) {
                   </div>
 
                   <div className="flex flex-col w-full gap-1">
-                    <span className="text-p2">Category</span>
-                    <ul className="flex flex-row text-h7 rounded-lg w-fit overflow-hidden">
-                      <SelectCategory
-                        style="category"
-                        post={1}
-                        filter={setNum}
-                      />
-                    </ul>
+                    <label htmlFor="level">Level</label>
+                    <select
+                      name=""
+                      id="level"
+                      className="form-input w-full"
+                      value={formValues.level}
+                      required
+                      onChange={(e) =>
+                        setFormValues((prev) => ({
+                          ...prev,
+                          level: parseInt(e.target.value),
+                        }))
+                      }
+                    >
+                      <option value="" disabled selected hidden>
+                        Level
+                      </option>
+                      <option value={1}>Pemula</option>
+                      <option value={2}>Menengah</option>
+                      <option value={3}>Ahli</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -179,4 +156,4 @@ function EditModal({ name, title, button, icon, show, post_id }) {
   );
 }
 
-export default EditModal;
+export default EditStarting;

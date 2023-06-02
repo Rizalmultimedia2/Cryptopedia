@@ -3,7 +3,6 @@ import Modal from "./Modal";
 import ItemModal from "./ItemModal";
 
 function ArtikelModal({ name, title, icon }) {
-  const [num, setNum] = useState(0);
   const [formValues, setFormValues] = useState({
     articles_title: "",
     articles_body: "",

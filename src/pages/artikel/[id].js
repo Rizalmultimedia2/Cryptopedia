@@ -12,6 +12,7 @@ import parse from "html-react-parser";
 import { getAllDataFromFirestore } from "../api/getData";
 import Artikel from "@/components/Artikel/Artikel";
 import Loading from "@/components/Loading";
+import Link from "next/link";
 
 function DetailArtikel() {
   const router = useRouter();
@@ -84,10 +85,10 @@ function DetailArtikel() {
       <Header />
       <div className="grid lg:grid-cols-3 container gap-[50px] container-x mt-[30px]">
         <div className="col-span-2 flex flex-col gap-[20px]">
-          <a href="/artikel">
+          <Link href="/artikel">
             <FiChevronLeft className="inline" />
             <span>Kembali</span>
-          </a>
+          </Link>
           <div>
             <span
               className="level"
