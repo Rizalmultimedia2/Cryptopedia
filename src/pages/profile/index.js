@@ -90,7 +90,10 @@ function Index() {
                   @{data.username}
                 </div>
                 <div className="form-input-profile bg-gray-2">{data.email}</div>
-                <Link className="button-normal w-fit -mt-2" href="3">
+                <Link
+                  className="button-normal w-fit -mt-2"
+                  href="/ubahkatasandi"
+                >
                   Ubah kata sandi
                 </Link>
               </div>

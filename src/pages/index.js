@@ -10,19 +10,51 @@ import { collection, limit, query, where } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import { getAllDataFromFirestore } from "./api/getData";
 import Link from "next/link";
+import Loading from "@/components/Loading";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Home() {
   const [sharing, setSharing] = useState([]);
+  const [artikel, setArtikel] = useState([]);
+  const [materi, setMateri] = useState([]);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
+      AOS.init(
+        {
+          startEvent: "DOMContentLoaded",
+        },
+        []
+      );
+
+      setIsLoading(true);
       const q = query(collection(db, "Sharing"), limit(2));
       const dataList = await getAllDataFromFirestore(q);
       setSharing(dataList);
+
+      const qArtikel = query(collection(db, "Articles"));
+      const dataListArtikel = await getAllDataFromFirestore(qArtikel);
+      const numDocuments = dataListArtikel.length;
+      const randomIndex = Math.floor(Math.random() * numDocuments);
+      const randomDoc = dataListArtikel[randomIndex];
+      setArtikel(randomDoc);
+      setIsDataLoaded(true);
+
+      const qMateri = query(collection(db, "Starting"));
+      const dataListMateri = await getAllDataFromFirestore(qMateri);
+      const num = dataListMateri.length;
+      const numRandom = Math.floor(Math.random() * num);
+      const numDoc = dataListMateri[numRandom];
+      setMateri(numDoc);
+
+      setIsLoading(false);
     };
     fetchData();
   }, []);
 
-  console.log("sharing id", sharing);
   return (
     <>
       <Header />
@@ -31,19 +63,36 @@ export default function Home() {
           <Image src="/image/bg.svg" className="" fill alt="bg" />
         </div>
         <div className="flex-center flex-col gap-6 max-w-[620px] text-center lg:mt-0 mt-[10px] h-screen max-h-[900px]">
-          <h1 className="lg:text-h1 md:text-h2 text-h3 text-black ">
+          <h1
+            className="lg:text-h1 md:text-h2 text-h3 text-black"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
             Rumah Diskusi dan Edukasi Cryptocurrency di Indonesia
           </h1>
-          <p className="lg:text-p1 text-p2">
+          <p
+            className="lg:text-p1 text-p2"
+            data-aos="fade-up"
+            data-aos-duration="650"
+          >
             Belajar, bertanya, dan saling berbagi ide tentang cryptocurrency
             secara analisa teknikal maupun fundamental
           </p>
-          <Link className="button-normal" href="/cryptosharing">
+          <Link
+            className="button-normal"
+            href="/cryptosharing"
+            data-aos="zoom-in-up"
+            data-aos-duration="700"
+          >
             Bergabung ke dalam diskusi {""}
             <FiChevronRight />
           </Link>
         </div>
-        <div className="flex lg:flex-row flex-col lg:gap-[100px] gap-10 lg:items-start items-center z-30 ">
+        <div
+          className="flex lg:flex-row flex-col lg:gap-[100px] gap-10 lg:items-start items-center z-30 "
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
           <div className="flex flex-col max-w-[550px] lg:text-left text-center gap-2">
             <h2 className="md:text-h2 text-h4">
               Dengan berbagai fitur yang memudahkan belajar crypto
@@ -52,20 +101,40 @@ export default function Home() {
               Artikel - Crypto 101 Crypto Sharing
             </h3>
           </div>
-          <div className="max-w-[400px]">
-            <Artikel
-              title="Apa itu bitcoin"
-              level="Pemula"
-              date="12-12-2023"
-              body=" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum provident libero hic in mollitia placeat, totam vero nam! Velit fuga laudantium sed iusto ea sint ab ducimus ad voluptates perferendis?"
-            />
+          <div
+            className="max-w-[400px]"
+            data-aos="fade-up"
+            data-aos-duration="700"
+          >
+            {isLoading ? (
+              <Loading />
+            ) : (
+              isDataLoaded &&
+              artikel && (
+                <Artikel
+                  body={artikel.articles_body}
+                  title={artikel.articles_title}
+                  level={artikel.level}
+                  date={artikel.date}
+                  id={artikel.id}
+                />
+              )
+            )}
           </div>
         </div>
         <div className="flex-center flex-col gap-5 w-full lg:max-w-[900px] z-30 ">
-          <h2 className="md:text-h2 text-h4 max-w-[700px] text-center">
+          <h2
+            className="md:text-h2 text-h4 max-w-[700px] text-center"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
             Diskusi di mana saja dan kapan saja
           </h2>
-          <div className="flex flex-col gap-6 w-full">
+          <div
+            className="flex flex-col gap-6 w-full"
+            data-aos="fade-up"
+            data-aos-duration="800"
+          >
             {sharing.map((item, index) => (
               <div className="" key={index}>
                 <CryptoSharing
@@ -86,19 +155,38 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col lg:max-w-[1150px] w-full gap-5 xl:items-start items-center lg:text-left text-center z-30">
-          <h2 className="md:text-h2 text-h4 max-w-[770px]">
+          <h2
+            className="md:text-h2 text-h4 max-w-[770px]"
+            data-aos="fade-right"
+            data-aos-duration="800"
+          >
             Masih pemula? tenang! Crypto 101 dan forum diskusi siap membantu
           </h2>
-          <div className="max-w-[720px] xl:self-end">
-            <CryptoMateri
-              title="Apa itu arbitrase"
-              level={1}
-              body="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil libero commodi ipsa mollitia omnis a repellendus ratione hic praesentium pariatur? Libero molestias facilis asperiores cumque modi ratione adipisci nobis expedita obcaecati atque delectus eligendi"
-            />
+          <div
+            className="max-w-[720px] xl:self-end"
+            data-aos="fade-left"
+            data-aos-duration="950"
+          >
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <CryptoMateri
+                title={materi.starting_title}
+                level={materi.level}
+                body={materi.starting_body}
+                id={materi.id}
+              />
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-6">
-          <h3 className="md:text-h3 text-h5">#SemuaPahamCrypto</h3>
+          <h3
+            className="md:text-h3 text-h5"
+            data-aos="zoom-in-up"
+            data-aos-duration="700"
+          >
+            #SemuaPahamCrypto
+          </h3>
         </div>
       </div>
       <Footer />
