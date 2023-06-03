@@ -13,6 +13,7 @@ import { getAllDataFromFirestore } from "../api/getData";
 import Artikel from "@/components/Artikel/Artikel";
 import Loading from "@/components/Loading";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 function DetailArtikel() {
   const router = useRouter();
@@ -58,6 +59,11 @@ function DetailArtikel() {
         setBody(parsedData);
       } else {
         console.log("Document not found!");
+        await Swal.fire({
+          icon: "error",
+          title: `Artikel tidak ditemukan`,
+        });
+        router.push("/artikel");
       }
       setLoading(false);
     };

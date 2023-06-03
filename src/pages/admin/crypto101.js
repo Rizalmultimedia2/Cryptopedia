@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoMateri from "@/components/Crypto101/CryptoMateriCard";
 import MyBookmark from "@/components/Bookmark/MyBookmark";
-import Banner from "@/components/Banner";
 import SelectLevel from "@/components/Select/SelectLevel";
 import MateriModal from "@/components/Modal/MateriModal";
 import withProtectedAdmin from "@/hoc/withProtectedAdmin";
@@ -103,7 +102,7 @@ function MateriAdmin() {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer admin={1} />
     </>
   );
 }

@@ -31,6 +31,7 @@ import {
 } from "../api/getData";
 import { useUser } from "@/context/user";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 function DetailSharing() {
   const router = useRouter();
@@ -47,7 +48,7 @@ function DetailSharing() {
       const combineData = {
         ...comment,
         user_id: user.uid,
-        post_id: id,
+        sharing_id: id,
         date: serverTimestamp(),
       };
 
@@ -92,35 +93,42 @@ function DetailSharing() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const documentCount = await countDocument(id);
-      if (id) {
+      try {
+        const documentCount = await countDocument(id);
         const documentRef = doc(db, "Sharing", id);
         const comments = {
           total_comments: documentCount,
         };
         await updateDoc(documentRef, comments);
-      }
 
-      const dataList = await getOneDataFromFirestore("Sharing", id);
-      setData(dataList);
+        const dataList = await getOneDataFromFirestore("Sharing", id);
+        setData(dataList);
 
-      if (id) {
-        const q = query(
-          collection(db, "Users"),
-          where("created_sharing", "array-contains", id)
-        );
-        const querySnapshot = await getDocs(q);
+        if (id) {
+          const q = query(
+            collection(db, "Users"),
+            where("created_sharing", "array-contains", id)
+          );
+          const querySnapshot = await getDocs(q);
 
-        querySnapshot.forEach((doc) => {
-          const user = doc.data();
-          setDataUser(user);
+          querySnapshot.forEach((doc) => {
+            const user = doc.data();
+            setDataUser(user);
+          });
+        }
+
+        const qy = query(collection(db, "Sharing"), limit(2));
+        const list = await getAllDataFromFirestore(qy);
+        setDataList(list);
+        setLoading(false);
+      } catch (error) {
+        console.log("errornya", error);
+        await Swal.fire({
+          icon: "error",
+          title: `Tidak ada dokumen sharing`,
         });
+        router.push("/cryptosharing");
       }
-
-      const qy = query(collection(db, "Sharing"), limit(2));
-      const list = await getAllDataFromFirestore(qy);
-      setDataList(list);
-      setLoading(false);
     };
     fetchData();
   }, [id]);

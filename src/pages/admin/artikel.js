@@ -9,7 +9,6 @@ import withProtectedAdmin from "@/hoc/withProtectedAdmin";
 import { collection, limit, query, where } from "firebase/firestore";
 import { getAllDataFromFirestore } from "../api/getData";
 import { db } from "../../../firebaseConfig";
-import Loading from "@/components/Loading";
 
 function ArtikelAdmin() {
   const [data, setData] = useState([]);
@@ -79,7 +78,7 @@ function ArtikelAdmin() {
           ))}
         </div>
       </div>
-      <Footer />
+      <Footer admin={1} />
     </>
   );
 }

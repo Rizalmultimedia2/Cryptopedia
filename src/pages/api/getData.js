@@ -77,7 +77,7 @@ export const getOneDataWithFilter = async (q) => {
 
 export const countDocument = async (id) => {
   try {
-    const q = query(collection(db, "Comments"), where("post_id", "==", id));
+    const q = query(collection(db, "Comments"), where("sharing_id", "==", id));
     const getData = await getDocs(q);
     const count = getData.size;
     return count;

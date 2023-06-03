@@ -37,11 +37,61 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
           where("sharing_id", "==", post_id)
         );
         const querySnapshot = await getDocs(q);
+        const getDoc = doc(db, "Sharing", post_id);
+        deleteDoc(getDoc)
+          .then(() => {
+            console.log("Berhasil dihapus");
+          })
+          .catch((error) => {
+            console.log("erorr", error);
+          });
+
+        const comment = query(
+          collection(db, "Comments"),
+          where("sharing_id", "==", post_id)
+        );
+        const commentSnapshot = await getDocs(comment);
+        commentSnapshot.forEach((doc) => {
+          deleteDoc(doc.ref)
+            .then(() => {
+              console.log("berhasil delete comment", comment);
+            })
+            .catch((error) => {
+              console.log("errror comment", error);
+            });
+        });
+
+        const qUser = query(
+          collection(db, "Users"),
+          where("saved_sharing", "array-contains", post_id)
+        );
+
+        const querySnapshotUser = await getDocs(qUser);
+
+        querySnapshotUser.forEach(async (documentSnapshot) => {
+          const documentRef = doc(db, "Users", documentSnapshot.id);
+
+          await updateDoc(documentRef, {
+            saved_sharing: arrayRemove(post_id),
+          });
+
+          console.log(
+            "Data berhasil dihapus dari array pada dokumen",
+            documentSnapshot.id
+          );
+        });
 
         querySnapshot.forEach((doc) => {
           deleteDoc(doc.ref)
-            .then(() => {
+            .then(async () => {
               console.log("Dokumen berhasil dihapus");
+
+              await Swal.fire({
+                icon: "success",
+                title: "Berhasil Menghapus Forum",
+              });
+              setShowModal(false);
+              await router.push("/admin/daftarlaporan");
             })
             .catch((error) => {
               console.error("Error saat menghapus dokumen:", error);

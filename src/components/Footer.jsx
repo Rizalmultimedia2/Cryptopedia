@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-function Footer() {
+function Footer({ admin }) {
   return (
     <>
       <footer className="bg-primary-1 mt-[50px] text-white">
@@ -25,26 +25,54 @@ function Footer() {
             <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
                 <ul className="font-medium">
-                  <li className="mb-4">
-                    <Link href="#" className="hover:underline">
-                      Tentang
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link href="/artikel" className="hover:underline">
-                      Atikel
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link href="/crypto101" className="hover:underline">
-                      Crypto 101
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cryptosharing" className="hover:underline">
-                      Crypto Sharing
-                    </Link>
-                  </li>
+                  {admin ? (
+                    <>
+                      <li className="mb-4">
+                        <Link
+                          href="/admin/daftarlaporan"
+                          className="hover:underline"
+                        >
+                          Daftar Laporan
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link href="/admin/artikel" className="hover:underline">
+                          Atikel
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link
+                          href="/admin/crypto101"
+                          className="hover:underline"
+                        >
+                          Crypto 101
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="mb-4">
+                        <Link href="#" className="hover:underline">
+                          Tentang
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link href="/artikel" className="hover:underline">
+                          Atikel
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link href="/crypto101" className="hover:underline">
+                          Crypto 101
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/cryptosharing" className="hover:underline">
+                          Crypto Sharing
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>

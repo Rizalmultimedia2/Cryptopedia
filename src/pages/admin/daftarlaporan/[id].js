@@ -1,9 +1,6 @@
 import { FiChevronLeft } from "react-icons/fi";
-import Header from "@/components/Header/Header";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
-import MyBookmark from "@/components/Bookmark/MyBookmark";
-import Banner from "@/components/Banner";
 import { useRouter } from "next/router";
 import { collection, doc, getDoc, query, where } from "firebase/firestore";
 import { getAllDataFromFirestore } from "../../api/getData";
@@ -11,6 +8,7 @@ import Link from "next/link";
 import AdminHeader from "@/components/Header/AdminHeader";
 import { db } from "../../../../firebaseConfig";
 import DataKomentar from "@/components/Komentar/DataKomentar";
+import DeleteModal from "@/components/Modal/DeleteModal";
 
 function DetailLaporan() {
   const router = useRouter();
@@ -44,8 +42,7 @@ function DetailLaporan() {
         );
         const getQuery = await getAllDataFromFirestore(q);
         setDataList(getQuery);
-        const dataUser = [];
-
+        const dataUser = getQuery.length;
         // await Promise.all(
         //   getQuery.map(async (item) => {
         //     const userRef = doc(db, "Users", item.user_id);
@@ -70,13 +67,13 @@ function DetailLaporan() {
     <>
       <AdminHeader />
 
-      <div className="flex container container-x flex-col mt-[30px] gap-6">
+      <div className="flex container container-x flex-col min-h-[700px] mt-[30px] gap-6">
         <Link href="/admin/daftarlaporan">
           <FiChevronLeft className="inline" />
           <span>Kembali</span>
         </Link>
         <div className="grid lg:grid-cols-8 gap-[30px]">
-          <div className="flex lg:col-span-5 flex-col gap-4">
+          <div className="flex lg:col-span-6 flex-col gap-4">
             <div className="sharing-card w-full">
               <div className="flex flex-col gap-[5px]">
                 <div className="text-h5 flex-center-between">
@@ -109,11 +106,20 @@ function DetailLaporan() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-3 flex flex-col gap-5">
-            <div>Testinggggg</div>
+          <div className="lg:col-span-2 flex items-center flex-col gap-3">
+            <div className="text-p1">Jumlah Laporan</div>
+            <div className="text-h4">{dataUser}</div>
+            <DeleteModal
+              title="Hapus Diskusi ?"
+              button={1}
+              post_id={id}
+              nameTable="report"
+              nama="Forum"
+            />
           </div>
         </div>
       </div>
+      <Footer admin={1} />
     </>
   );
 }

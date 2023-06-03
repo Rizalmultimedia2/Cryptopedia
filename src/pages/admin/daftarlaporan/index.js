@@ -10,7 +10,6 @@ import { db } from "../../../../firebaseConfig";
 
 function daftarlaporan() {
   const [data, setData] = useState([]);
-  const [num, setNum] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,7 +57,7 @@ function daftarlaporan() {
   return (
     <>
       <AdminHeader />
-      <div className="flex flex-col container container-x min-h-screen md:gap-[30px] gap-[5px] mt-[30px]">
+      <div className="flex flex-col container container-x min-h-[700px] md:gap-[30px] gap-[5px] mt-[30px]">
         <div className="flex-center flex-col gap-5">
           <h3 className="text-h3">Daftar Laporan Crypto Sharing</h3>
           <div className="flex overflow-x-auto max-w-[1200px] w-full rounded-lg">
@@ -91,7 +90,7 @@ function daftarlaporan() {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer admin={1} />
     </>
   );
 }

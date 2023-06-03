@@ -14,7 +14,7 @@ function Komentar({ idPost }) {
       if (idPost) {
         const q = query(
           collection(db, "Comments"),
-          where("post_id", "==", idPost)
+          where("sharing_id", "==", idPost)
         );
         // console.log("q adalah", q);
 
