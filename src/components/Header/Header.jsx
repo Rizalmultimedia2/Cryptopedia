@@ -80,6 +80,11 @@ function Header() {
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-10 lg:mt-0">
               <li>
+                <Link href="/" className="item-headbar">
+                  Home
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/beranda"
                   className="item-headbar"
@@ -101,11 +106,6 @@ function Header() {
               <li>
                 <Link href="/crypto101" className="item-headbar">
                   Crypto 101
-                </Link>
-              </li>
-              <li>
-                <Link href="/" className="item-headbar">
-                  Tentang
                 </Link>
               </li>
             </ul>

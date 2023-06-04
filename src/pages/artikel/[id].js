@@ -22,6 +22,8 @@ function DetailArtikel() {
   const [date, setDate] = useState([]);
   const [body, setBody] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
 
   const getLevel = (level) => {
     switch (level) {
@@ -41,6 +43,20 @@ function DetailArtikel() {
       return "#FACA21";
     } else if (level == 3) {
       return "#E96E70";
+    }
+  };
+
+  const handleLikes = () => {
+    if (dislike) {
+      setDislike(!dislike);
+      setLike(!like);
+    }
+  };
+
+  const handleDislikes = () => {
+    if (like) {
+      setLike(!like);
+      setDislike(!dislike);
     }
   };
 
@@ -127,8 +143,18 @@ function DetailArtikel() {
             <span className="font-semibold">
               Apakah kamu suka dengan artikel ini?{" "}
             </span>
-            <FiThumbsDown className="text-red-1 cursor-pointer" />
-            <FiThumbsUp className="text-primary-1 cursor-pointer" />
+            <FiThumbsDown
+              className={`text-red-1 cursor-pointer ${
+                dislike ? "fill-red-4" : ""
+              }`}
+              onClick={handleDislikes}
+            />
+            <FiThumbsUp
+              className={`text-primary-1 cursor-pointer ${
+                like ? "fill-primary-3" : ""
+              }`}
+              onClick={handleLikes}
+            />
           </div>
         </div>
         <div className="col-span-1 flex lg:flex-col flex-wrap gap-5">

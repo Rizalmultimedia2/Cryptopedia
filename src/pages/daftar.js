@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import { useRouter } from "next/router";
-import { GetSignUpErrorMessage, SignUp, auth, db } from "../../firebaseConfig";
+import { GetSignUpErrorMessage, auth, db } from "../../firebaseConfig";
 import Footer from "@/components/Footer";
 import { doc, setDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
@@ -21,7 +21,6 @@ function Daftar() {
     formState: { errors },
   } = useForm();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
     nama: "",
     email: "",
@@ -135,7 +134,7 @@ function Daftar() {
                   {...register("password", {
                     required: true,
                     minLength: 8,
-                    maxLength: 15,
+                    maxLength: 16,
                   })}
                   onChange={(e) =>
                     setFormValues((prev) => ({
