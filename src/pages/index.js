@@ -30,27 +30,31 @@ export default function Home() {
         []
       );
 
-      setIsLoading(true);
-      const q = query(collection(db, "Sharing"), limit(2));
-      const dataList = await getAllDataFromFirestore(q);
-      setSharing(dataList);
+      try {
+        setIsLoading(true);
+        const q = query(collection(db, "Sharing"), limit(2));
+        const dataList = await getAllDataFromFirestore(q);
+        setSharing(dataList);
 
-      const qArtikel = query(collection(db, "Articles"));
-      const dataListArtikel = await getAllDataFromFirestore(qArtikel);
-      const numDocuments = dataListArtikel.length;
-      const randomIndex = Math.floor(Math.random() * numDocuments);
-      const randomDoc = dataListArtikel[randomIndex];
-      setArtikel(randomDoc);
-      setIsDataLoaded(true);
+        const qArtikel = query(collection(db, "Articles"));
+        const dataListArtikel = await getAllDataFromFirestore(qArtikel);
+        const numDocuments = dataListArtikel.length;
+        const randomIndex = Math.floor(Math.random() * numDocuments);
+        const randomDoc = dataListArtikel[randomIndex];
+        setArtikel(randomDoc);
+        setIsDataLoaded(true);
 
-      const qMateri = query(collection(db, "Starting"));
-      const dataListMateri = await getAllDataFromFirestore(qMateri);
-      const num = dataListMateri.length;
-      const numRandom = Math.floor(Math.random() * num);
-      const numDoc = dataListMateri[numRandom];
-      setMateri(numDoc);
+        const qMateri = query(collection(db, "Starting"));
+        const dataListMateri = await getAllDataFromFirestore(qMateri);
+        const num = dataListMateri.length;
+        const numRandom = Math.floor(Math.random() * num);
+        const numDoc = dataListMateri[numRandom];
+        setMateri(numDoc);
 
-      setIsLoading(false);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, []);

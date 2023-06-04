@@ -16,7 +16,6 @@ function Komentar({ idPost }) {
           collection(db, "Comments"),
           where("sharing_id", "==", idPost)
         );
-        // console.log("q adalah", q);
 
         const dataList = await getAllDataFromFirestore(q);
         setData(dataList);

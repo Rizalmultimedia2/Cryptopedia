@@ -66,26 +66,30 @@ function DetailArtikel() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Articles", id);
-      const docSnap = await getDoc(docRef);
-      setLoading(true);
+      try {
+        const docRef = doc(db, "Articles", id);
+        const docSnap = await getDoc(docRef);
+        setLoading(true);
 
-      if (docSnap.exists()) {
-        const convertedDate = docSnap.data().date.toDate();
-        const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
-        const parsedData = parse(docSnap.data().articles_body);
-        setData(docSnap.data());
-        setDate(formattedDate);
-        setBody(parsedData);
-      } else {
-        console.log("Document not found!");
-        await Swal.fire({
-          icon: "error",
-          title: `Artikel tidak ditemukan`,
-        });
-        router.push("/artikel");
+        if (docSnap.exists()) {
+          const convertedDate = docSnap.data().date.toDate();
+          const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
+          const parsedData = parse(docSnap.data().articles_body);
+          setData(docSnap.data());
+          setDate(formattedDate);
+          setBody(parsedData);
+        } else {
+          console.log("Document not found!");
+          await Swal.fire({
+            icon: "error",
+            title: `Artikel tidak ditemukan`,
+          });
+          router.push("/artikel");
+        }
+        setLoading(false);
+      } catch (error) {
+        console.log("error", error);
       }
-      setLoading(false);
     };
 
     fetchData();

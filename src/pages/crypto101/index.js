@@ -9,38 +9,55 @@ import SelectLevel from "@/components/Select/SelectLevel";
 import { getAllDataFromFirestore } from "../api/getData";
 import withProtected from "@/hoc/withProtected";
 import { db } from "../../../firebaseConfig";
-import { collection, limit, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import Loading from "@/components/Loading";
 import CryptoMateriDetail from "@/components/Crypto101/CryptoMateriDetail";
+import { useRouter } from "next/router";
 
 function IndexMateri() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [atvisible, setVisible] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [materiCrypto, setMateriCrypto] = useState({});
+  const [isMateri, setIsMateri] = useState(false);
+  const router = useRouter();
+  const { materi } = router.query;
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      let dataQuery;
-      if (filter) {
-        const q = query(
-          collection(db, "Starting"),
-          where("level", "==", filter)
-        );
-        dataQuery = q;
-      } else {
-        const q = query(
-          collection(db, "Starting"),
-          orderBy("starting_title", "asc"),
-          limit(100)
-        );
-        dataQuery = q;
-      }
+      try {
+        setLoading(true);
+        let dataQuery;
+        if (filter) {
+          const q = query(
+            collection(db, "Starting"),
+            where("level", "==", filter)
+          );
+          dataQuery = q;
+        } else {
+          const q = query(
+            collection(db, "Starting"),
+            orderBy("starting_title", "asc"),
+            limit(100)
+          );
+          dataQuery = q;
+        }
 
-      const dataList = await getAllDataFromFirestore(dataQuery);
-      setLoading(false);
-      setData(dataList);
+        const dataList = await getAllDataFromFirestore(dataQuery);
+        setLoading(false);
+        setData(dataList);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, [filter]);
@@ -49,12 +66,24 @@ function IndexMateri() {
     setFilter(value);
   };
 
-  const [idStarting, setidStarting] = useState({
-    stitle: "",
-    slevel: "",
-    sbody: "",
-    sid: "",
-  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, "Starting", materi);
+        const getData = await getDoc(docRef);
+
+        if (getData.exists()) {
+          setMateriCrypto(getData.data());
+          setIsMateri(true);
+          setVisible(true);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, [materi]);
 
   return (
     <>
@@ -86,9 +115,7 @@ function IndexMateri() {
                   level={item.level}
                   body={item.starting_body}
                   id={item.id}
-                  visible={atvisible}
                   setVisible={setVisible}
-                  setId={setidStarting}
                 />
               ))}
             </div>
@@ -96,16 +123,18 @@ function IndexMateri() {
           <div className="lg:col-span-3 flex flex-col gap-5">
             {atvisible ? (
               <>
-                <div>
-                  <CryptoMateriDetail
-                    title={idStarting.stitle}
-                    level={idStarting.slevel}
-                    body={idStarting.sbody}
-                    id={idStarting.sid}
-                    visible={atvisible}
-                    setVisible={setVisible}
-                  />
-                </div>
+                {isMateri ? (
+                  <div>
+                    <CryptoMateriDetail
+                      title={materiCrypto.starting_title}
+                      level={materiCrypto.level}
+                      body={materiCrypto.starting_body}
+                      id={materiCrypto.id}
+                      visible={atvisible}
+                      setVisible={setVisible}
+                    />
+                  </div>
+                ) : null}
               </>
             ) : null}
 

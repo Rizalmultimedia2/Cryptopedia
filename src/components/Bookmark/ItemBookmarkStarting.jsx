@@ -1,11 +1,4 @@
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { db } from "../../../firebaseConfig";
@@ -18,12 +11,16 @@ function ItemBookmarkStarting({ id }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Starting", id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setData(docSnap.data());
-      } else {
-        console.log("Dokumen tidak ditemukan");
+      try {
+        const docRef = doc(db, "Starting", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setData(docSnap.data());
+        } else {
+          console.log("Dokumen tidak ditemukan");
+        }
+      } catch (error) {
+        console.log("error", error);
       }
     };
 
@@ -32,7 +29,10 @@ function ItemBookmarkStarting({ id }) {
 
   return (
     <>
-      <Link className="item-bookmark ring-hover-item" href="#">
+      <Link
+        className="item-bookmark ring-hover-item"
+        href={`/crypto101?materi=${id}`}
+      >
         <FiBookmark className="text-[20px] text-primary-2 fill-primary-2" />
         {isLoading && <Loading />}
         {data && data.starting_title}

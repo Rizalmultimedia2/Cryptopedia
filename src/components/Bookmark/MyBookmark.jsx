@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemBookmark from "./ItemBookmark";
 import SelectBookmark from "../Select/SelectBookmark";
-import { getAllDataFromFirestore } from "@/pages/api/getData";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import { useUser } from "@/context/user";
@@ -16,10 +15,14 @@ function MyBookmark() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Users", user.uid);
-      const dataList = await getDoc(docRef);
-      setSharing(dataList.data().saved_sharing);
-      setStarting(dataList.data().saved_starting);
+      try {
+        const docRef = doc(db, "Users", user.uid);
+        const dataList = await getDoc(docRef);
+        setSharing(dataList.data().saved_sharing);
+        setStarting(dataList.data().saved_starting);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     fetchData();

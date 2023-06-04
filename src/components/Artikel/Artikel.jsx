@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
-import ArtikelModal from "../Modal/ArtikelModal";
 import parse from "html-react-parser";
 import Link from "next/link";
 import EditArtikel from "../Modal/EditArtikel";

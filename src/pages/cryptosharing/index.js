@@ -24,28 +24,32 @@ function IndexSharing() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      let dataQuery;
-      if (filter <= 3 && filter > 0) {
-        const q = query(
-          collection(db, "Sharing"),
-          where("category", "==", filter)
-        );
-        dataQuery = q;
-      } else if (filter == 4) {
-        const q = query(
-          collection(db, "Sharing"),
-          where("user_id", "==", user.uid)
-        );
-        dataQuery = q;
-      } else {
-        const q = query(collection(db, "Sharing"), limit(100));
-        dataQuery = q;
-      }
+      try {
+        setLoading(true);
+        let dataQuery;
+        if (filter <= 3 && filter > 0) {
+          const q = query(
+            collection(db, "Sharing"),
+            where("category", "==", filter)
+          );
+          dataQuery = q;
+        } else if (filter == 4) {
+          const q = query(
+            collection(db, "Sharing"),
+            where("user_id", "==", user.uid)
+          );
+          dataQuery = q;
+        } else {
+          const q = query(collection(db, "Sharing"), limit(100));
+          dataQuery = q;
+        }
 
-      const dataList = await getAllDataFromFirestore(dataQuery);
-      setLoading(false);
-      setData(dataList);
+        const dataList = await getAllDataFromFirestore(dataQuery);
+        setLoading(false);
+        setData(dataList);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, [filter]);

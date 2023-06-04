@@ -15,9 +15,13 @@ function EditModal({ name, title, button, icon, show, post_id }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "Sharing", post_id);
-      const get = await getDoc(docRef);
-      setFormValues(get.data());
+      try {
+        const docRef = doc(db, "Sharing", post_id);
+        const get = await getDoc(docRef);
+        setFormValues(get.data());
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     fetchData();

@@ -9,6 +9,7 @@ import withProtectedAdmin from "@/hoc/withProtectedAdmin";
 import { collection, limit, query, where } from "firebase/firestore";
 import { getAllDataFromFirestore } from "../api/getData";
 import { db } from "../../../firebaseConfig";
+import Loading from "@/components/Loading";
 
 function ArtikelAdmin() {
   const [data, setData] = useState([]);
@@ -17,22 +18,26 @@ function ArtikelAdmin() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      let dataQuery;
-      if (filter) {
-        const q = query(
-          collection(db, "Articles"),
-          where("level", "==", filter)
-        );
-        dataQuery = q;
-      } else {
-        const q = query(collection(db, "Articles"), limit(100));
-        dataQuery = q;
-      }
+      try {
+        setLoading(true);
+        let dataQuery;
+        if (filter) {
+          const q = query(
+            collection(db, "Articles"),
+            where("level", "==", filter)
+          );
+          dataQuery = q;
+        } else {
+          const q = query(collection(db, "Articles"), limit(100));
+          dataQuery = q;
+        }
 
-      const dataList = await getAllDataFromFirestore(dataQuery);
-      setLoading(false);
-      setData(dataList);
+        const dataList = await getAllDataFromFirestore(dataQuery);
+        setLoading(false);
+        setData(dataList);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, [filter]);
@@ -63,8 +68,8 @@ function ArtikelAdmin() {
             </div>
           </div>
         </div>
-        {/* {isLoading && <Loading />} */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-16  md:gap-x-5 gap-y-[30px] z-0">
+          {/* {isLoading && <Loading />} */}
           {data.map((item, index) => (
             <Artikel
               key={index}

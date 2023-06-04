@@ -1,14 +1,12 @@
 import { useUser } from "@/context/user";
 import {
-  Timestamp,
   addDoc,
   collection,
   doc,
   serverTimestamp,
-  setDoc,
   updateDoc,
 } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { db } from "../../../firebaseConfig";
 import { useRouter } from "next/router";

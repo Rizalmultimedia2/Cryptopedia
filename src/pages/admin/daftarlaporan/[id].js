@@ -66,7 +66,6 @@ function DetailLaporan() {
   return (
     <>
       <AdminHeader />
-
       <div className="flex container container-x flex-col min-h-[700px] mt-[30px] gap-6">
         <Link href="/admin/daftarlaporan">
           <FiChevronLeft className="inline" />

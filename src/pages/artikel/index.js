@@ -22,22 +22,26 @@ function IndexArtikel() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      let dataQuery;
-      if (filter) {
-        const q = query(
-          collection(db, "Articles"),
-          where("level", "==", filter)
-        );
-        dataQuery = q;
-      } else {
-        const q = query(collection(db, "Articles"), limit(100));
-        dataQuery = q;
-      }
+      try {
+        setLoading(true);
+        let dataQuery;
+        if (filter) {
+          const q = query(
+            collection(db, "Articles"),
+            where("level", "==", filter)
+          );
+          dataQuery = q;
+        } else {
+          const q = query(collection(db, "Articles"), limit(100));
+          dataQuery = q;
+        }
 
-      const dataList = await getAllDataFromFirestore(dataQuery);
-      setData(dataList);
-      setLoading(false);
+        const dataList = await getAllDataFromFirestore(dataQuery);
+        setData(dataList);
+        setLoading(false);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, [filter]);
@@ -94,7 +98,7 @@ function IndexArtikel() {
             </div>
           </div>
         </div>
-        {/* {isLoading && <Loading />} */}
+        {isLoading && <Loading />}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-16  md:gap-x-5 gap-y-[30px]">
           {data.map((item, index) => (
             <Artikel

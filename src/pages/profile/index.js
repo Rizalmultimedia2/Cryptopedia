@@ -37,31 +37,39 @@ function Index() {
   } = useForm();
 
   const onSubmit = async (e) => {
-    const data = { fullname: name };
-    const updateName = doc(db, "Users", user.uid);
-    await updateDoc(updateName, data);
+    try {
+      const data = { fullname: name };
+      const updateName = doc(db, "Users", user.uid);
+      await updateDoc(updateName, data);
 
-    await Swal.fire({
-      icon: "success",
-      title: "Berhasil Update Profil",
-    });
+      await Swal.fire({
+        icon: "success",
+        title: "Berhasil Update Profil",
+      });
 
-    router.reload();
+      router.reload();
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const docSnap = await getDoc(doc(db, "Users", user.uid));
-      const q = query(
-        collection(db, "Sharing"),
-        where("user_id", "==", user.uid)
-      );
-      const dataList = await getAllDataFromFirestore(q);
-      setMyPost(dataList);
-      if (docSnap.exists()) {
-        setData(docSnap.data());
-      } else {
-        console.log("Document not found!");
+      try {
+        const docSnap = await getDoc(doc(db, "Users", user.uid));
+        const q = query(
+          collection(db, "Sharing"),
+          where("user_id", "==", user.uid)
+        );
+        const dataList = await getAllDataFromFirestore(q);
+        setMyPost(dataList);
+        if (docSnap.exists()) {
+          setData(docSnap.data());
+        } else {
+          console.log("Document not found!");
+        }
+      } catch (error) {
+        console.log("error", error);
       }
     };
 
@@ -151,18 +159,16 @@ function Index() {
             </div>
             <div className="flex flex-col gap-5">
               {myPost && myPost.length ? (
-                myPost.map((item, I) => (
+                myPost.map((item, index) => (
                   <CryptoSharing
                     title={item.sharing_title}
-                    key={I}
-                    username="Rizal Herliansyah"
-                    waktu="nanti"
+                    key={index}
                     tanggal={item.date}
                     body={item.sharing_body}
                     kategori={item.category}
                     tag={item.tags}
-                    like={item.like}
-                    dislike={item.dislike}
+                    likes={item.likes}
+                    dislikes={item.dislikes}
                     comment={item.total_comments}
                     id={item.id}
                     line="yes"

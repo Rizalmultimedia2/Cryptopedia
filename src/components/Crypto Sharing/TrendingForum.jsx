@@ -9,27 +9,31 @@ function TrendingForum() {
 
   useEffect(() => {
     const fethData = async () => {
-      const q = query(
-        collection(db, "Sharing"),
-        orderBy("total_comments", "desc"),
-        limit(1)
-      );
-      const querySnapshot = await getDocs(q);
+      try {
+        const q = query(
+          collection(db, "Sharing"),
+          orderBy("total_comments", "desc"),
+          limit(1)
+        );
+        const querySnapshot = await getDocs(q);
 
-      const dataList = [];
+        const dataList = [];
 
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const convertedDate = data.date.toDate();
-        const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const convertedDate = data.date.toDate();
+          const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
 
-        dataList.push({
-          id: doc.id,
-          ...data,
-          date: formattedDate,
+          dataList.push({
+            id: doc.id,
+            ...data,
+            date: formattedDate,
+          });
+          setData(dataList);
         });
-        setData(dataList);
-      });
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     fethData();

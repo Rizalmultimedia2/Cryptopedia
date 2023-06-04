@@ -6,33 +6,14 @@ import { db } from "../../../firebaseConfig";
 import Link from "next/link";
 import EditStarting from "../Modal/EditStarting";
 
-function CryptoMateri({
-  title,
-  level,
-  body,
-  id,
-  visible,
-  setVisible,
-  setId,
-  admin,
-}) {
+function CryptoMateri({ title, level, body, id, setVisible, admin }) {
   const clickHandler = async () => {
     const querySnapshot = await getDocs(collection(db, "Starting"));
     querySnapshot.forEach((doc) => {
-      // Mendapatkan ID dokumen
       const documentId = doc.id;
-
-      // Mendapatkan data dokumen
       const documentData = doc.data();
     });
-    console.log("kesini gak sih");
     setVisible(true);
-    setId({
-      sid: id,
-      sbody: body,
-      stitle: title,
-      slevel: level,
-    });
   };
   const getLevel = (level) => {
     switch (level) {

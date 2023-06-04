@@ -36,17 +36,21 @@ function CryptoSharing({
 
   useEffect(() => {
     const fetchData = async () => {
-      const q = query(
-        collection(db, "Users"),
-        where("created_sharing", "array-contains", id)
-      );
-      const querySnapshot = await getDocs(q);
+      try {
+        const q = query(
+          collection(db, "Users"),
+          where("created_sharing", "array-contains", id)
+        );
+        const querySnapshot = await getDocs(q);
 
-      querySnapshot.forEach((doc) => {
-        const user = doc.data();
-        console.log("datanya siapa aja emang", user.username);
-        setDataUser(user);
-      });
+        querySnapshot.forEach((doc) => {
+          const user = doc.data();
+          console.log("datanya siapa aja emang", user.username);
+          setDataUser(user);
+        });
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     fetchData();

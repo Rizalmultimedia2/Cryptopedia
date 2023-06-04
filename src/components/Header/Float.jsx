@@ -18,8 +18,12 @@ function Float() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const dataList = await getOneDataFromFirestore("Users", user.uid);
-      setData(dataList);
+      try {
+        const dataList = await getOneDataFromFirestore("Users", user.uid);
+        setData(dataList);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, []);

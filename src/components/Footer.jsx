@@ -53,7 +53,7 @@ function Footer({ admin }) {
                     <>
                       <li className="mb-4">
                         <Link href="#" className="hover:underline">
-                          Tentang
+                          Home
                         </Link>
                       </li>
                       <li className="mb-4">

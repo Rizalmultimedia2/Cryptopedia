@@ -14,10 +14,6 @@ function ArtikelModal({ name, title, icon }) {
     image_url: "",
   });
 
-  useEffect(() => {
-    console.log("setfomvalues", formValues);
-  }, [formValues]);
-
   return (
     <>
       <Modal

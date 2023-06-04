@@ -18,26 +18,29 @@ function Beranda() {
   const [isLoading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [artikel, setArtikel] = useState([]);
-
   const user = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      const q = query(collection(db, "Sharing"));
-      const dataList = await getAllDataFromFirestore(q);
-      setData(dataList);
+      try {
+        setLoading(true);
+        const q = query(collection(db, "Sharing"));
+        const dataList = await getAllDataFromFirestore(q);
+        setData(dataList);
 
-      const qArtikel = query(collection(db, "Articles"), limit(5));
-      const dataListArtikel = await getAllDataFromFirestore(qArtikel);
-      setArtikel(dataListArtikel);
+        const qArtikel = query(collection(db, "Articles"), limit(5));
+        const dataListArtikel = await getAllDataFromFirestore(qArtikel);
+        setArtikel(dataListArtikel);
 
-      const getUser = doc(db, "Users", user.uid);
-      const getData = await getDoc(getUser);
-      setCurrentUser(getData.data());
+        const getUser = doc(db, "Users", user.uid);
+        const getData = await getDoc(getUser);
+        setCurrentUser(getData.data());
+        setLoading(false);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
-    setLoading(false);
   }, []);
 
   return (
@@ -74,8 +77,8 @@ function Beranda() {
         <div className="grid lg:grid-cols-3 grid-cols-2 lg:gap-[60px] gap-[30px]">
           <div className="col-span-2 flex flex-col gap-5">
             <span className="text-h5">Forum Terbaru</span>
-            {isLoading && <Loading />}
             <div className="flex flex-col gap-5">
+              {isLoading && <Loading />}
               {data.map((item, index) => (
                 <CryptoSharing
                   title={item.sharing_title}
@@ -97,8 +100,8 @@ function Beranda() {
           </div>
           <div className="lg:col-span-1 col-span-full w-full flex flex-col gap-5">
             <span className="text-h5">Artikel Terbaru</span>
-            {isLoading && <Loading />}
             <div className="flex flex-col gap-5">
+              {isLoading && <Loading />}
               {artikel.map((item, index) => (
                 <Artikel
                   key={index}

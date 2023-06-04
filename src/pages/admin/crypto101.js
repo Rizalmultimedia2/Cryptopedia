@@ -20,26 +20,30 @@ function MateriAdmin() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      let dataQuery;
-      if (filter) {
-        const q = query(
-          collection(db, "Starting"),
-          where("level", "==", filter)
-        );
-        dataQuery = q;
-      } else {
-        const q = query(
-          collection(db, "Starting"),
-          orderBy("starting_title", "asc"),
-          limit(100)
-        );
-        dataQuery = q;
-      }
+      try {
+        setLoading(true);
+        let dataQuery;
+        if (filter) {
+          const q = query(
+            collection(db, "Starting"),
+            where("level", "==", filter)
+          );
+          dataQuery = q;
+        } else {
+          const q = query(
+            collection(db, "Starting"),
+            orderBy("starting_title", "asc"),
+            limit(100)
+          );
+          dataQuery = q;
+        }
 
-      const dataList = await getAllDataFromFirestore(dataQuery);
-      setLoading(false);
-      setData(dataList);
+        const dataList = await getAllDataFromFirestore(dataQuery);
+        setLoading(false);
+        setData(dataList);
+      } catch (error) {
+        console.log("error", error);
+      }
     };
     fetchData();
   }, [filter]);
@@ -47,13 +51,6 @@ function MateriAdmin() {
   const handleFilter = (value) => {
     setFilter(value);
   };
-
-  const [idStarting, setidStarting] = useState({
-    stitle: "",
-    slevel: "",
-    sbody: "",
-    sid: "",
-  });
 
   return (
     <>
@@ -90,7 +87,6 @@ function MateriAdmin() {
                   admin={1}
                   visible={atvisible}
                   setVisible={setVisible}
-                  setId={setidStarting}
                 />
               ))}
             </div>

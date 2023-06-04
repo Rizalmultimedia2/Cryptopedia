@@ -4,13 +4,11 @@ import Header from "@/components/Header/Header";
 import { FiChevronLeft } from "react-icons/fi";
 import withProtected from "@/hoc/withProtected";
 import Link from "next/link";
-import { auth } from "../../firebaseConfig";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import FormError from "@/components/Form/Error";
 import { useRouter } from "next/router";
-import { useUser } from "@/context/user";
 import {
   getAuth,
   EmailAuthProvider,

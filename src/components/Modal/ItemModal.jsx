@@ -1,6 +1,4 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import FormError from "../Form/Error";
 
 function ItemModal({ id, type, placeholder, label, setform }) {
   return (

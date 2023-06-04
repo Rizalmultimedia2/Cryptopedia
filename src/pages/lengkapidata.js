@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import SelectAvatar from "@/components/Select/SelectAvatar";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useUser } from "@/context/user";
-import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import FormError from "@/components/Form/Error";
 import Swal from "sweetalert2";
@@ -66,6 +66,7 @@ function LengkaiData() {
       setLoading(false);
     }
   };
+
   return (
     <>
       <Header />

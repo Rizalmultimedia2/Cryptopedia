@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header/Header";
 import { useRouter } from "next/router";
-import { GetSignInErrorMessage, SignIn, auth, db } from "../../firebaseConfig";
+import { GetSignInErrorMessage, SignIn } from "../../firebaseConfig";
 import Footer from "@/components/Footer";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
