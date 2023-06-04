@@ -104,6 +104,7 @@ function IndexArtikel() {
               level={item.level}
               date={item.date}
               id={item.id}
+              image_url={item.image_url}
             />
           ))}
         </div>

@@ -7,14 +7,19 @@ import { GoKebabHorizontal } from "react-icons/go";
 import React, { useEffect, useState } from "react";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "./api/getData";
-import { collection, limit, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, limit, query } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import Loading from "@/components/Loading";
 import Link from "next/link";
+import { useUser } from "@/context/user";
 
 function Beranda() {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [artikel, setArtikel] = useState([]);
+
+  const user = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,18 +27,14 @@ function Beranda() {
       const q = query(collection(db, "Sharing"));
       const dataList = await getAllDataFromFirestore(q);
       setData(dataList);
-    };
-    fetchData();
-    setLoading(false);
-  }, []);
 
-  const [artikel, setArtikel] = useState([]);
-  useEffect(() => {
-    setLoading(true);
-    const fetchData = async () => {
-      const q = query(collection(db, "Articles"), limit(5));
-      const dataList = await getAllDataFromFirestore(q);
-      setArtikel(dataList);
+      const qArtikel = query(collection(db, "Articles"), limit(5));
+      const dataListArtikel = await getAllDataFromFirestore(qArtikel);
+      setArtikel(dataListArtikel);
+
+      const getUser = doc(db, "Users", user.uid);
+      const getData = await getDoc(getUser);
+      setCurrentUser(getData.data());
     };
     fetchData();
     setLoading(false);
@@ -55,10 +56,10 @@ function Beranda() {
           </div>
           <div className="flex flex-row gap-4 w-full h-[50px]">
             <Image
-              src="/image/artikel.png"
+              src={`/avatar/${currentUser.avatar_id}.svg`}
               height={50}
               width={50}
-              className="rounded-full object-cover"
+              className="object-cover"
               alt="avatars"
             />
             <Link
@@ -106,6 +107,7 @@ function Beranda() {
                   level={item.level}
                   date={item.date}
                   id={item.id}
+                  image_url={item.image_url}
                 />
               ))}
             </div>

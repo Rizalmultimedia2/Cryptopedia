@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import Link from "next/link";
 import EditArtikel from "../Modal/EditArtikel";
 
-function Artikel({ title, date, body, level, id, admin }) {
+function Artikel({ title, date, body, level, id, admin, image_url }) {
   const getBody = parse(body);
   const getLevel = (level) => {
     switch (level) {
@@ -44,7 +44,7 @@ function Artikel({ title, date, body, level, id, admin }) {
             <>
               <div className="relative h-[230px]">
                 <Image
-                  src="/image/artikel.png"
+                  src={image_url}
                   fill
                   className="object-cover"
                   alt="image"
@@ -63,7 +63,7 @@ function Artikel({ title, date, body, level, id, admin }) {
             <>
               <Link className="relative h-[230px]" href={`/artikel/${id}`}>
                 <Image
-                  src="/image/artikel.png"
+                  src={image_url}
                   fill
                   className="object-cover"
                   alt="image"

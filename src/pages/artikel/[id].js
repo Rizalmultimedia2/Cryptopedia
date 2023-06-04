@@ -50,12 +50,16 @@ function DetailArtikel() {
     if (dislike) {
       setDislike(!dislike);
       setLike(!like);
+    } else {
+      setLike(!like);
     }
   };
 
   const handleDislikes = () => {
     if (like) {
       setLike(!like);
+      setDislike(!dislike);
+    } else {
       setDislike(!dislike);
     }
   };
@@ -132,7 +136,7 @@ function DetailArtikel() {
           </div>
           <div className="relative h-[380px]">
             <Image
-              src="/image/Artikel.png"
+              src={data.image_url}
               fill
               className="object-cover rounded-xl"
               alt="Cover"
@@ -169,6 +173,7 @@ function DetailArtikel() {
               level={item.level}
               date={item.date}
               id={item.id}
+              image_url={item.image_url}
             />
           ))}
         </div>
