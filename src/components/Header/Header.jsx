@@ -13,7 +13,7 @@ function Header() {
         <div className="flex-center-between flex-wrap mx-auto container">
           <Link href="/" className="flex items-center">
             <Image
-              src="/image/Logo.svg"
+              src="https://i.ibb.co/vd5RvpN/Logo.png"
               height={50}
               width={55}
               alt="Cryptopedia"

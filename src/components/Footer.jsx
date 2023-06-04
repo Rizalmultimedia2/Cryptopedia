@@ -11,7 +11,7 @@ function Footer({ admin }) {
             <div className="mb-6 md:mb-0">
               <Link href="#" className="flex flex-col items-start gap-2">
                 <Image
-                  src="/image/logo-white.svg"
+                  src="https://i.ibb.co/9hsyMYy/Logo-white.png"
                   className="fill-white"
                   width={86}
                   height={78}
