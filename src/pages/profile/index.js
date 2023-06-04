@@ -122,7 +122,7 @@ function Index() {
                   value={name}
                   {...register("name", {
                     required: true,
-                    minLength: 7,
+                    minLength: 8,
                     maxLength: 25,
                   })}
                   onChange={(e) => setName(e.target.value)}

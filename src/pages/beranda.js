@@ -82,8 +82,6 @@ function Beranda() {
               {data.map((item, index) => (
                 <CryptoSharing
                   title={item.sharing_title}
-                  username="Rizal Herliansyah"
-                  waktu="nanti"
                   tanggal={item.date}
                   body={item.sharing_body}
                   kategori={item.category}

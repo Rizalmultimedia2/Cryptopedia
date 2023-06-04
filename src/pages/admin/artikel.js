@@ -79,6 +79,7 @@ function ArtikelAdmin() {
               date={item.date}
               id={item.id}
               admin={1}
+              image_url={item.image_url}
             />
           ))}
         </div>

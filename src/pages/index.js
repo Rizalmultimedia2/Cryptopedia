@@ -121,6 +121,7 @@ export default function Home() {
                   level={artikel.level}
                   date={artikel.date}
                   id={artikel.id}
+                  image_url={artikel.image_url}
                 />
               )
             )}
