@@ -75,9 +75,17 @@ function Daftar() {
   return (
     <>
       <Header />
-      <div className="grid lg:grid-cols-2 grid-cols-1 container container-x ">
-        <div className="bg-primary-4 lg:visible invisible"></div>
-        <div className="flex-center min-h-screen">
+      <div className="grid lg:grid-cols-2 grid-cols-1 container container-x min-h-[800px]">
+        <div className="hidden lg:flex flex-col items-center justify-center">
+          <Image
+            src="/image/bg_m.svg"
+            height={700}
+            width={600}
+            alt="Cryptopedia"
+          />
+          <span className="-mt-1">Ilustration by Freepik</span>
+        </div>
+        <div className="flex-center">
           <div className="form">
             <Image
               src="/image/Logo.svg"

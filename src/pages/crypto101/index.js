@@ -21,6 +21,7 @@ import {
 import Loading from "@/components/Loading";
 import CryptoMateriDetail from "@/components/Crypto101/CryptoMateriDetail";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function IndexMateri() {
   const [data, setData] = useState([]);
@@ -88,14 +89,24 @@ function IndexMateri() {
   return (
     <>
       <Header />
-      <div className="flex container container-x flex-col mt-[30px] gap-8">
-        <div className="flex flex-col gap-2">
-          <h3 className="md:text-h2 text-h3">Crypto 101</h3>
-          <div className="flex justify-between">
-            <span className="text-p21 max-w-[800px]">
-              Tempat belajar istilah dan pemahaman awal tentang cryptocurrency
-              untuk pemula
-            </span>
+      <div className="flex container container-x flex-col mt-[20px] gap-8">
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-col gap-2">
+            <h3 className="md:text-h2 text-h3">Crypto 101</h3>
+            <div className="flex justify-between">
+              <span className="text-p21 max-w-[800px]">
+                Tempat belajar istilah dan pemahaman awal tentang cryptocurrency
+                untuk pemula
+              </span>
+            </div>
+          </div>
+          <div>
+            <Image
+              src="/image/crypto101.svg"
+              height={250}
+              width={300}
+              alt="Cryptopedia"
+            />
           </div>
         </div>
         <div className="grid lg:grid-cols-8 gap-[30px]">

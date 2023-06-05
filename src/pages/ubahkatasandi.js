@@ -15,6 +15,7 @@ import {
   reauthenticateWithCredential,
   updatePassword,
 } from "firebase/auth";
+import Footer from "@/components/Footer";
 
 function ubahkatasandi() {
   const [formValues, setFormValues] = useState({
@@ -65,9 +66,17 @@ function ubahkatasandi() {
   return (
     <>
       <Header />
-      <div className="grid lg:grid-cols-2 grid-cols-1 container container-x">
-        <div className="bg-primary-4 lg:visible invisible"></div>
-        <div className="flex-center min-h-screen">
+      <div className="grid lg:grid-cols-2 grid-cols-1 container container-x min-h-[800px]">
+        <div className="lg:flex items-center justify-center hidden flex-col">
+          <Image
+            src="/image/sandi.svg"
+            height={758}
+            width={640}
+            alt="Cryptopedia"
+          />
+          <span className="-mt-8">Ilustration by Freepik</span>
+        </div>
+        <div className="flex-center">
           <div className="form">
             <Link className="place-self-start px-3" href="/profile">
               <FiChevronLeft className="inline" />
@@ -123,7 +132,7 @@ function ubahkatasandi() {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="newpassword"
-                  placeholder="Masukkan kata sandi lama"
+                  placeholder="Masukkan kata sandi baru"
                   className="form-input-lessborder"
                   value={formValues.newpassword}
                   {...register("newpassword", {
@@ -157,7 +166,7 @@ function ubahkatasandi() {
                 <input
                   type={showCPassword ? "text" : "password"}
                   id="confirmpassword"
-                  placeholder="Masukkan kata sandi lama"
+                  placeholder="Masukkan konfirmasi kata sandi baru"
                   className="form-input-lessborder"
                   value={formValues.confirmpassword}
                   {...register("confirmpassword", {
@@ -194,6 +203,7 @@ function ubahkatasandi() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
