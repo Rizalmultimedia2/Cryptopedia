@@ -14,12 +14,15 @@ function SelectCategory({ style, post, filter }) {
         num = 0;
         break;
       case "tren":
+      case "tren1":
         num = 1;
         break;
       case "teknikal":
+      case "teknikal1":
         num = 2;
         break;
       case "general":
+      case "general1":
         num = 3;
         break;
       case "mypost":
@@ -59,15 +62,15 @@ function SelectCategory({ style, post, filter }) {
         ]
       : [
           {
-            value: "tren",
+            value: "tren1",
             label: "Tren",
           },
           {
-            value: "teknikal",
+            value: "teknikal1",
             label: "Teknikal & Fundamental",
           },
           {
-            value: "general",
+            value: "general1",
             label: "General",
           },
         ];

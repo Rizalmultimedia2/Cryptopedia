@@ -32,6 +32,7 @@ function EditModal({ name, title, button, icon, show, post_id }) {
       ...prev,
       category: num,
     }));
+    console.log("num", num);
   }, [num]);
 
   const onSubmit = async (e) => {

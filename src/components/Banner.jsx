@@ -21,7 +21,6 @@ function Banner({ title, body, link }) {
           Klik Disini
         </Link>
       </div>
-      ;
     </>
   );
 }

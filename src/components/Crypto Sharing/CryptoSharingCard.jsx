@@ -64,7 +64,7 @@ function CryptoSharing({
             <Link href={`/cryptosharing/${id}`}>{title}</Link>
             <div className="flex flex-row">
               <IconBookmark post_id={id} field="saved_sharing" />
-              <IconKebab post_id={id} card={"y"} />
+              <IconKebab post_id={id} />
             </div>
           </div>
           <div className="flex-center-between flex-wrap-reverse">
