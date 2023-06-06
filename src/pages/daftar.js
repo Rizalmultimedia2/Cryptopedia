@@ -55,8 +55,6 @@ function Daftar() {
         title: "Berhasil Mendaftar",
         text: "Silahkan isi lengkapi data",
       });
-
-      setLoading(false);
     } catch (error) {
       const errorMessage = error.message;
       console.log(errorMessage);
