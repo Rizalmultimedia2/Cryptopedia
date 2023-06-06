@@ -10,7 +10,7 @@ import Banner from "@/components/Banner";
 import SharingModal from "@/components/Modal/SharingModal";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "../api/getData";
-import { collection, limit, query, where } from "firebase/firestore";
+import { collection, limit, orderBy, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 import { useUser } from "@/context/user";
@@ -40,7 +40,11 @@ function IndexSharing() {
           );
           dataQuery = q;
         } else {
-          const q = query(collection(db, "Sharing"), limit(100));
+          const q = query(
+            collection(db, "Sharing"),
+            limit(100),
+            orderBy("date", "desc")
+          );
           dataQuery = q;
         }
 

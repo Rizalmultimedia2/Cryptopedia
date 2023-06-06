@@ -7,7 +7,14 @@ import { GoKebabHorizontal } from "react-icons/go";
 import React, { useEffect, useState } from "react";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "./api/getData";
-import { collection, doc, getDoc, limit, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  limit,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 import Loading from "@/components/Loading";
 import Link from "next/link";
@@ -24,11 +31,15 @@ function Beranda() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const q = query(collection(db, "Sharing"));
+        const q = query(collection(db, "Sharing"), orderBy("date", "desc"));
         const dataList = await getAllDataFromFirestore(q);
         setData(dataList);
 
-        const qArtikel = query(collection(db, "Articles"), limit(5));
+        const qArtikel = query(
+          collection(db, "Articles"),
+          limit(5),
+          orderBy("date", "desc")
+        );
         const dataListArtikel = await getAllDataFromFirestore(qArtikel);
         setArtikel(dataListArtikel);
 

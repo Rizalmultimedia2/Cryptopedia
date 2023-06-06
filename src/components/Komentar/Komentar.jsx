@@ -1,4 +1,11 @@
-import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { getAllDataFromFirestore } from "@/pages/api/getData";
 import { db } from "../../../firebaseConfig";
@@ -14,7 +21,8 @@ function Komentar({ idPost }) {
       if (idPost) {
         const q = query(
           collection(db, "Comments"),
-          where("sharing_id", "==", idPost)
+          where("sharing_id", "==", idPost),
+          orderBy("date", "desc")
         );
 
         const dataList = await getAllDataFromFirestore(q);
@@ -24,7 +32,6 @@ function Komentar({ idPost }) {
     fetchData();
   }, []);
 
-  console.log("Ada data ga", data);
   return (
     <>
       {data && data.length ? (
