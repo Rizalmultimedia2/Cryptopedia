@@ -35,6 +35,7 @@ function Komentar({ idPost }) {
             user_id={item.user_id}
             post_id={item.post_id}
             date={item.date}
+            comment_id={item.id}
           />
         ))
       ) : (

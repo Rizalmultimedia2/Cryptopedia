@@ -105,6 +105,15 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
         await updateDoc(docId, updateData);
       }
 
+      if (nameTable == "Comments") {
+        // const docRef = doc(db, "Comments", user.uid);
+        // await deleteDoc(docRef);
+        const docId = doc(db, "Users", user.uid);
+        const updateData = {};
+        updateData["comments"] = arrayRemove(post_id);
+        await updateDoc(docId, updateData);
+      }
+
       await Swal.fire({
         icon: "success",
         title: `Berhasil Menghapus ${nama}`,
@@ -127,6 +136,11 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
         >
           Hapus
         </button>
+      ) : button == 2 ? (
+        <FiTrash
+          className="text-red-1 text-p21 cursor-pointer"
+          onClick={() => setShowModal(true)}
+        />
       ) : (
         <button
           className="flex flex-row items-center gap-2 z-50"
@@ -138,7 +152,6 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
 
       {showModal ? (
         <>
-          <div></div>
           <form className="form-modal z-[100]">
             <div
               className={`border-0 relative rounded-md shadow-lg flex flex-col max-w-[350px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}

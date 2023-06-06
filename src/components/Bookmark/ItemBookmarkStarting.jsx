@@ -29,14 +29,16 @@ function ItemBookmarkStarting({ id }) {
 
   return (
     <>
-      <Link
-        className="item-bookmark ring-hover-item"
-        href={`/crypto101?materi=${id}`}
-      >
-        <FiBookmark className="text-[20px] text-primary-2 fill-primary-2" />
-        {isLoading && <Loading />}
-        {data && data.starting_title}
-      </Link>
+      {data.starting_title ? (
+        <Link
+          className="item-bookmark ring-hover-item"
+          href={`/crypto101?materi=${id}`}
+        >
+          <FiBookmark className="text-[20px] text-primary-2 fill-primary-2" />
+          {isLoading && <Loading />}
+          {data && data.starting_title}
+        </Link>
+      ) : null}
     </>
   );
 }
