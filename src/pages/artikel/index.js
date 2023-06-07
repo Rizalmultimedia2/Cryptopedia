@@ -12,7 +12,6 @@ import Loading from "@/components/Loading";
 import parse from "html-react-parser";
 
 function IndexArtikel() {
-  // testTing();
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [isLoading, setLoading] = useState(false);

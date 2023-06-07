@@ -65,6 +65,18 @@ function DetailArtikel() {
   };
 
   useEffect(() => {
+    const handleRouteChange = () => {
+      window.location.reload();
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const docRef = doc(db, "Articles", id);
@@ -127,23 +139,22 @@ function DetailArtikel() {
               {" "}
               {getLevel(data.level)}
             </span>
-            {isLoading && <Loading />}
-            {/* Kalau gambar pakai api, simpan disini */}
             <p className="text-h2">{data.articles_title}</p>
             <div>
+              {isLoading && <Loading />}
               <span className="text-p2">{date}</span>
               <span className="text-primary-1 lg:inline block">
                 {" "}
-                Rizal Herliansyah Hidayat
+                - Rizal Herliansyah Hidayat
               </span>
             </div>
           </div>
-          <div className="relative h-[380px]">
+          <div className="relative h-[400px]">
             <Image
               src={data.image_url}
               fill
-              className="object-cover rounded-xl"
-              alt="Cover"
+              className="object-cover rounded-xl border-4 border-primary-3"
+              alt="Artikel"
             />
           </div>
           <div className="flex flex-col gap-5">{body}</div>
