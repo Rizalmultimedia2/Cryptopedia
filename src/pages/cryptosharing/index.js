@@ -10,17 +10,27 @@ import Banner from "@/components/Banner";
 import SharingModal from "@/components/Modal/SharingModal";
 import withProtected from "@/hoc/withProtected";
 import { getAllDataFromFirestore } from "../api/getData";
-import { collection, limit, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 import { useUser } from "@/context/user";
 import Image from "next/image";
+import { format } from "date-fns";
 
 function IndexSharing() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [isLoading, setLoading] = useState(false);
   const user = useUser();
+  const [searchQuery, setSearchQuery] = useState([]);
+  const [getTitle, setTitle] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +59,8 @@ function IndexSharing() {
         }
 
         const dataList = await getAllDataFromFirestore(dataQuery);
+        const titles = dataList.map((data) => data.sharing_title);
+        setTitle(titles);
         setLoading(false);
         setData(dataList);
       } catch (error) {
@@ -60,6 +72,47 @@ function IndexSharing() {
 
   const handleFilter = (value) => {
     setFilter(value);
+  };
+
+  const handleSearchClick = async () => {
+    try {
+      if (searchQuery == "") {
+        const q = query(
+          collection(db, "Sharing"),
+          orderBy("date", "desc"),
+          limit(100)
+        );
+        const dataList = await getAllDataFromFirestore(q);
+        setData(dataList);
+      } else {
+        const dataList = [];
+        const filterBySearch = [];
+        for (const item of getTitle) {
+          if (item.toLowerCase().includes(searchQuery.toLowerCase())) {
+            const q = query(
+              collection(db, "Sharing"),
+              where("sharing_title", "==", item)
+            );
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const convertedDate = data.date.toDate();
+              const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
+
+              dataList.push({
+                id: doc.id,
+                ...data,
+                date: formattedDate,
+              });
+            });
+            filterBySearch.push(item);
+          }
+        }
+        setData(dataList);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   return (
@@ -89,7 +142,12 @@ function IndexSharing() {
               <SelectCategory style="category" post={0} filter={handleFilter} />
             </ul>
             <div>
-              <Searchbar placeholder="Cari Diskusi" />
+              <Searchbar
+                placeholder="Cari Diskusi"
+                onChange={(e) => setSearchQuery(e.target.value)}
+                searchQuery={searchQuery}
+                handleSearchClick={handleSearchClick}
+              />
             </div>
             <div className="flex flex-col gap-5">
               {isLoading && <Loading />}

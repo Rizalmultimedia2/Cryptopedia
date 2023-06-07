@@ -1,10 +1,17 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
 
-function Searchbar({ placeholder, onChange }) {
+function Searchbar({ placeholder, onChange, handleSearchClick }) {
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearchClick();
+    }
+  };
+
   return (
     <>
-      <form
+      <div
         action=""
         className="flex flex-row items-center rounded-[5px] h-[45px]"
       >
@@ -20,15 +27,13 @@ function Searchbar({ placeholder, onChange }) {
           className="searchbar outline-0"
           placeholder={placeholder}
           onChange={onChange}
+          onKeyPress={handleKeyPress}
           required
         />
-        <a
-          href=""
-          className="flex items-center p-[10px] h-full border border-gray-4 rounded-br-[5px] rounded-tr-[5px]"
-        >
-          <FiSearch className="" />
-        </a>
-      </form>
+        <div className="flex items-center p-[10px] h-full border border-gray-4 rounded-br-[5px] rounded-tr-[5px]">
+          <FiSearch className="cursor-pointer" onClick={handleSearchClick} />
+        </div>
+      </div>
     </>
   );
 }

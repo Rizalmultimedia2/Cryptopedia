@@ -6,18 +6,19 @@ import Footer from "@/components/Footer";
 import SelectLevel from "@/components/Select/SelectLevel";
 import { getAllDataFromFirestore } from "../api/getData";
 import withProtected from "@/hoc/withProtected";
-import { collection, limit, query, where } from "firebase/firestore";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
-import parse from "html-react-parser";
+import { format } from "date-fns";
+import Image from "next/image";
 
 function IndexArtikel() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState();
   const [isLoading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState([]);
+  const [getTitle, setTitle] = useState({});
   const [searchResults, setSearchResults] = useState([]);
-  const [body, setBody] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +37,8 @@ function IndexArtikel() {
         }
 
         const dataList = await getAllDataFromFirestore(dataQuery);
+        const titles = dataList.map((data) => data.articles_title);
+        setTitle(titles);
         setData(dataList);
         setLoading(false);
       } catch (error) {
@@ -49,32 +52,45 @@ function IndexArtikel() {
     setFilter(value);
   };
 
-  // useEffect(() => {
-  //   const handleSearch = async () => {
-  //     try {
-  //       let dataQuery;
-  //       if (searchQuery) {
-  //         const q = query(
-  //           collection(db, "Articles"),
-  //           where("articles_title", "==", searchQuery)
-  //         );
-  //         console.log("search query atas", searchQuery);
-  //         dataQuery = q;
-  //       } else {
-  //         const q = query(collection(db, "Articles"), limit(100));
-  //         dataQuery = q;
-  //       }
-  //       const dataList = await getAllDataFromFirestore(dataQuery);
-  //       setData(dataList);
-  //     } catch (error) {
-  //       console.error("Error searching data:", error);
-  //     }
-  //   };
+  const handleSearchClick = async () => {
+    try {
+      if (searchQuery == "") {
+        const q = query(collection(db, "Articles"), limit(100));
+        const dataList = await getAllDataFromFirestore(q);
+        setData(dataList);
+      } else {
+        const dataList = [];
+        const filterBySearch = [];
+        for (const item of getTitle) {
+          if (item.toLowerCase().includes(searchQuery.toLowerCase())) {
+            const q = query(
+              collection(db, "Articles"),
+              where("articles_title", "==", item)
+            );
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const convertedDate = data.date.toDate();
+              const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
 
-  //   handleSearch();
-  // }, [searchQuery]);
+              dataList.push({
+                id: doc.id,
+                ...data,
+                date: formattedDate,
+              });
+            });
+            filterBySearch.push(item);
+          }
+        }
+        setSearchResults(filterBySearch);
+        setData(dataList);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  console.log("hasil sesuai search", searchResults);
 
-  console.log("search query", searchQuery);
   return (
     <>
       <Header />
@@ -87,6 +103,7 @@ function IndexArtikel() {
                 placeholder="Cari artikel"
                 onChange={(e) => setSearchQuery(e.target.value)}
                 searchQuery={searchQuery}
+                handleSearchClick={handleSearchClick}
               />
             </div>
             <div className="flex flex-row flex-wrap items-center gap-5">
@@ -99,17 +116,30 @@ function IndexArtikel() {
         </div>
         {isLoading && <Loading />}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-16  md:gap-x-5 gap-y-[30px]">
-          {data.map((item, index) => (
-            <Artikel
-              key={index}
-              body={item.articles_body}
-              title={item.articles_title}
-              level={item.level}
-              date={item.date}
-              id={item.id}
-              image_url={item.image_url}
-            />
-          ))}
+          {data && data.length ? (
+            data.map((item, index) => (
+              <Artikel
+                key={index}
+                body={item.articles_body}
+                title={item.articles_title}
+                level={item.level}
+                date={item.date}
+                id={item.id}
+                image_url={item.image_url}
+              />
+            ))
+          ) : (
+            <div className="flex-center flex-col col-span-3 min-h-[400px]">
+              <Image
+                src="/empty_state/no_search.svg"
+                width={450}
+                height={400}
+                alt="no-bookmark"
+                className="my-1 mt-4"
+              />
+              <p className="text-p1">Tidak ada hasil pencarian</p>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
