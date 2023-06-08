@@ -207,7 +207,7 @@ function DetailSharing() {
         </div>
         <div className="flex flex-col gap-6">
           <h4 className="text-h4">Forum Lainnya</h4>
-          <div className="flex flex-row gap-6">
+          <div className="flex lg:flex-row flex-col gap-6">
             {dataList.map((item, index) => (
               <CryptoSharing
                 title={item.sharing_title}

@@ -94,7 +94,7 @@ function Daftar() {
             <h1 className="text-primary-1 text-h5">Daftar</h1>
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-[20px]"
+              className="flex flex-col gap-[20px] w-full"
             >
               <label htmlFor="nama" className="sr-only"></label>
               <input

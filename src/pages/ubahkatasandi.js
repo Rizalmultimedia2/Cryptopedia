@@ -90,7 +90,7 @@ function ubahkatasandi() {
             />
             <h1 className="text-primary-1 text-h5">Ubah Kata Sandi</h1>
             <form
-              className="flex flex-col gap-[20px]"
+              className="flex flex-col gap-[20px] w-full"
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="flex-center-between flex-row border border-gray-400 rounded-lg">

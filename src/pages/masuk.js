@@ -64,7 +64,7 @@ function Masuk() {
           />
           <span className="-mt-1">Ilustration by Freepik</span>
         </div>
-        <div className="flex-center">
+        <div className="flex-center col-span-1">
           <div className="form">
             <Image
               src="/image/Logo.svg"
@@ -75,7 +75,7 @@ function Masuk() {
             <h1 className="text-primary-1 text-h5">Masuk</h1>
             <form
               action=""
-              className="flex flex-col gap-[20px]"
+              className="flex-center flex-col gap-[20px] w-full"
               onSubmit={handleSubmit(onSubmit)}
             >
               <label htmlFor="email" className="sr-only"></label>
@@ -94,7 +94,7 @@ function Masuk() {
                 }
               />
               <FormError error={errors.email} />
-              <div className="flex-center-between flex-row border border-gray-400 rounded-lg ">
+              <div className="flex-center-between flex-row border w-full border-gray-400 rounded-lg ">
                 <label htmlFor="password" className="sr-only"></label>
                 <input
                   type={showPassword ? "text" : "password"}

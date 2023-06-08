@@ -60,7 +60,7 @@
 }
 
 .form-input {
-  @apply flex items-center h-[45px] font-medium min-w-[350px] border border-gray-400 rounded-lg text-p3 px-3 ring-focus;
+  @apply flex-center h-[45px] font-medium border border-gray-400 rounded-lg text-p3 px-3 ring-focus w-full;
 }
 
 .form-input-profile {
@@ -72,11 +72,11 @@
 }
 
 .form-input-lessborder {
-  @apply flex items-center rounded-lg h-[45px] font-medium min-w-[380px] text-p3 px-3 ring-focus;
+  @apply flex items-center rounded-lg h-[45px] font-medium w-full text-p3 px-3 ring-focus;
 }
 
 .button-input-1 {
-  @apply flex items-center justify-center h-[45px] w-[420px] text-light-color bg-primary-1 rounded-lg text-h6;
+  @apply flex items-center justify-center h-[45px] w-full text-light-color bg-primary-1 rounded-lg text-h6;
 }
 
 .item-header {
@@ -136,7 +136,7 @@
 }
 
 .form {
-  @apply flex-center flex-col px-8 py-14 bg-light-color rounded-md shadow-shadows-1 gap-7 border border-gray-4;
+  @apply flex-center flex-col px-8 py-14 bg-light-color rounded-md shadow-shadows-1 gap-7 border border-gray-4 lg:min-w-[480px] w-[450px];
 }
 
 .item-bookmark {
@@ -160,7 +160,7 @@
 }
 
 .item-headbar {
-  @apply item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-1 lg:p-0;
+  @apply item-header lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-1 hover:bg-primary-4/25 lg:p-0;
 }
 
 .form-modal {
