@@ -155,7 +155,7 @@ function Index() {
           <div className="flex lg:col-span-5 flex-col gap-5">
             <div className="flex flex-row justify-between flex-wrap gap-3">
               <h4 className="text-h4 text-black">My Post</h4>
-              <Searchbar placeholder="Cari postingan" />
+              {/* <Searchbar placeholder="Cari postingan" /> */}
             </div>
             <div className="flex flex-col gap-5">
               {myPost && myPost.length ? (

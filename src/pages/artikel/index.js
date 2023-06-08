@@ -18,7 +18,6 @@ function IndexArtikel() {
   const [isLoading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState([]);
   const [getTitle, setTitle] = useState({});
-  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,7 +88,6 @@ function IndexArtikel() {
       console.log("error", error);
     }
   };
-  console.log("hasil sesuai search", searchResults);
 
   return (
     <>
