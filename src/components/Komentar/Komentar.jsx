@@ -64,11 +64,3 @@ function Komentar({ idPost }) {
 }
 
 export default Komentar;
-
-<div
-  className={
-    "lg:flex flex-grow items-center justify-between items-end pl-[250px] w-full  lg:w-auto lg:order-1" +
-    (navOpen ? " absolute" : " hidden")
-  }
-  id="mobile-menu-2"
-></div>;
