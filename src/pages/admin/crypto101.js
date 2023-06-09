@@ -20,6 +20,7 @@ import Loading from "@/components/Loading";
 import { getAllDataFromFirestore } from "../api/getData";
 import Image from "next/image";
 import { format } from "date-fns";
+import Head from "next/head";
 
 function MateriAdmin() {
   const [data, setData] = useState([]);
@@ -108,6 +109,11 @@ function MateriAdmin() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Crypto 101</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <AdminHeader />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-3">

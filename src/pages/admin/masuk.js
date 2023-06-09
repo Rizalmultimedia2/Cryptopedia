@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
+import Head from "next/head";
 
 function Masuk() {
   const {
@@ -47,6 +48,11 @@ function Masuk() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Admin</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <div className="flex-center container">
         <div className="flex-center min-h-screen">
           <div className="form">
@@ -95,12 +101,12 @@ function Masuk() {
                 />
                 {showPassword ? (
                   <FiEye
-                    className="mr-3 cursor-pointer"
+                    className="mx-3 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   />
                 ) : (
                   <FiEyeOff
-                    className="mr-3 cursor-pointer"
+                    className="mx-3 cursor-pointer"
                     onClick={() => setShowPassword(!showPassword)}
                   />
                 )}

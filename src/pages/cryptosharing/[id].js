@@ -32,6 +32,7 @@ import {
 import { useUser } from "@/context/user";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import Head from "next/head";
 
 function DetailSharing() {
   const router = useRouter();
@@ -135,6 +136,11 @@ function DetailSharing() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Crypto sharing</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-6">
         <Link href="/cryptosharing">

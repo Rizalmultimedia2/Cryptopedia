@@ -24,6 +24,7 @@ import CryptoMateriDetail from "@/components/Crypto101/CryptoMateriDetail";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { format } from "date-fns";
+import Head from "next/head";
 
 function IndexMateri() {
   const [data, setData] = useState([]);
@@ -135,6 +136,11 @@ function IndexMateri() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Crypto 101</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="flex container container-x flex-col mt-[20px] gap-8">
         <div className="flex flex-row justify-between items-center">

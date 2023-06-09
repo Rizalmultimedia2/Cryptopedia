@@ -14,6 +14,7 @@ import Artikel from "@/components/Artikel/Artikel";
 import Loading from "@/components/Loading";
 import Link from "next/link";
 import Swal from "sweetalert2";
+import Head from "next/head";
 
 function DetailArtikel() {
   const router = useRouter();
@@ -122,8 +123,11 @@ function DetailArtikel() {
 
   return (
     <>
-      {/* {console.log("datanya ", data)}
-      {console.log("datanya ", articles)} */}
+      <Head>
+        <title>Cryptopedia | Artikel</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="grid lg:grid-cols-3 container gap-[50px] container-x mt-[30px]">
         <div className="col-span-2 flex flex-col gap-[20px]">
@@ -139,7 +143,7 @@ function DetailArtikel() {
               {" "}
               {getLevel(data.level)}
             </span>
-            <p className="text-h2">{data.articles_title}</p>
+            <p className="lg:text-h2 text-h4">{data.articles_title}</p>
             <div>
               {isLoading && <Loading />}
               <span className="text-p2">{date}</span>

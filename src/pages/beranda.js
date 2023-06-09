@@ -19,6 +19,7 @@ import { db } from "../../firebaseConfig";
 import Loading from "@/components/Loading";
 import Link from "next/link";
 import { useUser } from "@/context/user";
+import Head from "next/head";
 
 function Beranda() {
   const [data, setData] = useState([]);
@@ -56,6 +57,11 @@ function Beranda() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Beranda</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="container container-x flex flex-col gap-5 my-6">
         <div className="flex flex-col gap-6">

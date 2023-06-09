@@ -10,7 +10,7 @@ function Header() {
   const { uid } = user;
   const [navOpen, setNavOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40">
+    <header className="sticky top-0 z-50">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 shadow-shadows-1">
         <div className="flex-center-between flex-wrap mx-auto container">
           <Link href="/" className="flex items-center">

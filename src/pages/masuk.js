@@ -10,6 +10,7 @@ import FormError from "@/components/Form/Error";
 import { FiEyeOff, FiEye } from "react-icons/fi";
 import withUnProtected from "@/hoc/withUnprotected";
 import Link from "next/link";
+import Head from "next/head";
 
 function Masuk() {
   const {
@@ -53,6 +54,11 @@ function Masuk() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Masuk</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="grid lg:grid-cols-2 grid-cols-1 container container-x min-h-[800px]">
         <div className=" hidden lg:flex flex-col items-center justify-center">

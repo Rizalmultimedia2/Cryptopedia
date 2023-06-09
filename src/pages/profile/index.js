@@ -22,6 +22,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 
 function Index() {
   const user = useUser();
@@ -76,9 +77,14 @@ function Index() {
     fetchData();
   }, []);
 
-  console.log("Postingan saya", myPost);
+  // console.log("Postingan saya", myPost);
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Profile</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex-center flex-row gap-8 flex-wrap">

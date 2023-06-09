@@ -66,7 +66,7 @@ function LaporkanDiskusi({ title, post_id }) {
         <>
           <form className="form-modal">
             <div
-              className={`border-0 rounded-md shadow-lg flex flex-col max-w-[450px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
+              className={`border-0 rounded-md shadow-lg flex flex-col lg:w-[500px] w-[350px] bg-white outline-none px-4 py-4 focus:outline-none `}
             >
               <div className="flex-center border-b border-solid border-gray-4 pb-3">
                 <h4 className="text-h4">{title}</h4>

@@ -7,6 +7,7 @@ import { getAllDataFromFirestore } from "@/pages/api/getData";
 import { collection, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../../firebaseConfig";
+import Head from "next/head";
 
 function daftarlaporan() {
   const [data, setData] = useState([]);
@@ -56,6 +57,11 @@ function daftarlaporan() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Daftar laporan</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <AdminHeader />
       <div className="flex flex-col container container-x min-h-[700px] md:gap-[30px] gap-[5px] mt-[30px]">
         <div className="flex-center flex-col gap-5">

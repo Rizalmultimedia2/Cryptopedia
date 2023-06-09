@@ -11,6 +11,7 @@ import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 import { format } from "date-fns";
 import Image from "next/image";
+import Head from "next/head";
 
 function IndexArtikel() {
   const [data, setData] = useState([]);
@@ -81,7 +82,6 @@ function IndexArtikel() {
             filterBySearch.push(item);
           }
         }
-        setSearchResults(filterBySearch);
         setData(dataList);
       }
     } catch (error) {
@@ -91,6 +91,11 @@ function IndexArtikel() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Artikel</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="flex flex-col container container-x md:gap-[30px] gap-[5px] mt-[30px]">
         <div className="space-y-[10px]">

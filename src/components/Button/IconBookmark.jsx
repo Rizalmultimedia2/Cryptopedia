@@ -73,13 +73,13 @@ function IconBookmark({ post_id, field }) {
         }
       } else if (field == "saved_starting") {
         if (isBookmarked) {
-          console.log("is bookmark", isBookmarked);
+          // console.log("is bookmark", isBookmarked);
           await updateDoc(docRef, {
             saved_starting: arrayRemove(post_id),
           });
           setIsBookmarked(false);
         } else {
-          console.log("is bookmark", isBookmarked);
+          // console.log("is bookmark", isBookmarked);
           await updateDoc(docRef, {
             saved_starting: arrayUnion(post_id),
           });

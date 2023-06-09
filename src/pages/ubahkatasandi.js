@@ -16,6 +16,7 @@ import {
   updatePassword,
 } from "firebase/auth";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 function ubahkatasandi() {
   const [formValues, setFormValues] = useState({
@@ -65,6 +66,11 @@ function ubahkatasandi() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Ubah kata sandi</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="grid lg:grid-cols-2 grid-cols-1 container container-x min-h-[800px]">
         <div className="lg:flex items-center justify-center hidden flex-col">

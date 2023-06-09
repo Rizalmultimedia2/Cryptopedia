@@ -14,7 +14,7 @@ export const useUser = () => {
 export const UserProvider = (props) => {
   const [userState, setUserState] = useState(InitialUserState);
 
-  console.log({ userState });
+  // console.log({ userState });
 
   const SetUser = (userCredential) => {
     setUserState({ ...userCredential });

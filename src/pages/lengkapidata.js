@@ -11,6 +11,7 @@ import FormError from "@/components/Form/Error";
 import Swal from "sweetalert2";
 import withProtected from "@/hoc/withProtected";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 function LengkaiData() {
   const user = useUser();
@@ -70,6 +71,11 @@ function LengkaiData() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Lengkapi data</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="grid lg:grid-cols-2 grid-cols-1 container container-x min-h-[800px]">
         <div className="hidden lg:flex flex-col items-center justify-center">

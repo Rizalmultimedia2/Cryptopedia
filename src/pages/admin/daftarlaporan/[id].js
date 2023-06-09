@@ -9,6 +9,7 @@ import AdminHeader from "@/components/Header/AdminHeader";
 import { db } from "../../../../firebaseConfig";
 import DataKomentar from "@/components/Komentar/DataKomentar";
 import DeleteModal from "@/components/Modal/DeleteModal";
+import Head from "next/head";
 
 function DetailLaporan() {
   const router = useRouter();
@@ -65,6 +66,11 @@ function DetailLaporan() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Daftar laporan</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <AdminHeader />
       <div className="flex container container-x flex-col min-h-[700px] mt-[30px] gap-6">
         <Link href="/admin/daftarlaporan">

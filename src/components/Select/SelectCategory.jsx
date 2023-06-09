@@ -4,7 +4,7 @@ function SelectCategory({ style, post, filter }) {
   const [selected, setSelected] = useState("semua");
 
   const handleChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setSelected(event.target.value);
     const value = event.target.value;
     let num;

@@ -23,6 +23,7 @@ import Loading from "@/components/Loading";
 import { useUser } from "@/context/user";
 import Image from "next/image";
 import { format } from "date-fns";
+import Head from "next/head";
 
 function IndexSharing() {
   const [data, setData] = useState([]);
@@ -117,6 +118,11 @@ function IndexSharing() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia | Crypto sharing</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="flex container container-x flex-col mt-[30px] gap-8">
         <div className="flex flex-col gap-3">

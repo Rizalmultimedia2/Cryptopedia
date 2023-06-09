@@ -143,7 +143,7 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
         />
       ) : (
         <button
-          className="flex flex-row items-center gap-2 z-50"
+          className="flex flex-row items-center gap-2 z-40"
           onClick={clickHandler}
         >
           <FiTrash /> Hapus
@@ -154,7 +154,7 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
         <>
           <form className="form-modal z-[100]">
             <div
-              className={`border-0 relative rounded-md shadow-lg flex flex-col max-w-[350px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
+              className={`border-0 relative rounded-md shadow-lg flex flex-col lg:w-[400px] w-[350px] bg-white outline-none px-4 py-4 focus:outline-none `}
             >
               <div className="flex-center border-b border-solid border-gray-4 pb-3">
                 <h4 className="text-h4">{title}</h4>

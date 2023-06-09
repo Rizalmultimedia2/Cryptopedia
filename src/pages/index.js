@@ -13,6 +13,7 @@ import Link from "next/link";
 import Loading from "@/components/Loading";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Head from "next/head";
 
 export default function Home() {
   const [sharing, setSharing] = useState([]);
@@ -61,6 +62,11 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Cryptopedia</title>
+        <meta name="description" content="" />
+        <link rel="icon" href="/image/Logo.svg" />
+      </Head>
       <Header />
       <div className="container container-x flex-center flex-col gap-[100px] overflow-visible ">
         <div className="absolute top-0 overflow-visible h-[2750px] w-full lg:visible invisible pointer-events-none z-0">
