@@ -50,12 +50,12 @@ function Daftar() {
         username: "",
       });
 
+      router.replace("/lengkapidata");
       await Swal.fire({
         icon: "success",
         title: "Berhasil Mendaftar",
         text: "Silahkan isi lengkapi data",
       });
-      router.replace("/lengkapidata");
     } catch (error) {
       const errorMessage = error.message;
       console.log(errorMessage);
