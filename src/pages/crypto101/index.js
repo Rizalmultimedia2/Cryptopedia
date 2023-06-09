@@ -153,7 +153,7 @@ function IndexMateri() {
               </span>
             </div>
           </div>
-          <div>
+          <div className="hidden lg:flex">
             <Image
               src="/image/crypto101.svg"
               height={250}
@@ -175,7 +175,7 @@ function IndexMateri() {
                 handleSearchClick={handleSearchClick}
               />
             </div>
-            <div className="flex flex-col gap-5 lg:max-h-screen max-h-[300px] overflow-y-scroll overflow-x-visible w-full p-2 ">
+            <div className="flex flex-col gap-5 lg:max-h-screen max-h-[600px] overflow-y-scroll overflow-x-visible w-full p-2 ">
               {isLoading && <Loading />}
               {data && data.length ? (
                 data.map((item, index) => (
