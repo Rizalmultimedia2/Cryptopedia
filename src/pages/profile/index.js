@@ -77,7 +77,6 @@ function Index() {
     fetchData();
   }, []);
 
-  // console.log("Postingan saya", myPost);
   return (
     <>
       <Head>
@@ -119,7 +118,9 @@ function Index() {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-6"
               >
-                <label htmlFor="name" className="sr-only"></label>
+                <label htmlFor="name" className="sr-only">
+                  Nama lengkap
+                </label>
                 <input
                   type="text"
                   id="name"
@@ -140,7 +141,6 @@ function Index() {
                   name=""
                   id="trader"
                   className="form-input-profile"
-                  defaultValue={data.trader}
                   value={data.trader}
                 >
                   <option value="" disabled selected hidden>

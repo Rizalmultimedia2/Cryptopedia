@@ -33,6 +33,8 @@ import { useUser } from "@/context/user";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import Head from "next/head";
+import { useForm } from "react-hook-form";
+import FormError from "@/components/Form/Error";
 
 function DetailSharing() {
   const router = useRouter();
@@ -43,6 +45,12 @@ function DetailSharing() {
   const [comment, setComment] = useState("");
   const user = useUser();
   const [dataList, setDataList] = useState([]);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (e) => {
     try {
@@ -168,27 +176,36 @@ function DetailSharing() {
 
             <h5 className="text-h5">Komentar</h5>
             <div>
-              <form className="flex flex-row gap-5 items-center">
-                <label htmlFor="comment" className="sr-only">
-                  Your comment
-                </label>
-                <textarea
-                  id="comment"
-                  rows="2"
-                  className="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black ring-focus"
-                  placeholder="Berikan komentar"
-                  required
-                  onChange={(e) =>
-                    setComment((prev) => ({
-                      ...prev,
-                      [e.target.id]: [e.target.value],
-                    }))
-                  }
-                ></textarea>
+              <form
+                className="flex flex-row gap-5 items-start"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <div className="w-full flex flex-col gap-6">
+                  <label htmlFor="comment" className="sr-only">
+                    Your comment
+                  </label>
+                  <textarea
+                    id="comment"
+                    rows="2"
+                    className="text-sm py-2 px-4 w-full basis-5/6 bg-white rounded-lg border border-gray-4 text-black ring-focus"
+                    placeholder="Berikan komentar"
+                    required
+                    {...register("comment", {
+                      required: true,
+                      minLength: 2,
+                    })}
+                    onChange={(e) =>
+                      setComment((prev) => ({
+                        ...prev,
+                        [e.target.id]: [e.target.value],
+                      }))
+                    }
+                  ></textarea>
+                  <FormError error={errors.comment} />
+                </div>
                 <button
-                  type="button"
+                  type="submit"
                   className="button-normal basis-1/6 h-fit w-fit"
-                  onClick={onSubmit}
                 >
                   Komentar
                 </button>
