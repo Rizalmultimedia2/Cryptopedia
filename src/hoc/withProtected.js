@@ -28,6 +28,11 @@ const withProtected = (Pages) => {
               });
               router.replace("/lengkapidata");
             }
+          } else if (
+            userSnapshot.data().username &&
+            currentRouter == "/lengkapidata"
+          ) {
+            router.replace("/beranda");
           }
         } catch (error) {
           console.log("Error fetching user data:", error);
