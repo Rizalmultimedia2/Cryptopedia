@@ -60,6 +60,7 @@ function CryptoMateri({ title, level, body, id, setVisible, admin }) {
               post_id={id}
               type="deleteModal"
               nama="Materi"
+              admin={admin}
             />
             <EditStarting
               name="Edit Materi"

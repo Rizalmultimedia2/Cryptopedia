@@ -93,6 +93,7 @@ function Artikel({ title, date, body, level, id, admin, image_url }) {
               post_id={id}
               type="deleteModal"
               nama="Artikel"
+              admin={admin}
             />
             <EditArtikel
               name="Edit artikel"

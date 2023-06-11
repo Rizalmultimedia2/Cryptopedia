@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import { useUser } from "@/context/user";
 
-function DeleteModal({ title, button, post_id, nameTable, nama }) {
+function DeleteModal({ title, button, post_id, nameTable, nama, admin }) {
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
   const user = useUser();
@@ -120,7 +120,9 @@ function DeleteModal({ title, button, post_id, nameTable, nama }) {
       });
       setShowModal(false);
       router.reload();
-      router.push("/cryptosharing");
+      if (admin != 1) {
+        router.push("/cryptosharing");
+      }
     } catch (error) {
       console.error("Terjadi kesalahan saat menghapus dokumen:", error);
     }
