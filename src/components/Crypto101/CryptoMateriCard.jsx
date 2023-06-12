@@ -39,7 +39,7 @@ function CryptoMateri({ title, level, body, id, setVisible, admin }) {
   return (
     <>
       {admin == 1 ? (
-        <div className="sharing-card" id={id}>
+        <Link className="sharing-card" id={id} href={`?materi=${id}`}>
           <div className="flex flex-col gap-[5px]">
             <div className="flex-center-between text-h5 flex-wrap">
               <span>{title}</span>
@@ -69,7 +69,7 @@ function CryptoMateri({ title, level, body, id, setVisible, admin }) {
               edit={1}
             />
           </div>
-        </div>
+        </Link>
       ) : (
         <Link
           href={`?materi=${id}`}

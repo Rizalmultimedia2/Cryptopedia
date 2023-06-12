@@ -46,6 +46,10 @@ function EditStarting({ name, title, post_id }) {
     }
   };
 
+  useEffect(() => {
+    console.log("Post---id", post_id);
+  }, [showModal]);
+
   return (
     <>
       <button
