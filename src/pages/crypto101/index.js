@@ -202,7 +202,11 @@ function IndexMateri() {
               )}
             </div>
           </div>
-          <div className="lg:col-span-3 flex flex-col gap-5">
+          <div
+            className={`lg:col-span-3 flex flex-col gap-5 ${
+              atvisible ? "h-fit transition-all duration-300" : ""
+            }`}
+          >
             {atvisible ? (
               <>
                 {isMateri ? (

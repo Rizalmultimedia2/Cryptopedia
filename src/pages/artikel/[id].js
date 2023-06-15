@@ -162,7 +162,7 @@ function DetailArtikel() {
             />
           </div>
           <div className="flex flex-col gap-5">{body}</div>
-          <div className="py-5 px-5 bg-[#CDEDE6]/25 w-fit text-p1 flex flex-row items-center gap-3 flex-wrap">
+          <div className="py-5 px-5 bg-[#CDEDE6]/25 w-fit text-p1 flex flex-row items-center gap-4 flex-wrap">
             <span className="font-semibold">
               Apakah kamu suka dengan artikel ini?{" "}
             </span>

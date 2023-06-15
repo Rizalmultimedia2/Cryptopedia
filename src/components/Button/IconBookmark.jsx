@@ -45,7 +45,7 @@ function IconBookmark({ post_id, field }) {
     } else if (field == "saved_starting") {
       checkBookmarkStatusStarting();
     }
-  }, []);
+  }, [post_id]);
 
   const handleClick = async () => {
     const docRef = doc(db, "Users", user.uid);
@@ -88,7 +88,7 @@ function IconBookmark({ post_id, field }) {
             icon: "success",
             title: "Berhasil Bookmark",
           });
-          // router.reload();
+          router.reload();
         }
       }
     } catch (error) {

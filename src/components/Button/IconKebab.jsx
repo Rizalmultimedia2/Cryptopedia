@@ -62,7 +62,7 @@ function IconKebab({ post_id, card }) {
                         title="Hapus Diskusi"
                         post_id={post_id}
                         type="deleteModal"
-                        nama="Sharing"
+                        nama="Forum Diskusi"
                       />
                     </div>{" "}
                   </>

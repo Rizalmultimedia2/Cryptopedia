@@ -61,18 +61,23 @@ function CryptoSharing({
       <div className="sharing-card w-full">
         <div className="flex flex-col gap-[5px]">
           <div className="text-h5 flex-center-between">
-            <Link href={`/cryptosharing/${id}`}>{title}</Link>
+            <Link href={`/cryptosharing/${id}`} className="w-full">
+              {title}
+            </Link>
             <div className="flex flex-row">
               <IconBookmark post_id={id} field="saved_sharing" />
               <IconKebab post_id={id} />
             </div>
           </div>
-          <div className="flex-center-between flex-wrap-reverse">
+          <Link
+            href={`/cryptosharing/${id}`}
+            className="flex-center-between flex-wrap-reverse"
+          >
             <span className="font-bold text-h6 text-primary-1">
               {dataUser.username}
             </span>
             <span className="text-p3">{tanggal}</span>
-          </div>
+          </Link>
         </div>
         <Link
           className={!line ? "" : "line-clamp-2"}

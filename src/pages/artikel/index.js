@@ -97,8 +97,8 @@ function IndexArtikel() {
         <link rel="icon" href="/image/Logo.svg" />
       </Head>
       <Header />
-      <div className="flex flex-col container container-x md:gap-[30px] gap-[5px] mt-[30px]">
-        <div className="space-y-[10px]">
+      <div className="flex flex-col container container-x md:gap-[30px] gap-[5px] mt-[30px] ">
+        <div className="space-y-[10px] ">
           <p className="font-bold text-h2">Artikel Terbaru</p>
           <div className="flex md:justify-between flex-wrap items-center gap-5">
             <div className="w-[400px]">
@@ -110,7 +110,7 @@ function IndexArtikel() {
               />
             </div>
             <div className="flex flex-row flex-wrap items-center gap-5">
-              <p>level</p>
+              <span>Level</span>
               <ul className="flex flex-row flex-wrap gap-2 text-h6 rounded-lg w-fit overflow-visible">
                 <SelectLevel style="level" filter={handleFilter} />
               </ul>

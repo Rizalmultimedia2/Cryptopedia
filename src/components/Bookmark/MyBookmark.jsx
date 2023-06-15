@@ -30,13 +30,14 @@ function MyBookmark() {
 
   return (
     <>
-      <div className="flex-center flex-col bg-white border border-gray-4 rounded-lg px-5 py-6 gap-5 z-10 ">
+      <div className="flex-center flex-col bg-white border border-gray-4 rounded-lg px-5 py-6 gap-5 z-10 transition-all">
         <p className="text-h4 text-primary-1 font-bold">MyBookmark</p>
         <div className="flex flex-col w-full gap-3">
           <ul className="flex items-center justify-start gap-3 ">
             <SelectBookmark tabel={setOptionBookmark} />
           </ul>
-          <div className="flex flex-col gap-1 border-t-2 max-h-[300px] overflow-x-visible overflow-y-scroll">
+          <div className="border-t-2"></div>
+          <div className="flex flex-col gap-1  max-h-[300px] overflow-x-visible overflow-y-auto transition-all">
             {optionBookmark == "Sharing" ? (
               sharing && sharing.length ? (
                 sharing.map((item, index) => (

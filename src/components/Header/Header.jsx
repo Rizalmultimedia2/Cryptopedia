@@ -42,19 +42,25 @@ function Header() {
             )}
 
             <button
-              className="text-primary-1 cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className={`text-primary-1 cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none transition-all duration-300 ${
+                navOpen ? "transform rotate-90" : ""
+              }`}
               type="button"
               onClick={() => setNavOpen(!navOpen)}
             >
-              {navOpen ? <FiX /> : <FiMenu className="" />}
+              {navOpen ? (
+                <FiX className="transition-all" />
+              ) : (
+                <FiMenu className="transition-all" />
+              )}
             </button>
           </div>
           <div
             className={
               "justify-between items-end lg:pl-[250px] w-full lg:flex lg:w-auto " +
               (navOpen
-                ? "absolute top-16 bg-white left-0 px-8 pb-5 shadow-shadows-1"
-                : " hidden")
+                ? "absolute top-16 bg-white left-0 px-8 pb-5 shadow-shadows-1 transition-opacity duration-300"
+                : "hidden")
             }
             id="mobile-menu-2"
           >

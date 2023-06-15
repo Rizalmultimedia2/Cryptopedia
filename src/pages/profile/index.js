@@ -98,15 +98,20 @@ function Index() {
           <div className="flex lg:flex-row lg:p-3 p-8 gap-7 border-2 border-primary-1 rounded-xl flex-col">
             <div className="flex flex-col gap-3">
               <h5 className="text-h5">Account Data</h5>
-              <div className="flex flex-col gap-6">
-                <div className="form-input-profile bg-gray-2">
-                  @{data.username}
+              <div className="flex flex-col gap-3">
+                <div>
+                  <span>Username</span>
+                  <div className="form-input-profile bg-gray-2">
+                    @{data.username}
+                  </div>
                 </div>
-                <div className="form-input-profile bg-gray-2">{data.email}</div>
-                <Link
-                  className="button-normal w-fit -mt-2"
-                  href="/ubahkatasandi"
-                >
+                <div>
+                  <span>Email</span>
+                  <div className="form-input-profile bg-gray-2">
+                    {data.email}
+                  </div>
+                </div>
+                <Link className="button-normal w-fit" href="/ubahkatasandi">
                   Ubah kata sandi
                 </Link>
               </div>
@@ -116,40 +121,47 @@ function Index() {
               <h5 className="text-h5">Personal data</h5>
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-3"
               >
-                <label htmlFor="name" className="sr-only">
-                  Nama lengkap
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="form-input-profile"
-                  placeholder={data.fullname}
-                  value={name}
-                  {...register("name", {
-                    required: true,
-                    minLength: 8,
-                    maxLength: 25,
-                  })}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <FormError error={errors.name} />
+                <div>
+                  <label htmlFor="name" className="">
+                    Nama lengkap
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="form-input-profile"
+                    placeholder={data.fullname}
+                    value={name}
+                    {...register("name", {
+                      required: true,
+                      minLength: 8,
+                      maxLength: 25,
+                    })}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <FormError error={errors.name} />
+                </div>
 
-                <label htmlFor="trader" className="sr-only"></label>
-                <select
-                  name=""
-                  id="trader"
-                  className="form-input-profile"
-                  value={data.trader}
-                >
-                  <option value="" disabled selected hidden>
+                <div>
+                  <label htmlFor="trader" className="">
                     Trader
-                  </option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-                <button type="submit" className="button-normal w-fit -mt-2">
+                  </label>
+                  <select
+                    name=""
+                    id="trader"
+                    className="form-input-profile"
+                    value={data.trader}
+                  >
+                    <option value="" disabled selected hidden>
+                      Trader
+                    </option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+                <button type="submit" className="button-normal w-fit ">
                   Edit profile
                 </button>
               </form>

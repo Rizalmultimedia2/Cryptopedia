@@ -211,7 +211,7 @@ function DetailSharing() {
                 </button>
               </form>
             </div>
-            <div className="flex flex-col gap-4 max-h-[700px] overflow-y-scroll overflow-x-visible">
+            <div className="flex flex-col gap-4 max-h-[700px] overflow-y-auto overflow-x-visible">
               <Komentar idPost={id} />
             </div>
           </div>
