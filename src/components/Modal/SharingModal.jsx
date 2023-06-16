@@ -20,6 +20,37 @@ function SharingModal({ name, title, button, icon, show }) {
     user_bookmarked: [],
   });
 
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState("");
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === " ") {
+      e.preventDefault();
+      const tag = tagInput.trim().toLowerCase();
+
+      if (tag) {
+        if (!tags.includes(tag)) {
+          setTags([...tags, tag]);
+          setFormValues((prev) => ({
+            ...prev,
+            tags: [...prev.tags, tag],
+          }));
+        }
+        setTagInput("");
+      }
+    }
+    console.log("itemform", formValues.tags);
+  };
+
+  const handleTagRemove = (tag) => {
+    const updatedTags = tags.filter((t) => t !== tag);
+    setTags(updatedTags);
+    setFormValues((prev) => ({
+      ...prev,
+      tags: updatedTags,
+    }));
+  };
+
   useEffect(() => {
     setFormValues((prev) => ({
       ...prev,
@@ -48,14 +79,36 @@ function SharingModal({ name, title, button, icon, show }) {
             placeholder="Masukkan judul"
             setform={setFormValues}
           />,
-          <ItemModal
-            key="item2"
-            label="Tag"
-            id="tags"
-            type="text"
-            placeholder="Tag"
-            setform={setFormValues}
-          />,
+          // <ItemModal
+          //   key="item2"
+          //   label="Tag"
+          //   id="tags"
+          //   type="text"
+          //   placeholder="Tag"
+          //   setform={setFormValues}
+          // />,
+          <div key="item2" className="flex flex-col gap-1">
+            <label htmlFor="tags" className="">
+              Tag
+            </label>
+            <input
+              type="text"
+              id="tags"
+              placeholder="Tag"
+              className="form-input-modal"
+              value={tagInput}
+              onChange={(e) => setTagInput(e.target.value)}
+              onKeyDown={handleInputKeyDown}
+            />
+            <div>
+              {tags.map((tag) => (
+                <div key={tag}>
+                  {tag}
+                  <button onClick={() => handleTagRemove(tag)}>X</button>
+                </div>
+              ))}
+            </div>
+          </div>,
           <div className="flex gap-2 flex-col" key="item3">
             <label htmlFor="sharing_body" className="text-p2">
               Masukkan isi diskusi

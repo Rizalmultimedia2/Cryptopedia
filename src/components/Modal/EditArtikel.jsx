@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
 function EditArtikel({ name, title, post_id }) {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const [formValues, setFormValues] = useState({});
 
@@ -21,7 +21,7 @@ function EditArtikel({ name, title, post_id }) {
     };
 
     fetchData();
-  }, []);
+  }, [post_id]);
 
   const onSubmit = async (e) => {
     try {

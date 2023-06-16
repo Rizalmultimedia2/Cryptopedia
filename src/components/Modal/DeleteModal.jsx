@@ -102,7 +102,21 @@ function DeleteModal({ title, button, post_id, nameTable, nama, admin }) {
         const docId = doc(db, "Users", user.uid);
         const updateData = {};
         updateData["created_sharing"] = arrayRemove(post_id);
+        const q = query(
+          collection(db, "report"),
+          where("sharing_id", "==", post_id)
+        );
         await updateDoc(docId, updateData);
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          deleteDoc(doc.ref)
+            .then(() => {
+              console.log("Dokumen berhasil dihapus");
+            })
+            .catch((error) => {
+              console.error("Error menghapus dokumen:", error);
+            });
+        });
       }
 
       if (nameTable == "Comments") {

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
 function EditStarting({ name, title, post_id }) {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
   const [formValues, setFormValues] = useState({});
 
@@ -17,7 +17,7 @@ function EditStarting({ name, title, post_id }) {
     };
 
     fetchData();
-  }, []);
+  }, [post_id]);
 
   const onSubmit = async (e) => {
     try {
@@ -65,6 +65,7 @@ function EditStarting({ name, title, post_id }) {
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col max-w-[550px] bg-white outline-none px-4 py-4 focus:outline-none w-full`}
             >
+              {/* <div>{post_id}</div> */}
               <div className="flex-center border-b border-solid border-gray-4 pb-3">
                 <h4 className="text-h4">{title}</h4>
               </div>

@@ -24,7 +24,8 @@ function LaporkanDiskusi({ title, post_id }) {
     setShowModal(!showModal);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const combineData = {
         ...report,
@@ -64,7 +65,7 @@ function LaporkanDiskusi({ title, post_id }) {
       </button>
       {showModal ? (
         <>
-          <form className="form-modal">
+          <form className="form-modal" onSubmit={handleSubmit}>
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col lg:w-[500px] w-[350px] bg-white outline-none px-4 py-4 focus:outline-none `}
             >
@@ -100,11 +101,7 @@ function LaporkanDiskusi({ title, post_id }) {
                 >
                   Batal
                 </button>
-                <button
-                  className="button-delete"
-                  type="button"
-                  onClick={handleSubmit}
-                >
+                <button className="button-delete" type="submit">
                   Laporkan
                 </button>
               </div>

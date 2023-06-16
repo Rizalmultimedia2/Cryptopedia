@@ -30,11 +30,25 @@ function Modal({
   const user = useUser();
   const router = useRouter();
 
+  const capitalizeFirstLetter = (string) => {
+    if (typeof string === "string") {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    return string;
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
+      const updatedData = { ...data };
+      for (const key in updatedData) {
+        if (updatedData.hasOwnProperty(key)) {
+          updatedData[key] = capitalizeFirstLetter(updatedData[key]);
+        }
+      }
+      console.log("update", updatedData);
       const combineData = {
-        ...data,
+        ...updatedData,
         user_id: user.uid,
         date: serverTimestamp(),
       };
