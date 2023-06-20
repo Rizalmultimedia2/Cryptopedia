@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ItemModal from "./ItemModal";
 import SelectCategory from "../Select/SelectCategory";
+import { FiX } from "react-icons/fi";
 
 function SharingModal({ name, title, button, icon, show }) {
   const [num, setNum] = useState(0);
@@ -22,22 +23,32 @@ function SharingModal({ name, title, button, icon, show }) {
 
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
+  const [isInputInvalid, setIsInputInvalid] = useState(false);
+  const [maxTag, setMaxTag] = useState(false);
 
   const handleInputKeyDown = (e) => {
     if (e.key === " ") {
       e.preventDefault();
       const tag = tagInput.trim().toLowerCase();
 
-      if (tag) {
+      if (tag && tag.length <= 8) {
         if (!tags.includes(tag)) {
-          setTags([...tags, tag]);
-          setFormValues((prev) => ({
-            ...prev,
-            tags: [...prev.tags, tag],
-          }));
+          if (tags.length < 3) {
+            setTags([...tags, tag]);
+            setFormValues((prev) => ({
+              ...prev,
+              tags: [...prev.tags, tag],
+            }));
+            setIsInputInvalid(false);
+            setMaxTag(false);
+          } else {
+            setMaxTag(true);
+          }
         }
-        setTagInput("");
+      } else {
+        setIsInputInvalid(true);
       }
+      setTagInput("");
     }
     console.log("itemform", formValues.tags);
   };
@@ -61,6 +72,8 @@ function SharingModal({ name, title, button, icon, show }) {
   return (
     <>
       <Modal
+        setTagInput={setTagInput}
+        setTags={setTags}
         icon={icon}
         name={name}
         button={button}
@@ -87,24 +100,34 @@ function SharingModal({ name, title, button, icon, show }) {
           //   placeholder="Tag"
           //   setform={setFormValues}
           // />,
-          <div key="item2" className="flex flex-col gap-1">
+          <div key="item2" className="flex flex-col gap-1 transition-all">
             <label htmlFor="tags" className="">
-              Tag
+              Tag (max 3 tag)
             </label>
             <input
               type="text"
               id="tags"
               placeholder="Tag"
-              className="form-input-modal"
+              className={`form-input-modal ${
+                isInputInvalid ? "focus:ring-red-1" : ""
+              }`}
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyDown={handleInputKeyDown}
             />
-            <div>
+            {isInputInvalid && (
+              <p className="text-red-1 text-p3">Tag maksimal 8 karakter</p>
+            )}
+            {maxTag && <p className="text-red-1 text-p3">Tag maksimal 3</p>}
+            <div className="flex flex-row gap-2 my-1">
               {tags.map((tag) => (
-                <div key={tag}>
-                  {tag}
-                  <button onClick={() => handleTagRemove(tag)}>X</button>
+                <div key={tag} className="">
+                  <div className="flex flex-row gap-1 bg-primary-2 text-white py-1 px-2 rounded-lg">
+                    {tag}
+                    <button onClick={() => handleTagRemove(tag)}>
+                      <FiX />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

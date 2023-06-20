@@ -152,7 +152,7 @@
 }
 
 .ring-focus {
-  @apply focus:outline-none focus:ring-[2px] focus:ring-primary-1;
+  @apply focus:outline-none focus:ring-[2px] focus:ring-primary-1 transition-all;
 }
 
 .textarea-modal {

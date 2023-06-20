@@ -87,6 +87,7 @@ function SelectCategory({ style, post, filter }) {
             checked={selected === `${item.value}`}
             onChange={handleChange}
             className="peer sr-only"
+            required
           />
           <label className={`select-${style}`} htmlFor={item.value}>
             {item.label}

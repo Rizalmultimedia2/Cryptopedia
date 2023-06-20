@@ -36,6 +36,7 @@ function EditModal({ name, title, button, icon, show, post_id }) {
   }, [num]);
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     try {
       const updateData = {
         sharing_title: formValues.sharing_title,
@@ -79,7 +80,7 @@ function EditModal({ name, title, button, icon, show, post_id }) {
 
       {showModal ? (
         <>
-          <form className="form-modal z-[45]">
+          <form className="form-modal z-[45]" onSubmit={onSubmit}>
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col lg:w-[500px] w-[350px] bg-white outline-none px-4 py-4 focus:outline-none`}
             >
@@ -167,11 +168,7 @@ function EditModal({ name, title, button, icon, show, post_id }) {
                 >
                   Batal
                 </button>
-                <button
-                  className="button-normal"
-                  type="button"
-                  onClick={onSubmit}
-                >
+                <button className="button-normal" type="submit">
                   {name}
                 </button>
               </div>

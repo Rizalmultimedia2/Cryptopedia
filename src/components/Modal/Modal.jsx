@@ -25,6 +25,8 @@ function Modal({
   data,
   nameTable,
   alert,
+  setTagInput,
+  setTags,
 }) {
   const [showModal, setShowModal] = React.useState(false);
   const user = useUser();
@@ -104,7 +106,10 @@ function Modal({
 
       {showModal ? (
         <>
-          <form className="form-modal z-[100]" onSubmit={onSubmit}>
+          <form
+            className="form-modal z-[100] transition-all"
+            onSubmit={onSubmit}
+          >
             <div
               className={`border-0 rounded-md shadow-lg flex flex-col lg:w-[500px] w-[350px] bg-white outline-none px-4 py-4 focus:outline-none`}
             >
@@ -118,7 +123,11 @@ function Modal({
                 <button
                   className="button-normal"
                   type="button"
-                  onClick={() => setShowModal(false)}
+                  onClick={() => {
+                    setShowModal(false);
+                    setTagInput("");
+                    setTags([]);
+                  }}
                   style={{ background: "#CDEDE6", color: "#000" }}
                 >
                   Batal

@@ -90,7 +90,16 @@ function CryptoSharing({
             {getKategori(kategori)}
           </div>
           <div className="flex-center-between text-p2">
-            <span className="text-black">#{tag}</span>
+            <Link
+              href={`/cryptosharing/${id}`}
+              className="flex flex-row gap-3 w-full"
+            >
+              {tag.map((item, index) => (
+                <span key={index} className="text-black">
+                  {item.includes("#") ? item : `#${item}`}
+                </span>
+              ))}
+            </Link>
             <div className="flex flex-row gap-5">
               <div className="item-reaction">
                 <FaRegCommentDots />
