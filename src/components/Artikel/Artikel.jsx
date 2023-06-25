@@ -1,12 +1,19 @@
 import Image from "next/image";
 import React from "react";
 import DeleteModal from "../Modal/DeleteModal";
-import parse from "html-react-parser";
+import parse, { domToReact } from "html-react-parser";
 import Link from "next/link";
 import EditArtikel from "../Modal/EditArtikel";
 
 function Artikel({ title, date, body, level, id, admin, image_url }) {
-  const getBody = parse(body);
+  const options = {
+    replace: ({ type, name, attribs, children }) => {
+      if (type === "tag" && name === "h1") {
+        return <p>{domToReact(children, options)}</p>;
+      }
+    },
+  };
+  const getBody = parse(body, options);
   const getLevel = (level) => {
     switch (level) {
       case 1:
@@ -53,7 +60,9 @@ function Artikel({ title, date, body, level, id, admin, image_url }) {
                 <div className="level" style={{ background: getColor(level) }}>
                   {getLevel(level)}
                 </div>
-                <div className="text-p1 text-black font-bold">{title}</div>
+                <div className="text-p1 text-black font-bold line-clamp-2">
+                  {title}
+                </div>
                 <p className="text-p3 text-black font-medium">{date}</p>
                 <div className="line-clamp-2">{getBody}</div>
               </div>
@@ -75,7 +84,9 @@ function Artikel({ title, date, body, level, id, admin, image_url }) {
                 <div className="level" style={{ background: getColor(level) }}>
                   {getLevel(level)}
                 </div>
-                <div className="text-p1 text-black font-bold">{title}</div>
+                <div className="text-p1 text-black font-bold line-clamp-2">
+                  {title}
+                </div>
                 <p className="text-p3 text-black font-medium">{date}</p>
                 <div className="line-clamp-2">{getBody}</div>
               </Link>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import ItemModal from "./ItemModal";
+import Swal from "sweetalert2";
 
 function ArtikelModal({ name, title, icon }) {
   const [formValues, setFormValues] = useState({
@@ -13,6 +14,20 @@ function ArtikelModal({ name, title, icon }) {
     user_dislike: [],
     image_url: "",
   });
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      setSelectedImage(file);
+    } else {
+      e.target.value = null;
+      Swal.fire({
+        icon: "error",
+        title: "File harus dalam bentuk image",
+      });
+    }
+  };
 
   return (
     <>
@@ -22,6 +37,7 @@ function ArtikelModal({ name, title, icon }) {
         button={1}
         size={700}
         title={title}
+        selectedImage={selectedImage}
         data={formValues}
         alert="Artikel"
         nameTable="Articles"
@@ -75,14 +91,19 @@ function ArtikelModal({ name, title, icon }) {
               }
             ></textarea>
           </div>,
-          <ItemModal
-            key="item4"
-            label="Gambar"
-            id="image_url"
-            type="text"
-            placeholder="Masukkan url gambar"
-            setform={setFormValues}
-          />,
+          <div key="item4" className="w-full">
+            <label htmlFor="image_url" className="text-p2">
+              Gambar
+            </label>
+            <input
+              type="file"
+              id="image_url"
+              accept="image/*"
+              className="form-input"
+              required
+              onChange={handleImageChange}
+            />
+          </div>,
         ]}
       ></Modal>
     </>

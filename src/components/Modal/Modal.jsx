@@ -14,6 +14,7 @@ import { db } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
 import { useUser } from "@/context/user";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 function Modal({
   Children,
@@ -27,6 +28,8 @@ function Modal({
   alert,
   setTagInput,
   setTags,
+  selectedImage,
+  tagInput,
 }) {
   const [showModal, setShowModal] = React.useState(false);
   const user = useUser();
@@ -41,7 +44,38 @@ function Modal({
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(selectedImage);
     try {
+      if (nameTable == "Articles") {
+        const formData = new FormData();
+        formData.append("key", "a2ba19d5874123057346ec2ca30ee2d5");
+        formData.append("image", selectedImage);
+
+        const response = await axios.post(
+          "https://api.imgbb.com/1/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        const imageUrl = response.data.data.display_url;
+        data = {
+          ...data,
+          image_url: imageUrl,
+        };
+        console.log(imageUrl);
+      }
+
+      if (nameTable == "Sharing" && data.tags.length == 0) {
+        data = {
+          ...data,
+          tags: [tagInput],
+        };
+      }
+
       const updatedData = { ...data };
       for (const key in updatedData) {
         if (updatedData.hasOwnProperty(key)) {
@@ -125,8 +159,10 @@ function Modal({
                   type="button"
                   onClick={() => {
                     setShowModal(false);
-                    setTagInput("");
-                    setTags([]);
+                    if (nameTable == "Sharing") {
+                      setTagInput("");
+                      setTags([]);
+                    }
                   }}
                   style={{ background: "#CDEDE6", color: "#000" }}
                 >

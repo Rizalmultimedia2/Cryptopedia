@@ -27,7 +27,7 @@ function SharingModal({ name, title, button, icon, show }) {
   const [maxTag, setMaxTag] = useState(false);
 
   const handleInputKeyDown = (e) => {
-    if (e.key === " ") {
+    if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
       const tag = tagInput.trim().toLowerCase();
 
@@ -73,6 +73,7 @@ function SharingModal({ name, title, button, icon, show }) {
     <>
       <Modal
         setTagInput={setTagInput}
+        tagInput={tagInput}
         setTags={setTags}
         icon={icon}
         name={name}

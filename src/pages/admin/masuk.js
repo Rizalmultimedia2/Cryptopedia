@@ -26,6 +26,8 @@ function Masuk() {
     try {
       if (formValues.email == "admin@cryptopedia.com") {
         const res = await SignIn(formValues.email, formValues.password);
+      } else {
+        throw new Error("Email anda salah");
       }
       await Swal.fire({
         icon: "success",
