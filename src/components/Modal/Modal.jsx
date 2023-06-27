@@ -62,11 +62,15 @@ function Modal({
         );
 
         const imageUrl = response.data.data.display_url;
+        const lowercaseUrl = imageUrl.replace(/H/, (match, index) => {
+          return index === imageUrl.indexOf("H") ? "h" : "H";
+        });
+        console.log("image_url", lowercaseUrl);
         data = {
           ...data,
-          image_url: imageUrl,
+          image_url: lowercaseUrl,
         };
-        console.log(imageUrl);
+        console.log(lowercaseUrl);
       }
 
       if (nameTable == "Sharing" && data.tags.length == 0) {
