@@ -13,6 +13,7 @@ function Artikel({ title, date, body, level, id, admin, image_url }) {
       }
     },
   };
+  const formattedImage = image_url.replace(/^Https:/, "https:");
   const getBody = parse(body, options);
   const getLevel = (level) => {
     switch (level) {
@@ -50,7 +51,7 @@ function Artikel({ title, date, body, level, id, admin, image_url }) {
             <>
               <div className="relative h-[230px]">
                 <Image
-                  src={image_url}
+                  src={formattedImage}
                   fill
                   className="object-cover"
                   alt="image"
@@ -71,7 +72,7 @@ function Artikel({ title, date, body, level, id, admin, image_url }) {
             <>
               <Link className="relative h-[230px]" href={`/artikel/${id}`}>
                 <Image
-                  src={image_url}
+                  src={formattedImage}
                   fill
                   className="object-cover"
                   alt="image"
