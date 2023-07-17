@@ -58,7 +58,7 @@ function LengkaiData() {
       router.push("/beranda");
     } catch (error) {
       const errorMessage = error.message;
-      console.log(errorMessage);
+      // console.log(errorMessage);
       const message = error.code;
       console.log(message);
       await Swal.fire({

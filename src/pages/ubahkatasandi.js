@@ -48,14 +48,14 @@ function ubahkatasandi() {
       await reauthenticateWithCredential(user, credential);
 
       await updatePassword(user, formValues.newpassword);
-      console.log("Password berhasil diubah");
+      // console.log("Password berhasil diubah");
       await Swal.fire({
         icon: "success",
         title: "Berhasil mengubah kata sandi",
       });
       router.replace("/profile");
     } catch (error) {
-      console.log("Gagal mengubah password", error);
+      // console.log("Gagal mengubah password", error);
       await Swal.fire({
         icon: "error",
         title: "Gagal mengubah kata sandi",

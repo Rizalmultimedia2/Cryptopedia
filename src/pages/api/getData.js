@@ -29,8 +29,6 @@ export const getAllDataFromFirestore = async (q) => {
       });
     });
 
-    // // Menampilkan data
-    // console.log("Data dari Firestore:", dataList);
     return dataList;
   } catch (error) {
     console.error("Terjadi kesalahan:", error);
