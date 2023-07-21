@@ -59,6 +59,10 @@
   font-size: 12px;
 }
 
+.form-input-div {
+  @apply flex items-center h-[45px] font-medium border border-gray-400 rounded-lg text-p3 px-3 ring-focus w-full;
+}
+
 .form-input {
   @apply flex-center h-[45px] font-medium border border-gray-400 rounded-lg text-p3 px-3 ring-focus w-full;
 }
@@ -165,4 +169,13 @@
 
 .form-modal {
   @apply flex-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none text-black;
+}
+
+.file-input {
+  @apply file:mr-5 file:py-2 file:px-4
+  file:rounded-full file:border-0
+  file:text-sm file:font-medium
+  file:bg-primary-1 file:text-white
+  hover:file:cursor-pointer 
+  hover:file:bg-primary-dark transition-all duration-1000;
 }

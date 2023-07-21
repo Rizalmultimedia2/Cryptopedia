@@ -6,7 +6,14 @@ import Footer from "@/components/Footer";
 import SelectLevel from "@/components/Select/SelectLevel";
 import { getAllDataFromFirestore } from "../api/getData";
 import withProtected from "@/hoc/withProtected";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
 import { format } from "date-fns";
@@ -32,7 +39,11 @@ function IndexArtikel() {
           );
           dataQuery = q;
         } else {
-          const q = query(collection(db, "Articles"), limit(100));
+          const q = query(
+            collection(db, "Articles"),
+            orderBy("date", "desc"),
+            limit(100)
+          );
           dataQuery = q;
         }
 

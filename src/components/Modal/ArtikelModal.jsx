@@ -95,14 +95,16 @@ function ArtikelModal({ name, title, icon }) {
             <label htmlFor="image_url" className="text-p2">
               Gambar
             </label>
-            <input
-              type="file"
-              id="image_url"
-              accept="image/*"
-              className="form-input"
-              required
-              onChange={handleImageChange}
-            />
+            <div className="form-input-div">
+              <input
+                type="file"
+                id="image_url"
+                accept="image/*"
+                className="file-input justify-self-start"
+                required
+                onChange={handleImageChange}
+              />
+            </div>
           </div>,
         ]}
       ></Modal>

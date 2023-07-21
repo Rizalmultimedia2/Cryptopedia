@@ -6,7 +6,14 @@ import SelectLevel from "@/components/Select/SelectLevel";
 import ArtikelModal from "@/components/Modal/ArtikelModal";
 import AdminHeader from "@/components/Header/AdminHeader";
 import withProtectedAdmin from "@/hoc/withProtectedAdmin";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { getAllDataFromFirestore } from "../api/getData";
 import { db } from "../../../firebaseConfig";
 import Loading from "@/components/Loading";
@@ -33,7 +40,11 @@ function ArtikelAdmin() {
           );
           dataQuery = q;
         } else {
-          const q = query(collection(db, "Articles"), limit(100));
+          const q = query(
+            collection(db, "Articles"),
+            orderBy("date", "desc"),
+            limit(100)
+          );
           dataQuery = q;
         }
 

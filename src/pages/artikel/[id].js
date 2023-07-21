@@ -108,14 +108,21 @@ function DetailArtikel() {
     fetchData();
   }, []);
 
+  function getRandomItemsFromArray(array, count) {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
   const [articles, seArticles] = useState([]);
   useEffect(() => {
     setLoading(true);
 
     const fetchData = async () => {
-      const q = query(collection(db, "Articles"), limit(4));
-      const dataList = await getAllDataFromFirestore(q);
-      seArticles(dataList);
+      const q = query(collection(db, "Articles"));
+      const allData = await getAllDataFromFirestore(q);
+      const randomArticles = getRandomItemsFromArray(allData, 4);
+      seArticles(randomArticles);
+
       setLoading(false);
     };
     fetchData();
