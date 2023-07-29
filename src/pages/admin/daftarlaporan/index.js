@@ -48,12 +48,12 @@ function daftarlaporan() {
       }
     };
 
-    console.log("Data per ID:");
-    console.log(data);
+    // console.log("Data per ID:");
+    // console.log(data);
     fetchData();
   }, []);
 
-  console.log("isi data", data);
+  // console.log("isi data", data);
 
   return (
     <>
