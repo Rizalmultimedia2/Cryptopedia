@@ -5,21 +5,24 @@ import { getAllDataFromFirestore } from "./api/getData";
 import { useUser } from "@/context/user";
 
 function test() {
-  const [number, setNumber] = useState();
-  const [ganjil, setGanjil] = useState("");
+  const [data, setData] = useState();
 
-  function handleClick() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const q = query(collection(db, "Sharing"));
+      const get = await getAllDataFromFirestore(q);
+      setData(get);
+    };
+    fetchData();
+
+    const number = Math.floor(Math.random() * 10);
+
     console.log(number);
-    if (number % 2 == 0) {
-      setGanjil("Genap");
-    } else {
-      setGanjil("Ganjil");
-    }
-  }
-
+  }, []);
+  console.log(data);
   return (
     <>
-      <div className="container flex-center my-10 gap-3 bg-primary-1 p-10">
+      {/* <div className="container flex-center my-10 gap-3 bg-primary-1 p-10">
         <label htmlFor="angka">Masukkan angka : </label>
         <input
           type="text"
@@ -29,7 +32,8 @@ function test() {
         />
         <button onClick={handleClick}>Klik</button>
         <div>Angka itu adalah {ganjil}</div>
-      </div>
+      </div> */}
+      {data && data.map((item) => <div>{item.sharing_title}</div>)}
     </>
   );
 }

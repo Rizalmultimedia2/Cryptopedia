@@ -67,7 +67,6 @@ function Daftar() {
       });
 
       console.log(message);
-      setLoading(false);
     }
   };
 
