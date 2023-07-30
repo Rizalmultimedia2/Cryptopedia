@@ -20,6 +20,7 @@ function DetailArtikel() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState([]);
+  const [image, setImage] = useState([]);
   const [date, setDate] = useState([]);
   const [body, setBody] = useState([]);
   const [isLoading, setLoading] = useState(false);
@@ -88,6 +89,10 @@ function DetailArtikel() {
           const convertedDate = docSnap.data().date.toDate();
           const formattedDate = format(convertedDate, "dd/MM/yyyy HH:mm");
           const parsedData = parse(docSnap.data().articles_body);
+          const formattedImage = docSnap
+            .data()
+            .image_url.replace(/^Https:/, "https:");
+          setImage(formattedImage);
           setData(docSnap.data());
           setDate(formattedDate);
           setBody(parsedData);
@@ -162,7 +167,7 @@ function DetailArtikel() {
           </div>
           <div className="relative h-[400px]">
             <Image
-              src={data.image_url}
+              src={image}
               fill
               className="object-cover rounded-xl border-4 border-primary-3"
               alt="Artikel"
