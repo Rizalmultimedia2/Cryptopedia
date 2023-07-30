@@ -4,7 +4,7 @@ import Thead from "@/components/Table/Thead";
 import Titems from "@/components/Table/Titems";
 import withProtectedAdmin from "@/hoc/withProtectedAdmin";
 import { getAllDataFromFirestore } from "@/pages/api/getData";
-import { collection, query } from "firebase/firestore";
+import { collection, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../../firebaseConfig";
 import Head from "next/head";
@@ -15,7 +15,7 @@ function daftarlaporan() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const q = query(collection(db, "report"));
+        const q = query(collection(db, "report"), orderBy("date", "desc"));
         const getData = await getAllDataFromFirestore(q);
 
         const idCount = {};

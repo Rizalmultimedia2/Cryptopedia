@@ -160,6 +160,7 @@ function EditModal({ name, title, button, icon, show, post_id }) {
                       className={`form-input-modal ${
                         isInputInvalid ? "focus:ring-red-1" : ""
                       }`}
+                      required
                       value={tagInput}
                       onChange={(e) => setTagInput(e.target.value)}
                       onKeyDown={handleInputKeyDown}
