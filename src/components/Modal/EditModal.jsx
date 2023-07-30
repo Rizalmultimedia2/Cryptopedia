@@ -6,12 +6,53 @@ import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebaseConfig";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import { FiX } from "react-icons/fi";
 
 function EditModal({ name, title, button, icon, show, post_id }) {
   const [num, setNum] = useState(0);
   const [showModal, setShowModal] = React.useState(false);
   const router = useRouter();
   const [formValues, setFormValues] = useState({});
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState("");
+  const [isInputInvalid, setIsInputInvalid] = useState(false);
+  const [maxTag, setMaxTag] = useState(false);
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      const tag = tagInput.trim().toLowerCase();
+
+      if (tag && tag.length <= 8) {
+        if (!tags.includes(tag)) {
+          if (tags.length < 3) {
+            setTags([...tags, tag]);
+            setFormValues((prev) => ({
+              ...prev,
+              tags: [...prev.tags, tag],
+            }));
+            setIsInputInvalid(false);
+            setMaxTag(false);
+          } else {
+            setMaxTag(true);
+          }
+        }
+      } else {
+        setIsInputInvalid(true);
+      }
+      setTagInput("");
+    }
+    console.log("itemform", formValues.tags);
+  };
+
+  const handleTagRemove = (tag) => {
+    const updatedTags = tags.filter((t) => t !== tag);
+    setTags(updatedTags);
+    setFormValues((prev) => ({
+      ...prev,
+      tags: updatedTags,
+    }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +60,7 @@ function EditModal({ name, title, button, icon, show, post_id }) {
         const docRef = doc(db, "Sharing", post_id);
         const get = await getDoc(docRef);
         setFormValues(get.data());
+        setTags(get.data().tags);
       } catch (error) {
         console.log("error", error);
       }
@@ -110,21 +152,38 @@ function EditModal({ name, title, button, icon, show, post_id }) {
 
                   <div className="flex flex-col gap-1">
                     <label htmlFor="tags" className="">
-                      Tag
+                      Tag (max 3 tag)
                     </label>
                     <input
                       type="text"
                       id="tags"
-                      className="form-input"
-                      value={formValues.tags}
-                      required
-                      onChange={(e) =>
-                        setFormValues((prev) => ({
-                          ...prev,
-                          [e.target.id]: e.target.value,
-                        }))
-                      }
+                      className={`form-input-modal ${
+                        isInputInvalid ? "focus:ring-red-1" : ""
+                      }`}
+                      value={tagInput}
+                      onChange={(e) => setTagInput(e.target.value)}
+                      onKeyDown={handleInputKeyDown}
                     />
+                    {isInputInvalid && (
+                      <p className="text-red-1 text-p3">
+                        Tag maksimal 8 karakter
+                      </p>
+                    )}
+                    {maxTag && (
+                      <p className="text-red-1 text-p3">Tag maksimal 3</p>
+                    )}
+                    <div className="flex flex-row gap-2 my-1">
+                      {tags.map((tag) => (
+                        <div key={tag} className="">
+                          <div className="flex flex-row gap-1 bg-primary-2 text-white py-1 px-2 rounded-lg">
+                            {tag}
+                            <button onClick={() => handleTagRemove(tag)}>
+                              <FiX />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="flex gap-2 flex-col">
