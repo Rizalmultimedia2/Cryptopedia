@@ -22,6 +22,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import HapusAkun from "@/components/Modal/HapusAkun";
 
 function Index() {
   const user = useUser();
@@ -110,9 +111,12 @@ function Index() {
                     {data.email}
                   </div>
                 </div>
-                <Link className="button-normal w-fit" href="/ubahkatasandi">
-                  Ubah kata sandi
-                </Link>
+                <div className="flex flex-row justify-between">
+                  <Link className="button-normal w-fit" href="/ubahkatasandi">
+                    Ubah kata sandi
+                  </Link>
+                  <HapusAkun />
+                </div>
               </div>
             </div>
 
