@@ -107,9 +107,8 @@ export default function Home() {
             <h2 className="md:text-h2 text-h4">
               Dengan berbagai fitur yang memudahkan belajar crypto
             </h2>
-            <h3 className="lg:text-h3 text-h5">
-              Artikel - Crypto 101 Crypto Sharing
-            </h3>
+            <h3 className="lg:text-h3 text-h5">Artikel - Crypto 101</h3>
+            <h3 className="lg:text-h3 text-h5">Crypto Sharing</h3>
           </div>
           <div
             className="max-w-[400px]"

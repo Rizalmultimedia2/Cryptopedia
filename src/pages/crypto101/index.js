@@ -147,7 +147,7 @@ function IndexMateri() {
           <div className="flex flex-col gap-2">
             <h3 className="md:text-h2 text-h3">Crypto 101</h3>
             <div className="flex justify-between">
-              <span className="text-p21 max-w-[800px]">
+              <span className="text-p21 max-w-[800px] ">
                 Tempat belajar istilah dan pemahaman awal tentang cryptocurrency
                 untuk pemula
               </span>

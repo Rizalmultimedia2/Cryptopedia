@@ -1,5 +1,4 @@
 import Header from "@/components/Header/Header";
-import Searchbar from "@/components/Searchbar";
 import React, { useEffect, useState } from "react";
 import Footer from "@/components/Footer";
 import CryptoSharing from "@/components/Crypto Sharing/CryptoSharingCard";
@@ -80,7 +79,7 @@ function Index() {
   return (
     <>
       <Head>
-        <title>Cryptopedia | Profile</title>
+        <title>Cryptopedia | Profil</title>
         <meta name="description" content="" />
         <link rel="icon" href="/image/Logo.svg" />
       </Head>
@@ -97,7 +96,7 @@ function Index() {
           </div>
           <div className="flex lg:flex-row lg:p-3 p-8 gap-7 border-2 border-primary-1 rounded-xl flex-col">
             <div className="flex flex-col gap-3">
-              <h5 className="text-h5">Account Data</h5>
+              <h5 className="text-h5">Data akun</h5>
               <div className="flex flex-col gap-3">
                 <div>
                   <span>Username</span>
@@ -118,7 +117,7 @@ function Index() {
             </div>
 
             <div className="flex flex-col gap-3">
-              <h5 className="text-h5">Personal data</h5>
+              <h5 className="text-h5">Data personal</h5>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-3"
@@ -162,7 +161,7 @@ function Index() {
                 </div>
 
                 <button type="submit" className="button-normal w-fit ">
-                  Edit profile
+                  Edit profil
                 </button>
               </form>
             </div>
@@ -172,7 +171,7 @@ function Index() {
         <div className="grid lg:grid-cols-8 gap-[30px]">
           <div className="flex lg:col-span-5 flex-col gap-5">
             <div className="flex flex-row justify-between flex-wrap gap-3">
-              <h4 className="text-h4 text-black">My Post</h4>
+              <h4 className="text-h4 text-black">Postingan saya</h4>
               {/* <Searchbar placeholder="Cari postingan" /> */}
             </div>
             <div className="flex flex-col gap-5">

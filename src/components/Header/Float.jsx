@@ -64,14 +64,14 @@ function Float() {
                     <span className="font-medium">@{data.username}</span>
                     <span className="text-p4 font-semibold">{user.email}</span>
                     <Link className="button-normal h-8" href="/profile">
-                      Profile
+                      Detail Profil
                     </Link>
                   </div>
                 </div>
                 <div className="border border-t-1 my-2"></div>
                 <div className="w-full">
                   <button className="button-delete w-full" onClick={SignOut}>
-                    Logout
+                    Keluar akun
                   </button>
                 </div>
               </div>

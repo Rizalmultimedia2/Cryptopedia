@@ -129,7 +129,8 @@ function IndexSharing() {
           <h3 className="md:text-h2 text-h3">Crypto Sharing</h3>
           <div className="flex gap-3 justify-between flex-wrap">
             <span className="text-p21 max-w-[800px]">
-              Belajar Cryptocurrency lebih mudah dengan berdiskusi
+              <b>Forum diskusi </b>untuk belajar dan menambah wawasan
+              Cryptocurrency
             </span>
             <SharingModal
               name="Buat Diskusi"

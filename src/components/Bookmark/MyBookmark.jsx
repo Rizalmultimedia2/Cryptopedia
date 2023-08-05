@@ -31,7 +31,7 @@ function MyBookmark() {
   return (
     <>
       <div className="flex-center flex-col bg-white border border-gray-4 rounded-lg px-5 py-6 gap-5 z-10 transition-all">
-        <p className="text-h4 text-primary-1 font-bold">MyBookmark</p>
+        <p className="text-h4 text-primary-1 font-bold">Bookmark saya</p>
         <div className="flex flex-col w-full gap-3">
           <ul className="flex items-center justify-start gap-3 ">
             <SelectBookmark tabel={setOptionBookmark} />
